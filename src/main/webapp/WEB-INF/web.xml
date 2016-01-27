@@ -7,7 +7,7 @@
 
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:spring.xml,classpath:spring-mybatis.xml</param-value>
+    <param-value>classpath*:spring.xml,classpath*:spring-mybatis.xml</param-value>
   </context-param>
 
   <filter>
@@ -42,7 +42,7 @@
     <init-param>
       <param-name>contextConfigLocation</param-name>
       <param-value>
-        classpath:spring-mvc.xml
+        classpath*:spring-mvc.xml
       </param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
