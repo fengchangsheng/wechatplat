@@ -23,7 +23,7 @@ public class MenuTreeServiceImpl implements MenuTreeService {
 
     public List<MenuTree> tree() {
         List<MenuTree> relList = new ArrayList<MenuTree>();
-        List<MenuTree> list = menuTreeMapper.buildMenuTree(null);
+        List<MenuTree> list = menuTreeMapper.buildMenuTree("0");
         List<MenuTree> childList = null;
         for (MenuTree menuTree:list){
             childList = buildTreeList(menuTree.getId());

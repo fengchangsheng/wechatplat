@@ -19,7 +19,7 @@
     <select id="buildMenuTree" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List" />
-        from user_info
+        from manage_menuTree
         where enabled=0 and parentId = #{id,jdbcType=VARCHAR}
     </select>
 
