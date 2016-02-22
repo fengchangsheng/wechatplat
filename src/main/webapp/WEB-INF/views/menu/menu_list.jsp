@@ -50,10 +50,10 @@
 <script>
 
     var UrlConfig = {
-        SysMenuAdd: '${ctx}/menu/addMenu',
-        SysMenuUpdate: '${ctx}/menu/editMenu',
-        SysMenuDelete: '${ctx}/menu/delMenu',
-        SysMenuList: '${ctx}/menu/menuList'
+        SysMenuAdd: 'addMenu',
+        SysMenuUpdate: 'editMenu',
+        SysMenuDelete: 'delMenu',
+        SysMenuList: 'menuList'
     };
 
     $(function(){

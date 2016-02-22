@@ -11,11 +11,11 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="/wechatplat/static/easyui/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="/wechatplat/static/easyui/themes/icon.css">
-    <script type="text/javascript" src="/wechatplat/static/js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="/wechatplat/static/easyui/plugins/jquery.tree.js"></script>
-    <script type="text/javascript" src="/wechatplat/static/easyui/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
+    <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/static/easyui/plugins/jquery.tree.js"></script>
+    <script type="text/javascript" src="/static/easyui/jquery.easyui.min.js"></script>
     <script>
         function showMsgGrandParent(info){
             window.parent.parent.$.messager.show({
