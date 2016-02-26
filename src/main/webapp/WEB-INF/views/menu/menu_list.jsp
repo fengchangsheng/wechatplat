@@ -73,7 +73,7 @@
                     handler :openAddWin
                 }, '-',{
                     text : '编辑',
-                    iconCls : 'icon-eidt',
+                    iconCls : 'icon-edit',
                     handler :openEditWin
                 }, '-',{
                     text : '删除',
@@ -150,7 +150,6 @@
         }
     });
 
-
     var url = "";
 
     function save() {
@@ -166,7 +165,7 @@
                     $('#tg').treegrid('reload');    // reload the user data
                 }
                 showMsg(result.msg);
-                window.location.href="${ctx}/admin/treeMenu";
+                window.location.href="${ctx}/menu/home";
             }
         });
     }
@@ -192,8 +191,6 @@
             }
         });
     }
-
-
 </script>
 
 </body>

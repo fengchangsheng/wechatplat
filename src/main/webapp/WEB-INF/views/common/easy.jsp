@@ -10,8 +10,8 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="/static/easyui/themes/default/easyui.css">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="/static/easyui/themes/icon.css">
     <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/static/easyui/plugins/jquery.tree.js"></script>

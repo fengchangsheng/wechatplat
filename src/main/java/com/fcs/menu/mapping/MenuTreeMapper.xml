@@ -23,6 +23,25 @@
         where enabled=0 and parentId = #{id,jdbcType=VARCHAR}
     </select>
 
+     <insert id="saveMenu" parameterType="com.fcs.menu.model.MenuTree">
+        insert into manage_menutree (id,text,url,parentId,createTime,updateTime)
+        values
+          (#{id},#{text},#{url},#{parentId},#{createTime},#{updateTime})
+    </insert>
+
+    <update id="delMenu" parameterType="java.lang.String">
+        update manage_menutree set
+        enabled = ${@com.fcs.common.GlobalStatic@ENABLED_FALSE}
+        where id = #{id}
+    </update>
+
+    <update id="editMenu" parameterType="com.fcs.menu.model.MenuTree">
+        update manage_menutree set
+        text = #{text},
+        url = #{url},
+        updateTime = #{updateTime}
+        where id = #{id}
+    </update>
     <!--<resultMap type="com.fcs.menu.model.MenuTree" id="MenuTreeMap"-->
                <!--extends="BaseResultMap">-->
         <!--<collection property="courseInfos" javaType="ArrayList"-->

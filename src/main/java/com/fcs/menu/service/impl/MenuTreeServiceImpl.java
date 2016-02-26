@@ -1,16 +1,13 @@
 package com.fcs.menu.service.impl;
 
+import com.fcs.common.Strings;
 import com.fcs.menu.dao.MenuTreeMapper;
 import com.fcs.menu.model.MenuTree;
 import com.fcs.menu.service.MenuTreeService;
-import com.fcs.user.dao.UserInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Lucare on 2016/1/29.
@@ -31,7 +28,6 @@ public class MenuTreeServiceImpl implements MenuTreeService {
             relList.add(menuTree);
         }
         return relList;
-//        return menuTreeMapper.buildMenuTree();
     }
 
     /**
@@ -57,11 +53,19 @@ public class MenuTreeServiceImpl implements MenuTreeService {
     }
 
     public String saveMenu(MenuTree menuTree) {
+        if(menuTree != null){
+            Date date = new Date();
+            menuTree.setId(Strings.getID());
+            menuTree.setCreateTime(date);
+            menuTree.setUpdateTime(date);
+            menuTreeMapper.saveMenu(menuTree);
+            return menuTree.getId();
+        }
         return null;
     }
 
-    public void delMenu(MenuTree menuTree) {
-
+    public void delMenu(String menuTreeId) {
+        menuTreeMapper.delMenu(menuTreeId);
     }
 
     public MenuTree searchOne(String menuId) {
@@ -69,6 +73,7 @@ public class MenuTreeServiceImpl implements MenuTreeService {
     }
 
     public void editMenu(MenuTree menuTree) {
-
+        menuTree.setUpdateTime(new Date());
+        menuTreeMapper.editMenu(menuTree);
     }
 }

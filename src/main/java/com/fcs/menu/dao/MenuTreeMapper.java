@@ -11,11 +11,13 @@ public interface MenuTreeMapper {
 
     List<MenuTree> buildMenuTree(String pid);
 
-    String saveMenu(MenuTree menuTree);
+    void saveMenu(MenuTree menuTree);
 
-    void delMenu(MenuTree menuTree);
+    void delMenu(String menuTreeId);
 
     MenuTree searchOne(String menuId);
 
     void editMenu(MenuTree menuTree);
+
+
 }

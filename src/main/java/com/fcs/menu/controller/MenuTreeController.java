@@ -89,10 +89,7 @@ public class MenuTreeController extends BaseController{
     public Map editMenu(MenuTree menuTree){
         Map<String,String> map = new HashMap<String,String>();
         try {
-            MenuTree oldMenuTree = menuTreeService.searchOne(menuTree.getId());
-            oldMenuTree.setUrl(menuTree.getUrl());
-            oldMenuTree.setText(menuTree.getText());
-            menuTreeService.editMenu(oldMenuTree);
+            menuTreeService.editMenu(menuTree);
             map.put("code","200");
             map.put("msg","菜单编辑成功!");
             return map;
@@ -109,8 +106,7 @@ public class MenuTreeController extends BaseController{
     public Map delMenu(String menuId){
         Map<String,String> map = new HashMap<String,String>();
         try {
-            MenuTree menuTree = menuTreeService.searchOne(menuId);
-            menuTreeService.delMenu(menuTree);
+            menuTreeService.delMenu(menuId);
             map.put("code","200");
             map.put("msg","菜单删除成功!");
             return map;

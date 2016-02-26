@@ -26,10 +26,10 @@ public interface MenuTreeService {
 
     /**
      * 删除菜单
-     * @param menuTree
+     * @param menuTreeId
      * @author Lucare.Feng
      */
-    void delMenu(MenuTree menuTree);
+    void delMenu(String menuTreeId);
 
     /**
      * 根据id查找菜单对象
