@@ -42,7 +42,7 @@
 $(function(){
     //实例化树形菜单
     $("#tt").tree({
-        url:"/menu/buildTree",
+        url:"${ctx}/menu/buildTree",
         onClick : function (node) {
             if (node.attributes) {
                 Open(node.text, node.attributes.url);
