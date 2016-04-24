@@ -1,6 +1,6 @@
 import com.alibaba.fastjson.JSON;
-import com.fcs.user.model.UserInfo;
-import com.fcs.user.service.UserService;
+import com.fcs.admin.model.UserInfo;
+import com.fcs.admin.service.UserService;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;

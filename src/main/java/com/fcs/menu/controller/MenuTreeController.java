@@ -16,8 +16,8 @@ import java.util.Map;
 /**
  * Created by Lucare on 2016/1/29.
  */
-@Controller
-@RequestMapping("/menu")
+//@Controller
+//@RequestMapping("/menu")
 public class MenuTreeController extends BaseController{
 
     @Autowired
@@ -26,6 +26,7 @@ public class MenuTreeController extends BaseController{
     @RequestMapping("/home")//后台管理首页
     public String index(){
         try {
+            System.out.println(">>>>--------$$$$#####$$$$$--------++++++");
             return "/home";
         } catch (Exception e) {
             logger.error(this.getClass().getName()+":index()", e);

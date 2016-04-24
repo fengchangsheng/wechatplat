@@ -12,7 +12,7 @@ import java.util.*;
 /**
  * Created by Lucare on 2016/1/29.
  */
-@Service("menuTreeService")
+//@Service("menuTreeService")
 public class MenuTreeServiceImpl implements MenuTreeService {
 
     @Autowired

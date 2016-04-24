@@ -12,6 +12,7 @@
         <result column="createTime" property="createTime" jdbcType="DATE" />
         <result column="updateTime" property="updateTime" jdbcType="DATE" />
         <result column="state" property="state" jdbcType="VARCHAR" />
+        <result column="sn" property="sn" jdbcType="INTEGER" />
     </resultMap>
     <sql id="Base_Column_List">
         id,text,url,parentId,enabled
