@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : fcs
 Source Server Version : 50621
-Source Host           : localhost:3306
+Source Host           : 127.0.0.1:3306
 Source Database       : wechatplat
 
 Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2016-02-26 16:32:57
+Date: 2016-04-24 23:07:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,46 +55,91 @@ INSERT INTO `course_user_info` VALUES ('1', '1', '1');
 INSERT INTO `course_user_info` VALUES ('2', '1', '3');
 
 -- ----------------------------
--- Table structure for manage_menutree
+-- Table structure for menutree
 -- ----------------------------
-DROP TABLE IF EXISTS `manage_menutree`;
-CREATE TABLE `manage_menutree` (
+DROP TABLE IF EXISTS `menutree`;
+CREATE TABLE `menutree` (
   `id` varchar(36) NOT NULL,
   `text` varchar(255) DEFAULT NULL,
   `iconCls` varchar(255) DEFAULT NULL,
   `checked` int(2) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `parentId` varchar(36) DEFAULT NULL,
-  `enabled` int(2) DEFAULT '0',
+  `enabled` int(2) DEFAULT NULL COMMENT '1-存在  0-逻辑删除',
   `createTime` datetime DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   `state` varchar(255) DEFAULT NULL,
+  `sn` int(2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of manage_menutree
+-- Records of menutree
 -- ----------------------------
-INSERT INTO `manage_menutree` VALUES ('2', '菜单管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('21', '菜单列表', null, null, '/menu/toMenuList', '2', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('3', '用户管理', null, null, '', '0', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('31', '基本信息', null, null, '/oper/toUserList', '3', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('32', '用户操作', null, null, 'l', '3', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('33', '角色管理', null, null, '', '3', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('331', '角色列表', null, null, 'rolelist', '33', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('4', '内训管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('41', '内训信息', null, null, 'f', '4', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('42', '内训操作', null, null, 'g', '4', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('5', '外派管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('51', '外派信息', null, null, 's', '5', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('52', '外派操作', null, null, 'h', '5', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('6', '问卷管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('61', '问卷信息', null, null, 'hh', '6', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('62', '问卷操作', null, null, 'kk', '6', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('7', '试卷管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('71', '试卷信息', null, null, 'll', '7', '0', '2016-01-27 15:14:30', null, null);
-INSERT INTO `manage_menutree` VALUES ('71a32da4-6f86-4716-9567-3e07f4be37d0', '菜单测哈', null, null, 'test222', '2', '0', '2016-01-28 15:47:35', '2016-01-28 16:16:42', null);
-INSERT INTO `manage_menutree` VALUES ('72', '试卷操作', null, null, 'ss', '7', '0', '2016-01-27 15:14:30', null, null);
+INSERT INTO `menutree` VALUES ('2', '菜单管理', null, null, null, '0', '1', '2016-01-27 15:14:30', null, null, '1');
+INSERT INTO `menutree` VALUES ('21', '菜单列表', null, null, '/per/index', '2', '1', '2016-01-27 15:14:30', null, null, '2');
+INSERT INTO `menutree` VALUES ('3', '管理员管理', null, null, '', '0', '1', '2016-01-27 15:14:30', null, null, '3');
+INSERT INTO `menutree` VALUES ('31', '基本信息', null, null, '/oper/toUserList', '3', '1', '2016-01-27 15:14:30', null, null, '4');
+INSERT INTO `menutree` VALUES ('32', '用户操作', null, null, 'l', '3', '1', '2016-01-27 15:14:30', null, null, '5');
+INSERT INTO `menutree` VALUES ('33', '角色管理', null, null, '/role/index', '3', '1', '2016-01-27 15:14:30', null, null, '6');
+INSERT INTO `menutree` VALUES ('331', '角色列表', null, null, 'rolelist', '33', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('4', '内训管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('41', '内训信息', null, null, 'f', '4', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('42', '内训操作', null, null, 'g', '4', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('5', '外派管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('51', '外派信息', null, null, 's', '5', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('52', '外派操作', null, null, 'h', '5', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('6', '问卷管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('61', '问卷信息', null, null, 'hh', '6', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('62', '问卷操作', null, null, 'kk', '6', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('7', '试卷管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('71', '试卷信息', null, null, 'll', '7', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('71a32da4-6f86-4716-9567-3e07f4be37d0', '菜单测哈', null, null, 'test222', '2', '0', '2016-01-28 15:47:35', '2016-01-28 16:16:42', null, null);
+INSERT INTO `menutree` VALUES ('72', '试卷操作', null, null, 'ss', '7', '0', '2016-01-27 15:14:30', null, null, null);
+INSERT INTO `menutree` VALUES ('c8429d90-3dfc-4050-a04b-08f4c1c30967', '菜单哈哈', null, null, 'hsh', '2', '0', '2016-01-28 14:20:03', '2016-01-28 14:44:48', null, null);
+
+-- ----------------------------
+-- Table structure for role_info
+-- ----------------------------
+DROP TABLE IF EXISTS `role_info`;
+CREATE TABLE `role_info` (
+  `id` varchar(36) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `des` varchar(255) DEFAULT NULL,
+  `sn` int(2) DEFAULT NULL,
+  `createtime` datetime DEFAULT NULL,
+  `updatetime` datetime DEFAULT NULL,
+  `enabled` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role_info
+-- ----------------------------
+INSERT INTO `role_info` VALUES ('1', '管理员', '整个系统的管理者', '1', null, null, '1');
+INSERT INTO `role_info` VALUES ('2', '公司领导', '偶尔来找下感觉', '2', null, null, '1');
+INSERT INTO `role_info` VALUES ('3', '小管理员', '部分管理员权限', '3', null, null, '1');
+
+-- ----------------------------
+-- Table structure for role_per
+-- ----------------------------
+DROP TABLE IF EXISTS `role_per`;
+CREATE TABLE `role_per` (
+  `id` varchar(36) NOT NULL,
+  `roleid` varchar(36) DEFAULT NULL,
+  `perid` varchar(36) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role_per
+-- ----------------------------
+INSERT INTO `role_per` VALUES ('1', '1', '2');
+INSERT INTO `role_per` VALUES ('2', '1', '21');
+INSERT INTO `role_per` VALUES ('3', '1', '3');
+INSERT INTO `role_per` VALUES ('4', '1', '31');
+INSERT INTO `role_per` VALUES ('5', '1', '32');
+INSERT INTO `role_per` VALUES ('6', '1', '33');
 
 -- ----------------------------
 -- Table structure for user_info
@@ -111,3 +156,19 @@ CREATE TABLE `user_info` (
 -- Records of user_info
 -- ----------------------------
 INSERT INTO `user_info` VALUES ('1', 'Lucare', '5');
+
+-- ----------------------------
+-- Table structure for user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `user_role`;
+CREATE TABLE `user_role` (
+  `id` varchar(36) NOT NULL,
+  `userid` varchar(36) DEFAULT NULL,
+  `roleid` varchar(36) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user_role
+-- ----------------------------
+INSERT INTO `user_role` VALUES ('1', '1', '1');
