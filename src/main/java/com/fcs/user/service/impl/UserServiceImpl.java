@@ -23,22 +23,22 @@ public class UserServiceImpl implements UserService{
         String listResult = WebUtils.sendGet(getUserUrl);
 
         JSONObject jsonObject = JSONObject.parseObject(listResult);
-        int total = jsonObject.getInteger("total");
-        int count = jsonObject.getInteger("count");
         JSONArray jsonArray = (JSONArray) jsonObject.getJSONObject("data").get("openid");
         Iterator<Object> iterator = jsonArray.iterator();
-        String innerUrl = null;
         JSONArray newJsonArray = new JSONArray();
         int i = 0;
+        String openid = null,innerUrl = null,resUser =null;
+        JSONObject innerObj = null;
         while (iterator.hasNext()) {
-            String openid = (String) iterator.next();
+            openid = (String) iterator.next();
             innerUrl = "https://api.weixin.qq.com/cgi-bin/user/info?access_token="+access_token+"&openid="+openid+"&lang=zh_CN";
-            String resUser = WebUtils.sendGet(innerUrl);
-            JSONObject innerObj = JSONObject.parseObject(resUser);
+            resUser  = WebUtils.sendGet(innerUrl);
+            innerObj = JSONObject.parseObject(resUser);
             newJsonArray.add(i++, innerObj);
         }
         jsonObject.remove("data");
         jsonObject.put("datas",newJsonArray);
+        System.out.println(jsonObject.toJSONString());
         return jsonObject.toJSONString();
     }
 }

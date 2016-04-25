@@ -12,7 +12,7 @@ public class GlobalStatic {
 	
 	/*************************************微信相关**********************************************/
 	public static final String TECENT_TOKEN = "";
-	public static final String APPID = "wxc2ea08040f26105e";
-	public static final String SECRET = "069538db171c79f79a23df412bf4d919";
+	public static final String APPID = "";
+	public static final String SECRET = "";
 
 }
