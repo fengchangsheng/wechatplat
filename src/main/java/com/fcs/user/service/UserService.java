@@ -1,5 +1,6 @@
 package com.fcs.user.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fcs.user.model.User;
 
 import java.util.List;
@@ -9,5 +10,5 @@ import java.util.List;
  */
 public interface UserService {
 
-    String getUserList();
+    String getUserList(String access_token);
 }

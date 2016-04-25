@@ -1,5 +1,6 @@
 package com.fcs.user.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fcs.platform.controller.BaseController;
 import com.fcs.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,16 @@ public class UserController extends BaseController{
     @Autowired
     private UserService weUserService;
 
-    @ResponseBody
+
     @RequestMapping("/index")
+    public String index(){
+        return "/user/user_list";
+    }
+
+    @ResponseBody
+    @RequestMapping("/getUsers")
     public String getUserList(){
-        return weUserService.getUserList();
+        return weUserService.getUserList(getAccess_token());
     }
 
 }
