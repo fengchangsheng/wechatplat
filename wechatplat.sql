@@ -1,16 +1,16 @@
-/*
+﻿/*
 Navicat MySQL Data Transfer
 
 Source Server         : fcs
 Source Server Version : 50621
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : wechatplat
 
 Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2016-04-24 23:07:06
+Date: 2016-04-25 18:03:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -80,23 +80,11 @@ INSERT INTO `menutree` VALUES ('2', '菜单管理', null, null, null, '0', '1', 
 INSERT INTO `menutree` VALUES ('21', '菜单列表', null, null, '/per/index', '2', '1', '2016-01-27 15:14:30', null, null, '2');
 INSERT INTO `menutree` VALUES ('3', '管理员管理', null, null, '', '0', '1', '2016-01-27 15:14:30', null, null, '3');
 INSERT INTO `menutree` VALUES ('31', '基本信息', null, null, '/oper/toUserList', '3', '1', '2016-01-27 15:14:30', null, null, '4');
-INSERT INTO `menutree` VALUES ('32', '用户操作', null, null, 'l', '3', '1', '2016-01-27 15:14:30', null, null, '5');
-INSERT INTO `menutree` VALUES ('33', '角色管理', null, null, '/role/index', '3', '1', '2016-01-27 15:14:30', null, null, '6');
-INSERT INTO `menutree` VALUES ('331', '角色列表', null, null, 'rolelist', '33', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('4', '内训管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('41', '内训信息', null, null, 'f', '4', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('42', '内训操作', null, null, 'g', '4', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('5', '外派管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('51', '外派信息', null, null, 's', '5', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('52', '外派操作', null, null, 'h', '5', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('6', '问卷管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('61', '问卷信息', null, null, 'hh', '6', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('62', '问卷操作', null, null, 'kk', '6', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('7', '试卷管理', null, null, null, '0', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('71', '试卷信息', null, null, 'll', '7', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('71a32da4-6f86-4716-9567-3e07f4be37d0', '菜单测哈', null, null, 'test222', '2', '0', '2016-01-28 15:47:35', '2016-01-28 16:16:42', null, null);
-INSERT INTO `menutree` VALUES ('72', '试卷操作', null, null, 'ss', '7', '0', '2016-01-27 15:14:30', null, null, null);
-INSERT INTO `menutree` VALUES ('c8429d90-3dfc-4050-a04b-08f4c1c30967', '菜单哈哈', null, null, 'hsh', '2', '0', '2016-01-28 14:20:03', '2016-01-28 14:44:48', null, null);
+INSERT INTO `menutree` VALUES ('32', '角色管理', null, null, '/role/index', '3', '1', '2016-01-27 15:14:30', null, null, '5');
+INSERT INTO `menutree` VALUES ('33', '权限管理', null, null, '', '3', '1', '2016-01-27 15:14:30', null, null, '6');
+INSERT INTO `menutree` VALUES ('4', '用户管理', null, null, '', '0', '1', '2016-04-25 14:38:09', null, null, '7');
+INSERT INTO `menutree` VALUES ('41', '用户列表', null, null, 'weuser/index', '4', '1', '2016-04-25 14:38:42', null, null, '8');
+INSERT INTO `menutree` VALUES ('42', '用户群组', null, null, 'wegroup/index', '4', '1', '2016-04-25 14:39:07', null, null, '9');
 
 -- ----------------------------
 -- Table structure for role_info
@@ -140,6 +128,9 @@ INSERT INTO `role_per` VALUES ('3', '1', '3');
 INSERT INTO `role_per` VALUES ('4', '1', '31');
 INSERT INTO `role_per` VALUES ('5', '1', '32');
 INSERT INTO `role_per` VALUES ('6', '1', '33');
+INSERT INTO `role_per` VALUES ('7', '1', '4');
+INSERT INTO `role_per` VALUES ('8', '1', '41');
+INSERT INTO `role_per` VALUES ('9', '1', '42');
 
 -- ----------------------------
 -- Table structure for user_info
