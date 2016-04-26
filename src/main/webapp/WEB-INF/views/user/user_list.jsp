@@ -42,11 +42,11 @@
 			</tr>
 			<tr class="text-c">
 				<th width="25"><input type="checkbox" value="" name=""></th>
-				<th width="200">openID</th>
+				<th width="250">openID</th>
 				<th width="200">昵称</th>
+				<th width="200">性别</th>
 				<th>地址</th>
-				<th width="300">性别</th>
-				<th width="70">操作</th>
+				<th width="150">操作</th>
 			</tr>
 		</thead>
 		<tbody id="ubody">
@@ -72,9 +72,10 @@
 				var html = '';
 				$.each(datas, function(index, comment){
 					html += '<tr class="text-c"><td><input type="checkbox" value="" name=""></td><td>'
-							+ comment.openid +'</td><td>'+ comment.nickname+'</td><td><a href="#">'+comment.province+'</a></td><td>'
-							+ comment.sex+ '</td>'
-							+ '<td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit(\'角色编辑\',\'admin-role-add.html\',\'1\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> ' +
+							+ comment.openid +'</td><td>'+ comment.nickname+'</td><td><a href="#">'
+							+ comment.sex+ '</a></td><td>'+ comment.country +'-'
+							+ comment.province+'-'+comment.city+'</td>'
+							+ '<td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit(\'角色编辑\',\'admin-role-add.html\',\'1\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> '
 					        + '<a title="删除" href="javascript:;" onclick="admin_role_del(this,\'1\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>';
 				});
 				$('#nums').html(data.total);

@@ -31,4 +31,9 @@ public class UserController extends BaseController{
         return weUserService.getUserList(getAccess_token());
     }
 
+    @RequestMapping("/edit")
+    public String edit(){
+        return "/user/user_list";
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.fcs.user.controller;
 
 import com.fcs.platform.controller.BaseController;
+import com.fcs.user.model.Group;
 import com.fcs.user.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,10 +32,31 @@ public class GroupController extends BaseController{
         return res;
     }
 
+    @RequestMapping("/toEdit")
+    public String toEdit(int id,ModelMap mm){
+        mm.addAttribute("id", id);
+        return "/user/user_group_edit";
+    }
+
     @ResponseBody
-    @RequestMapping("/update")
-    public String update(){
-        String res = groupService.getGroupList(getAccess_token());
+    @RequestMapping("/edit")
+    public String edit(int id,String name){
+        String res = groupService.edit(id,name,getAccess_token());
         return res;
     }
+
+    @RequestMapping("/toAdd")
+    public String toAdd(){
+        return "/user/user_group_add";
+    }
+
+    @ResponseBody
+    @RequestMapping("/add")
+    public String add(String name){
+        Group group = new Group();
+        group.setName(name);
+        String res = groupService.add(name,getAccess_token());
+        return res;
+    }
+
 }

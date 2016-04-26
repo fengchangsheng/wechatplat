@@ -5,4 +5,8 @@ package com.fcs.user.service;
  */
 public interface GroupService {
     String getGroupList(String access_token);
+
+    String edit(int id, String name, String access_token);
+
+    String add(String name, String access_token);
 }
