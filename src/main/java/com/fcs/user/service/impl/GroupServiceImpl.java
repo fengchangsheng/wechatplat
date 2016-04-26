@@ -39,4 +39,14 @@ public class GroupServiceImpl implements GroupService{
         String res = WebUtils.sendPost(url, jsonObj.toJSONString());
         return res;
     }
+
+    public String delete(int id, String access_token) {
+        String url = "https://api.weixin.qq.com/cgi-bin/groups/delete?access_token="+access_token;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", id);
+        JSONObject jsonObj = new JSONObject();
+        jsonObj.put("group", jsonObject);
+        String res = WebUtils.sendPost(url, jsonObj.toJSONString());
+        return res;
+    }
 }

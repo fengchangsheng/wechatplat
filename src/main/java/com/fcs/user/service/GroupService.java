@@ -9,4 +9,6 @@ public interface GroupService {
     String edit(int id, String name, String access_token);
 
     String add(String name, String access_token);
+
+    String delete(int id, String access_token);
 }

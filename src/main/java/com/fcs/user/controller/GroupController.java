@@ -53,9 +53,14 @@ public class GroupController extends BaseController{
     @ResponseBody
     @RequestMapping("/add")
     public String add(String name){
-        Group group = new Group();
-        group.setName(name);
         String res = groupService.add(name,getAccess_token());
+        return res;
+    }
+
+    @ResponseBody
+    @RequestMapping("/delete")
+    public String delete(int id){
+        String res = groupService.delete(id,getAccess_token());
         return res;
     }
 
