@@ -21,7 +21,7 @@ public class IndexController extends BaseController{
     @RequestMapping("/index")//后台管理首页
     public String index(Model model){
         try {
-            List<MenuTree> list = permissionService.selectMenuTreeByUserId("1");
+            List<MenuTree> list = permissionService.getMenuList();//暂时不用登录获取权限
             model.addAttribute("list", list);
             return "/index";
         } catch (Exception e) {

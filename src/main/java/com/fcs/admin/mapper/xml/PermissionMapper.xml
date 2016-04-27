@@ -31,6 +31,15 @@
         WHERE menu.enabled = 1  ORDER BY sn
     </select>
 
+    <select id="getMenuList" resultType="com.fcs.admin.model.MenuTree">
+        SELECT id, text, url, iconCls
+        FROM menutree menu
+        WHERE menu.enabled = 1 and menu.parentId = #{pid}
+        ORDER BY sn
+    </select>
+
+
+
 
 
 

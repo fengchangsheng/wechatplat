@@ -31,6 +31,19 @@ public class PermissionServiceImpl implements PermissionService {
         return mvList;
     }
 
+    public List<MenuTree> getMenuList() {
+        List<MenuTree> perList = permissionMapper.getMenuList("0");
+        if (perList == null || perList.isEmpty()) {
+            return null;
+        }
+        List<MenuTree> mvList = new ArrayList<MenuTree>();
+        for (MenuTree mv : perList) {
+            mv.setChildren(permissionMapper.getMenuList(mv.getId()));
+            mvList.add(mv);
+        }
+        return mvList;
+    }
+
     public List<MenuTree> getPermissionList() {
         List<MenuTree> perList = permissionMapper.getPermissionList();
         return perList;
