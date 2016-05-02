@@ -14,8 +14,8 @@ public class UserAnalysisServiceImpl implements UserAnalysisService {
     public String getUserSummary(String access_token) {
         String url = "https://api.weixin.qq.com/datacube/getusersummary?access_token="+access_token;
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("begin_date", "2015-12-02");
-        jsonObject.put("end_date", "2014-12-07");
+        jsonObject.put("begin_date", "2016-04-26");
+        jsonObject.put("end_date", "2016-05-01");
         String res = WebUtils.sendPost(url, jsonObject.toJSONString());
         return res;
     }
@@ -23,8 +23,8 @@ public class UserAnalysisServiceImpl implements UserAnalysisService {
     public String getUserCumulate(String access_token) {
         String url = "https://api.weixin.qq.com/datacube/getusercumulate?access_token="+access_token;
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("begin_date", "2015-12-02");
-        jsonObject.put("end_date", "2014-12-07");
+        jsonObject.put("begin_date", "2016-04-26");
+        jsonObject.put("end_date", "2016-05-01");
         String res = WebUtils.sendPost(url, jsonObject.toJSONString());
         return res;
     }

@@ -1,5 +1,6 @@
 package com.fcs.statistics.controller;
 
+
 import com.fcs.platform.controller.BaseController;
 import com.fcs.statistics.service.UserAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/westatis")
-public class UserAnalysisController extends BaseController{
+public class UserAnalysisController extends BaseController {
 
     @Autowired
     private UserAnalysisService userAnalysisService;

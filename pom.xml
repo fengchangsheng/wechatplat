@@ -175,6 +175,13 @@
           <artifactId>commons-fileupload</artifactId>
           <version>1.2.2</version>
       </dependency>
+
+      <dependency>
+          <groupId>com.foxinmy</groupId>
+          <artifactId>weixin4j-mp</artifactId>
+          <version>1.6.8</version>
+      </dependency>
+
   </dependencies>
 
   <build>
