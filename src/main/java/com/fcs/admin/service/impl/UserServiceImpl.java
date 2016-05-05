@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
         System.out.println(result);
         return result;
     }
+
+    public UserInfo login(UserInfo userInfo) {
+        UserInfo user = userInfoMapper.login(userInfo);
+        return user;
+    }
 }

@@ -7,11 +7,9 @@ public class UserInfo {
 
     private Integer id;
 
-    private String uname;
+    private String username;
 
-    private Integer unumber;
-
-//    private List<CourseInfo> courseInfos;
+    private String password;
 
     public Integer getId() {
         return id;
@@ -21,23 +19,19 @@ public class UserInfo {
         this.id = id;
     }
 
-    public String getUname() {
-        return uname;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname == null ? null : uname.trim();
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Integer getUnumber() {
-        return unumber;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUnumber(Integer unumber) {
-        this.unumber = unumber;
+    public void setPassword(String password) {
+        this.password = password;
     }
-
-//    public List<CourseInfo> getCourseInfos() {
-//        return courseInfos;
-//    }
 }

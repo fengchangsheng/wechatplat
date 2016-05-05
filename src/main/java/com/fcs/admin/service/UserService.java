@@ -14,4 +14,7 @@ public interface UserService {
     List<UserInfo> getUsers();
 
     int insert(UserInfo userInfo);
+
+    UserInfo login(UserInfo userInfo);
+
 }

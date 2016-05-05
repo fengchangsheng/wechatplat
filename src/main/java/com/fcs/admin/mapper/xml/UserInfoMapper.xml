@@ -3,11 +3,11 @@
 <mapper namespace="com.fcs.admin.mapper.UserInfoMapper">
     <resultMap id="BaseResultMap" type="com.fcs.admin.model.UserInfo">
         <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="uname" property="uname" jdbcType="VARCHAR" />
-        <result column="unumber" property="unumber" jdbcType="INTEGER" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="Base_Column_List">
-        id, uname, unumber
+        id, username, password
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap"
             parameterType="java.lang.Integer">
@@ -16,6 +16,13 @@
         from user_info
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="login" resultMap="BaseResultMap"
+            parameterType="com.fcs.admin.model.UserInfo">
+        select
+        <include refid="Base_Column_List" />
+        from user_info
+        where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from
         user_info
@@ -23,11 +30,11 @@
     </delete>
     <insert id="insert" parameterType="com.fcs.admin.model.UserInfo">
         insert into user_info (id,
-        uname, unumber
+        username, password
         )
         values (#{id,jdbcType=INTEGER},
-        #{uname,jdbcType=VARCHAR},
-        #{unumber,jdbcType=INTEGER}
+        #{username,jdbcType=VARCHAR},
+        #{password,jdbcType=INTEGER}
         )
     </insert>
     <insert id="insertSelective" parameterType="com.fcs.admin.model.UserInfo">
