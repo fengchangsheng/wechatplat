@@ -32,7 +32,7 @@
       <div class="row cl">
         <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-xs-8">
-          <input id="uname" name="username" type="text" placeholder="账户" class="input-text size-L">
+          <input id="uname" name="username" type="text" placeholder="账户" class="input-text size-L" value="lucare">
         </div>
       </div>
       <div class="row cl">

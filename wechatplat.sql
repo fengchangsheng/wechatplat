@@ -10,49 +10,10 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2016-04-25 18:03:22
+Date: 2016-05-05 20:30:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for course_info
--- ----------------------------
-DROP TABLE IF EXISTS `course_info`;
-CREATE TABLE `course_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cname` varchar(255) DEFAULT '',
-  `caddress` varchar(255) DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of course_info
--- ----------------------------
-INSERT INTO `course_info` VALUES ('1', '数学', '1号楼');
-INSERT INTO `course_info` VALUES ('2', '化学', '综合楼');
-INSERT INTO `course_info` VALUES ('3', '英语', '外教楼');
-
--- ----------------------------
--- Table structure for course_user_info
--- ----------------------------
-DROP TABLE IF EXISTS `course_user_info`;
-CREATE TABLE `course_user_info` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) NOT NULL,
-  `cid` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `course_user_info_ibfk_1` (`cid`),
-  KEY `uid` (`uid`),
-  CONSTRAINT `course_user_info_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `course_info` (`id`),
-  CONSTRAINT `course_user_info_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `user_info` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of course_user_info
--- ----------------------------
-INSERT INTO `course_user_info` VALUES ('1', '1', '1');
-INSERT INTO `course_user_info` VALUES ('2', '1', '3');
 
 -- ----------------------------
 -- Table structure for menutree
@@ -85,6 +46,14 @@ INSERT INTO `menutree` VALUES ('33', '权限管理', null, null, '', '3', '1', '
 INSERT INTO `menutree` VALUES ('4', '用户管理', null, null, '', '0', '1', '2016-04-25 14:38:09', null, null, '7');
 INSERT INTO `menutree` VALUES ('41', '用户列表', null, null, 'weuser/index', '4', '1', '2016-04-25 14:38:42', null, null, '8');
 INSERT INTO `menutree` VALUES ('42', '用户群组', null, null, 'wegroup/index', '4', '1', '2016-04-25 14:39:07', null, null, '9');
+INSERT INTO `menutree` VALUES ('6', '素材管理', null, null, null, '0', '1', '2016-04-27 13:40:59', null, null, '15');
+INSERT INTO `menutree` VALUES ('61', '图文消息', null, null, null, '6', '1', '2016-04-27 14:58:50', null, null, '16');
+INSERT INTO `menutree` VALUES ('62', '图片管理', null, null, null, '6', '1', '2016-04-27 14:59:33', null, null, '17');
+INSERT INTO `menutree` VALUES ('8', '数据统计', null, null, null, '0', '1', '2016-04-27 10:57:51', null, null, '20');
+INSERT INTO `menutree` VALUES ('81', '用户分析', null, null, 'westatis/index', '8', '1', '2016-04-27 11:00:05', null, null, '21');
+INSERT INTO `menutree` VALUES ('82', '图文分析', null, null, null, '8', '1', '2016-04-27 11:00:08', null, null, '22');
+INSERT INTO `menutree` VALUES ('83', '菜单分析', null, null, null, '8', '1', '2016-04-27 11:00:10', null, null, '23');
+INSERT INTO `menutree` VALUES ('84', '消息分析', null, null, null, '8', '1', '2016-04-27 11:00:13', null, null, '24');
 
 -- ----------------------------
 -- Table structure for role_info
@@ -138,15 +107,15 @@ INSERT INTO `role_per` VALUES ('9', '1', '42');
 DROP TABLE IF EXISTS `user_info`;
 CREATE TABLE `user_info` (
   `id` int(5) NOT NULL,
-  `uname` varchar(255) DEFAULT NULL,
-  `unumber` int(5) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('1', 'Lucare', '5');
+INSERT INTO `user_info` VALUES ('1', 'Lucare', '1');
 
 -- ----------------------------
 -- Table structure for user_role
