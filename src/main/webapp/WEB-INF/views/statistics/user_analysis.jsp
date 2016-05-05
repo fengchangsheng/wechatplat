@@ -28,6 +28,8 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 数据统计 <span class="c-gray en">&gt;</span> 用户分析 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div id="container" style="min-width:700px;height:400px"></div>
+	<div id="container2" style="min-width:700px;height:400px"></div>
+
 </div>
 
 
@@ -39,8 +41,14 @@
 <script type="text/javascript" src="/static/hui/lib/Highcharts/4.1.7/js/highcharts.js"></script>
 <script type="text/javascript">
 	$(function () {
-		$('#container').highcharts({
-			title: {
+
+		var chart_validatestatics;
+//		var chartLine = $('#container').highcharts({
+		var chartLine = {
+			chart: {
+				renderTo: 'container'
+			},
+		    title: {
 				text: '新增人数趋势图',
 				x: -20 //center
 			},
@@ -49,7 +57,7 @@
 				x: -20
 			},
 			xAxis: {
-				categories: ['一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月']
+				categories: []
 			},
 			yAxis: {
 				title: {
@@ -72,8 +80,97 @@
 			},
 			series: [{
 				name: '新增人数',
-				data: [7, 8, 9, 14, 18, 21, 25, 26, 23, 18, 13, 9]
+				data: []
+			},{
+				name: '取关人数',
+				data: []
 			}]
+		}
+//		);
+
+		$.get("summary", function (data) {
+			var xatrnames = [];
+			var serriesval1s = [];
+			var serriesval2s = [];
+			data = eval('('+data+')');
+			var list = data.list;
+			$.each(list,function (i,val) {
+				xatrnames.push([
+					list[i].ref_date
+				]);
+				serriesval1s.push([
+					list[i].new_user
+				]);
+				serriesval2s.push([
+					list[i].cancel_user
+				]);
+
+			});
+			chartLine.series[0].data = serriesval1s;
+			chartLine.series[1].data = serriesval2s;
+			chartLine.xAxis.categories = xatrnames;
+			chart_validatestatics = new Highcharts.Chart(chartLine);
+
+		});
+
+
+		var chartLine2 = {
+			chart: {
+				renderTo: 'container2'
+			},
+			title: {
+				text: '总关注人数趋势图',
+				x: -20 //center
+			},
+			subtitle: {
+				text: 'Source: 微信公众平台',
+				x: -20
+			},
+			xAxis: {
+				categories: []
+			},
+			yAxis: {
+				title: {
+					text: 'Num (人)'
+				},
+				plotLines: [{
+					value: 0,
+					width: 1,
+					color: '#808080'
+				}]
+			},
+			tooltip: {
+				valueSuffix: '个'
+			},
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'middle',
+				borderWidth: 0
+			},
+			series: [{
+				name: '总人数',
+				data: []
+			}]
+		}
+
+		$.get("cumulate", function (data) {
+			var xatrnames = [];
+			var serriesvals = [];
+			data = eval('('+data+')');
+			var list = data.list;
+			$.each(list,function (i,val) {
+				xatrnames.push([
+					list[i].ref_date
+				]);
+				serriesvals.push([
+					list[i].cumulate_user
+				]);
+			});
+			chartLine2.series[0].data = serriesvals;
+			chartLine2.xAxis.categories = xatrnames;
+			new Highcharts.Chart(chartLine2);
+
 		});
 	});
 </script>

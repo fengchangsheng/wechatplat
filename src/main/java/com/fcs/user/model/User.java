@@ -1,5 +1,7 @@
 package com.fcs.user.model;
 
+import java.sql.DriverManager;
+
 /**
  * Created by Lucare.Feng on 2016/4/24.
  */
