@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2016-05-05 20:30:26
+Date: 2016-05-06 17:47:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ CREATE TABLE `menutree` (
 INSERT INTO `menutree` VALUES ('2', '菜单管理', null, null, null, '0', '1', '2016-01-27 15:14:30', null, null, '1');
 INSERT INTO `menutree` VALUES ('21', '菜单列表', null, null, '/per/index', '2', '1', '2016-01-27 15:14:30', null, null, '2');
 INSERT INTO `menutree` VALUES ('3', '管理员管理', null, null, '', '0', '1', '2016-01-27 15:14:30', null, null, '3');
-INSERT INTO `menutree` VALUES ('31', '基本信息', null, null, '/oper/toUserList', '3', '1', '2016-01-27 15:14:30', null, null, '4');
+INSERT INTO `menutree` VALUES ('31', '基本信息', null, null, '/admin/list', '3', '1', '2016-01-27 15:14:30', null, null, '4');
 INSERT INTO `menutree` VALUES ('32', '角色管理', null, null, '/role/index', '3', '1', '2016-01-27 15:14:30', null, null, '5');
 INSERT INTO `menutree` VALUES ('33', '权限管理', null, null, '', '3', '1', '2016-01-27 15:14:30', null, null, '6');
 INSERT INTO `menutree` VALUES ('4', '用户管理', null, null, '', '0', '1', '2016-04-25 14:38:09', null, null, '7');
@@ -116,6 +116,7 @@ CREATE TABLE `user_info` (
 -- Records of user_info
 -- ----------------------------
 INSERT INTO `user_info` VALUES ('1', 'Lucare', '1');
+INSERT INTO `user_info` VALUES ('2', 'debbie', '2');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -132,3 +133,4 @@ CREATE TABLE `user_role` (
 -- Records of user_role
 -- ----------------------------
 INSERT INTO `user_role` VALUES ('1', '1', '1');
+INSERT INTO `user_role` VALUES ('2', '2', '2');

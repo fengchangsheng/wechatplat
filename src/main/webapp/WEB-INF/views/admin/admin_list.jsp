@@ -1,4 +1,5 @@
-﻿<!DOCTYPE HTML>
+﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="utf-8">
@@ -54,28 +55,30 @@
 			</tr>
 		</thead>
 		<tbody>
+		<c:forEach items="${users}" var="user">
 			<tr class="text-c">
 				<td><input type="checkbox" value="1" name=""></td>
 				<td>1</td>
-				<td>admin</td>
+				<td>${user.username}</td>
 				<td>13000000000</td>
-				<td>admin@mail.com</td>
-				<td>超级管理员</td>
+				<td></td>
+				<td>${user.roleList}</td>
 				<td>2014-6-11 11:11:42</td>
 				<td class="td-status"><span class="label label-success radius">已启用</span></td>
 				<td class="td-manage"><a style="text-decoration:none" onClick="admin_stop(this,'10001')" href="javascript:;" title="停用"><i class="Hui-iconfont">&#xe631;</i></a> <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.html','1','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
-			<tr class="text-c">
-				<td><input type="checkbox" value="2" name=""></td>
-				<td>2</td>
-				<td>zhangsan</td>
-				<td>13000000000</td>
-				<td>admin@mail.com</td>
-				<td>栏目编辑</td>
-				<td>2014-6-11 11:11:42</td>
-				<td class="td-status"><span class="label radius">已停用</span></td>
-				<td class="td-manage"><a style="text-decoration:none" onClick="admin_start(this,'10001')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.html','2','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-			</tr>
+		</c:forEach>
+			<%--<tr class="text-c">--%>
+				<%--<td><input type="checkbox" value="2" name=""></td>--%>
+				<%--<td>2</td>--%>
+				<%--<td>zhangsan</td>--%>
+				<%--<td>13000000000</td>--%>
+				<%--<td>admin@mail.com</td>--%>
+				<%--<td>栏目编辑</td>--%>
+				<%--<td>2014-6-11 11:11:42</td>--%>
+				<%--<td class="td-status"><span class="label radius">已停用</span></td>--%>
+				<%--<td class="td-manage"><a style="text-decoration:none" onClick="admin_start(this,'10001')" href="javascript:;" title="启用"><i class="Hui-iconfont">&#xe615;</i></a> <a title="编辑" href="javascript:;" onclick="admin_edit('管理员编辑','admin-add.html','2','800','500')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>--%>
+			<%--</tr>--%>
 		</tbody>
 	</table>
 </div>

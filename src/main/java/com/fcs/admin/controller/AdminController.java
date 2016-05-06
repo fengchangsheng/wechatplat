@@ -15,11 +15,18 @@ import java.util.List;
  * Created by Lucare.Feng on 2016/1/24.
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @RequestMapping("/list")
+    public String showAdmins(ModelMap modelMap){
+        List<UserInfo> users = userService.getUsers();
+        modelMap.addAttribute("users", users);
+        return "/admin/admin_list";
+    }
 
     @RequestMapping("/showInfo/{userId}")
     public String showUserInfo(ModelMap modelMap, @PathVariable int userId){

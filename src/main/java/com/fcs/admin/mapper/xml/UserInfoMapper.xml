@@ -9,13 +9,13 @@
     <sql id="Base_Column_List">
         id, username, password
     </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
-            parameterType="java.lang.Integer">
-        select
-        <include refid="Base_Column_List" />
-        from user_info
-        where id = #{id,jdbcType=INTEGER}
-    </select>
+    <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap"-->
+            <!--parameterType="java.lang.Integer">-->
+        <!--select-->
+        <!--<include refid="Base_Column_List" />-->
+        <!--from user_info-->
+        <!--where id = #{id,jdbcType=INTEGER}-->
+    <!--</select>-->
     <select id="login" resultMap="BaseResultMap"
             parameterType="com.fcs.admin.model.UserInfo">
         select
@@ -23,81 +23,78 @@
         from user_info
         where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete from
-        user_info
-        where id = #{id,jdbcType=INTEGER}
-    </delete>
-    <insert id="insert" parameterType="com.fcs.admin.model.UserInfo">
-        insert into user_info (id,
-        username, password
-        )
-        values (#{id,jdbcType=INTEGER},
-        #{username,jdbcType=VARCHAR},
-        #{password,jdbcType=INTEGER}
-        )
-    </insert>
-    <insert id="insertSelective" parameterType="com.fcs.admin.model.UserInfo">
-        insert into user_info
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="uname != null">
-                uname,
-            </if>
-            <if test="unumber != null">
-                unumber,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=INTEGER},
-            </if>
-            <if test="uname != null">
-                #{uname,jdbcType=VARCHAR},
-            </if>
-            <if test="unumber != null">
-                #{unumber,jdbcType=INTEGER},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.fcs.admin.model.UserInfo">
-        update user_info
-        <set>
-            <if test="uname != null">
-                uname = #{uname,jdbcType=VARCHAR},
-            </if>
-            <if test="unumber != null">
-                unumber = #{unumber,jdbcType=INTEGER},
-            </if>
-        </set>
-        where id = #{id,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.fcs.admin.model.UserInfo">
-        update user_info
-        set uname = #{uname,jdbcType=VARCHAR},
-        unumber =
-        #{unumber,jdbcType=INTEGER}
-        where id = #{id,jdbcType=INTEGER}
-    </update>
+    <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">-->
+        <!--delete from-->
+        <!--user_info-->
+        <!--where id = #{id,jdbcType=INTEGER}-->
+    <!--</delete>-->
+    <!--<insert id="insert" parameterType="com.fcs.admin.model.UserInfo">-->
+        <!--insert into user_info (id,-->
+        <!--username, password-->
+        <!--)-->
+        <!--values (#{id,jdbcType=INTEGER},-->
+        <!--#{username,jdbcType=VARCHAR},-->
+        <!--#{password,jdbcType=VARCHAR}-->
+        <!--)-->
+    <!--</insert>-->
+    <!--<insert id="insertSelective" parameterType="com.fcs.admin.model.UserInfo">-->
+        <!--insert into user_info-->
+        <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+            <!--<if test="id != null">-->
+                <!--id,-->
+            <!--</if>-->
+            <!--<if test="uname != null">-->
+                <!--uname,-->
+            <!--</if>-->
+            <!--<if test="unumber != null">-->
+                <!--unumber,-->
+            <!--</if>-->
+        <!--</trim>-->
+        <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+            <!--<if test="id != null">-->
+                <!--#{id,jdbcType=INTEGER},-->
+            <!--</if>-->
+            <!--<if test="uname != null">-->
+                <!--#{uname,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="unumber != null">-->
+                <!--#{unumber,jdbcType=INTEGER},-->
+            <!--</if>-->
+        <!--</trim>-->
+    <!--</insert>-->
+    <!--<update id="updateByPrimaryKeySelective" parameterType="com.fcs.admin.model.UserInfo">-->
+        <!--update user_info-->
+        <!--<set>-->
+            <!--<if test="uname != null">-->
+                <!--uname = #{uname,jdbcType=VARCHAR},-->
+            <!--</if>-->
+            <!--<if test="unumber != null">-->
+                <!--unumber = #{unumber,jdbcType=INTEGER},-->
+            <!--</if>-->
+        <!--</set>-->
+        <!--where id = #{id,jdbcType=INTEGER}-->
+    <!--</update>-->
+    <!--<update id="updateByPrimaryKey" parameterType="com.fcs.admin.model.UserInfo">-->
+        <!--update user_info-->
+        <!--set uname = #{uname,jdbcType=VARCHAR},-->
+        <!--unumber =-->
+        <!--#{unumber,jdbcType=INTEGER}-->
+        <!--where id = #{id,jdbcType=INTEGER}-->
+    <!--</update>-->
 
-    <resultMap type="com.fcs.admin.model.UserInfo" id="UserCourseMap"
+    <resultMap type="com.fcs.admin.model.UserInfo" id="UserRoleMap"
                extends="BaseResultMap">
-        <collection property="courseInfos" javaType="list"
-                    ofType="com.fcs.course.model.CourseInfo">
-            <id property="id" column="course_id" jdbcType="INTEGER" />
-            <result property="cname" column="cname" jdbcType="VARCHAR" />
-            <result property="caddress" column="caddress" jdbcType="VARCHAR" />
+        <collection property="roleList" javaType="list"
+                    ofType="com.fcs.admin.model.RoleInfo">
+            <id property="id" column="id" jdbcType="INTEGER" />
+            <result property="name" column="name" jdbcType="VARCHAR" />
+            <result property="des" column="des" jdbcType="VARCHAR" />
+            <result property="sn" column="sn" jdbcType="INTEGER" />
         </collection>
-
-
     </resultMap>
-    <select id="selectAll" resultMap="UserCourseMap">
-        select u.id, u.uname,
-        u.unumber, c.id course_id, c.cname, c.caddress from user_info u left
-        join course_user_info cu on u.id = cu.uid
-        left join course_info c on
-        cu.cid = c.id
+    <select id="selectAll" resultMap="UserRoleMap">
+        select u.id, u.username,r.name
+        from user_info u left
+        join user_role ur on u.id = ur.userid left join role_info r on ur.roleid = r.id
     </select>
 </mapper>
