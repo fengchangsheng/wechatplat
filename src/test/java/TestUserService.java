@@ -22,10 +22,9 @@ public class TestUserService {
     @Autowired
     private UserService userService;
 
-
     @Test
     public void testQueryById1() {
-        UserInfo userInfo = userService.getUserById(1);
+        UserInfo userInfo = userService.getUserById("1");
         LOGGER.info(JSON.toJSON(userInfo));
     }
 

@@ -2,20 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fcs.admin.mapper.UserInfoMapper">
     <resultMap id="BaseResultMap" type="com.fcs.admin.model.UserInfo">
-        <id column="id" property="id" jdbcType="INTEGER" />
+        <id column="id" property="id" jdbcType="VARCHAR" />
         <result column="username" property="username" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="createtime" property="createTime" jdbcType="DATE" />
+        <result column="updatetime" property="updateTime" jdbcType="DATE" />
+        <result column="sex" property="sex" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="enabled" property="enabled" jdbcType="INTEGER" />
     </resultMap>
     <sql id="Base_Column_List">
-        id, username, password
+        id, username, email, phone, status, sex, createTime
     </sql>
-    <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap"-->
-            <!--parameterType="java.lang.Integer">-->
-        <!--select-->
-        <!--<include refid="Base_Column_List" />-->
-        <!--from user_info-->
-        <!--where id = #{id,jdbcType=INTEGER}-->
-    <!--</select>-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+            parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from user_info
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
     <select id="login" resultMap="BaseResultMap"
             parameterType="com.fcs.admin.model.UserInfo">
         select
@@ -23,20 +30,25 @@
         from user_info
         where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
     </select>
-    <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">-->
-        <!--delete from-->
-        <!--user_info-->
-        <!--where id = #{id,jdbcType=INTEGER}-->
-    <!--</delete>-->
-    <!--<insert id="insert" parameterType="com.fcs.admin.model.UserInfo">-->
-        <!--insert into user_info (id,-->
-        <!--username, password-->
-        <!--)-->
-        <!--values (#{id,jdbcType=INTEGER},-->
-        <!--#{username,jdbcType=VARCHAR},-->
-        <!--#{password,jdbcType=VARCHAR}-->
-        <!--)-->
-    <!--</insert>-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from
+        user_info
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.fcs.admin.model.UserInfo">
+        insert into user_info (id,
+        username, password,phone,email,sex,createtime,updatetime
+        )
+        values (#{id,jdbcType=VARCHAR},
+        #{username,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR},
+        #{phone,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR},
+        #{sex,jdbcType=INTEGER},
+        #{createTime,jdbcType=DATE},
+        #{updateTime,jdbcType=DATE}
+        )
+    </insert>
     <!--<insert id="insertSelective" parameterType="com.fcs.admin.model.UserInfo">-->
         <!--insert into user_info-->
         <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
@@ -74,26 +86,29 @@
         <!--</set>-->
         <!--where id = #{id,jdbcType=INTEGER}-->
     <!--</update>-->
-    <!--<update id="updateByPrimaryKey" parameterType="com.fcs.admin.model.UserInfo">-->
-        <!--update user_info-->
-        <!--set uname = #{uname,jdbcType=VARCHAR},-->
-        <!--unumber =-->
-        <!--#{unumber,jdbcType=INTEGER}-->
-        <!--where id = #{id,jdbcType=INTEGER}-->
-    <!--</update>-->
+    <update id="updateByPrimaryKey" parameterType="com.fcs.admin.model.UserInfo">
+        update user_info
+        set username = #{username,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=VARCHAR},
+        sex = #{sex,jdbcType=INTEGER},
+        status = #{status,jdbcType=INTEGER},
+        updatetime = #{updateTime,jdbcType=DATE}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
 
     <resultMap type="com.fcs.admin.model.UserInfo" id="UserRoleMap"
                extends="BaseResultMap">
         <collection property="roleList" javaType="list"
                     ofType="com.fcs.admin.model.RoleInfo">
-            <id property="id" column="id" jdbcType="INTEGER" />
+            <id property="id" column="id" jdbcType="VARCHAR" />
             <result property="name" column="name" jdbcType="VARCHAR" />
             <result property="des" column="des" jdbcType="VARCHAR" />
             <result property="sn" column="sn" jdbcType="INTEGER" />
         </collection>
     </resultMap>
     <select id="selectAll" resultMap="UserRoleMap">
-        select u.id, u.username,r.name
+        select u.id, u.username,u.email,u.phone,u.status,u.createTime,r.name
         from user_info u left
         join user_role ur on u.id = ur.userid left join role_info r on ur.roleid = r.id
     </select>
