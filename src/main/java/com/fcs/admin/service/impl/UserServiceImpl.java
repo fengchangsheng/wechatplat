@@ -2,6 +2,7 @@ package com.fcs.admin.service.impl;
 
 import com.fcs.admin.mapper.UserInfoMapper;
 import com.fcs.admin.model.UserInfo;
+import com.fcs.admin.model.UserRole;
 import com.fcs.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,9 @@ public class UserServiceImpl implements UserService {
 
     public UserInfo login(UserInfo userInfo) {
         return userInfoMapper.login(userInfo);
+    }
+
+    public int addAdminRole(UserRole userRole) {
+        return userInfoMapper.addAdminRole(userRole);
     }
 }

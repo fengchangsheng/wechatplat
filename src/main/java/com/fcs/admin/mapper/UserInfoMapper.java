@@ -1,6 +1,7 @@
 package com.fcs.admin.mapper;
 
 import com.fcs.admin.model.UserInfo;
+import com.fcs.admin.model.UserRole;
 
 import java.util.List;
 
@@ -24,4 +25,6 @@ public interface UserInfoMapper {
     int updateByPrimaryKey(UserInfo record);
 
     List<UserInfo> selectAll();
+
+    int addAdminRole(UserRole userRole);
 }

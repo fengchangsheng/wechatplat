@@ -26,7 +26,7 @@
     </select>
 
     <select id="getPermissionList" resultType="com.fcs.admin.model.MenuTree">
-        SELECT id, text, url, iconCls
+        SELECT id, text, url, iconCls ,parentId
         FROM menutree menu
         WHERE menu.enabled = 1  ORDER BY sn
     </select>
@@ -38,7 +38,38 @@
         ORDER BY sn
     </select>
 
+    <select id="getPermissionById" resultType="com.fcs.admin.model.MenuTree">
+        SELECT id, text, url, iconCls, parentId
+        FROM menutree menu
+        WHERE menu.enabled = 1 and menu.id = #{id}
+        ORDER BY sn
+    </select>
 
+    <insert id="addPermission" parameterType="com.fcs.admin.model.MenuTree">
+        insert into menutree (id,text,url, parentId,enabled,createTime)
+        values (#{id,jdbcType=VARCHAR},
+        #{text,jdbcType=VARCHAR},
+        #{url,jdbcType=VARCHAR},
+        #{parentId,jdbcType=VARCHAR},
+        #{enabled,jdbcType=INTEGER},
+        #{createTime,jdbcType=DATE}
+        )
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from
+        menutree
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <update id="editPermission" parameterType="com.fcs.admin.model.MenuTree">
+        update menutree
+        set text = #{text,jdbcType=VARCHAR},
+        url = #{url,jdbcType=VARCHAR},
+        parentId = #{parentId,jdbcType=VARCHAR},
+        updateTime = #{updateTime,jdbcType=DATE}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
 
 
 

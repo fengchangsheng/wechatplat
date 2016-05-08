@@ -35,6 +35,7 @@
         user_info
         where id = #{id,jdbcType=VARCHAR}
     </delete>
+
     <insert id="insert" parameterType="com.fcs.admin.model.UserInfo">
         insert into user_info (id,
         username, password,phone,email,sex,createtime,updatetime
@@ -47,6 +48,15 @@
         #{sex,jdbcType=INTEGER},
         #{createTime,jdbcType=DATE},
         #{updateTime,jdbcType=DATE}
+        )
+    </insert>
+
+    <insert id="addAdminRole" parameterType="com.fcs.admin.model.UserRole">
+        insert into user_role (id,
+        userid, roleid)
+        values (#{id,jdbcType=VARCHAR},
+        #{userid,jdbcType=VARCHAR},
+        #{roleid,jdbcType=VARCHAR}
         )
     </insert>
     <!--<insert id="insertSelective" parameterType="com.fcs.admin.model.UserInfo">-->

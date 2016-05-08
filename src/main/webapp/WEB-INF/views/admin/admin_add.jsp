@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--_meta 作为公共模版分离出去-->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML>
@@ -79,14 +80,15 @@
 	</div>
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3">角色：</label>
-		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
-			<select class="select" name="adminRole" size="1">
-				<option value="0">超级管理员</option>
-				<option value="1">总编</option>
-				<option value="2">栏目主辑</option>
-				<option value="3">栏目编辑</option>
-			</select>
-			</span> </div>
+		<div class="formControls col-xs-8 col-sm-9">
+			<span class="select-box" style="width:150px;">
+				<select class="select" name="adminRole" size="1">
+					<c:forEach items="${roleList}" var="role">
+						<option value="${role.id}">${role.name}</option>
+					</c:forEach>
+				</select>
+			</span>
+		</div>
 	</div>
 	<%--<div class="row cl">--%>
 		<%--<label class="form-label col-xs-4 col-sm-3">备注：</label>--%>

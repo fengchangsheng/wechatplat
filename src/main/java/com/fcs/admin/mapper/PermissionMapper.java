@@ -16,6 +16,14 @@ public interface PermissionMapper {
 
     List<MenuTree> getPermissionList();
 
+    int addPermission(MenuTree menuTree);
+
+    int deleteById(String id);
+
+    int editPermission(MenuTree menuTree);
+
+    MenuTree getPermissionById(String id);
+
 //    List<MenuTree> buildMenuTree(String pid);
 //
 //    void saveMenu(MenuTree menuTree);

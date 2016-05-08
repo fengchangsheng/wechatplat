@@ -1,6 +1,7 @@
 package com.fcs.admin.service;
 
 import com.fcs.admin.model.UserInfo;
+import com.fcs.admin.model.UserRole;
 
 import java.util.List;
 
@@ -20,5 +21,7 @@ public interface UserService {
     int delete(String id);
 
     UserInfo login(UserInfo userInfo);
+
+    int addAdminRole(UserRole userRole);
 
 }

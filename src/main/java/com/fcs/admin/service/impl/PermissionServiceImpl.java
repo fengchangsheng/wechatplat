@@ -48,4 +48,24 @@ public class PermissionServiceImpl implements PermissionService {
         List<MenuTree> perList = permissionMapper.getPermissionList();
         return perList;
     }
+
+    public List<MenuTree> getPermissionsByPid(String parentId) {
+        return permissionMapper.getMenuList(parentId);
+    }
+
+    public int addPermission(MenuTree menuTree) {
+        return permissionMapper.addPermission(menuTree);
+    }
+
+    public int deleteById(String id) {
+        return permissionMapper.deleteById(id);
+    }
+
+    public int editPermission(MenuTree menuTree) {
+        return permissionMapper.editPermission(menuTree);
+    }
+
+    public MenuTree getPermissionById(String id) {
+        return permissionMapper.getPermissionById(id);
+    }
 }

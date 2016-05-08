@@ -1,6 +1,9 @@
 package com.fcs.admin.controller;
 
+import com.fcs.admin.model.RoleInfo;
 import com.fcs.admin.model.UserInfo;
+import com.fcs.admin.model.UserRole;
+import com.fcs.admin.service.RoleService;
 import com.fcs.admin.service.UserService;
 import com.fcs.common.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,9 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoleService roleService;
+
     @RequestMapping("/list")
     public String showAdmins(ModelMap modelMap){
         List<UserInfo> users = userService.getUsers();
@@ -32,8 +38,8 @@ public class AdminController {
 
     @RequestMapping("/toAdd")
     public String toAdd(ModelMap modelMap){
-//        List<UserInfo> users = userService.getUsers();
-//        modelMap.addAttribute("users", users);
+        List<RoleInfo> roleList = roleService.getRoleList();
+        modelMap.addAttribute("roleList", roleList);
         return "/admin/admin_add";
     }
 
@@ -46,12 +52,20 @@ public class AdminController {
 
     @RequestMapping("/add")
     @ResponseBody
-    public int add(UserInfo userInfo){
+    public int add(UserInfo userInfo,String adminRole){
         Date date = new Date();
-        userInfo.setId(Strings.getID());
+        String uid = Strings.getID();
+        userInfo.setId(uid);
         userInfo.setCreateTime(date);
         userInfo.setUpdateTime(date);
         int res = userService.insert(userInfo);
+        if (res != 0 && !Strings.isEmpty(adminRole)){
+            UserRole userRole = new UserRole();
+            userRole.setId(Strings.getID());
+            userRole.setUserid(uid);
+            userRole.setRoleid(adminRole);
+            userService.addAdminRole(userRole);
+        }
         return res;
     }
 

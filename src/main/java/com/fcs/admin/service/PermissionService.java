@@ -14,4 +14,14 @@ public interface PermissionService {
     List<MenuTree> getMenuList();
 
     List<MenuTree> getPermissionList();
+
+    List<MenuTree> getPermissionsByPid(String parentId);
+
+    int addPermission(MenuTree menuTree);
+
+    int deleteById(String id);
+
+    int editPermission(MenuTree menuTree);
+
+    MenuTree getPermissionById(String id);
 }
