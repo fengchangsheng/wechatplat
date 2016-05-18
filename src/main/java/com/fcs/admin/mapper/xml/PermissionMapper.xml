@@ -18,6 +18,13 @@
         id,text,url,parentId,enabled
     </sql>
 
+    <select id="selectPerUrlByUserId" resultType="java.lang.String">
+        SELECT url FROM menutree menu RIGHT JOIN
+        (SELECT DISTINCT rp.perid FROM role_per rp WHERE EXISTS (
+        SELECT 1 FROM user_role ur WHERE ur.userid=#{userId} AND rp.roleid=ur.roleid )) a ON menu.id=a.perid
+        WHERE menu.parentId != '0'  ORDER BY sn
+    </select>
+
     <select id="selectMenuByUserId" resultType="com.fcs.admin.model.MenuTree">
         SELECT id, text, url, iconCls FROM menutree menu RIGHT JOIN
         (SELECT DISTINCT rp.perid FROM role_per rp WHERE EXISTS (

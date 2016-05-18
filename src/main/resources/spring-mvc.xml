@@ -53,7 +53,8 @@
 
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/*"/>
+            <mvc:mapping path="/**/*"/>
+            <mvc:exclude-mapping path="/account/**"/>
             <mvc:exclude-mapping path="/static/**"/>
             <bean class="com.fcs.platform.AuthorityInterceptor"/>
         </mvc:interceptor>

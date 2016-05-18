@@ -31,6 +31,10 @@ public class PermissionServiceImpl implements PermissionService {
         return mvList;
     }
 
+    public List<String> selectPerUrlByUserId(String userId) {
+        return permissionMapper.selectPerUrlByUserId(userId);
+    }
+
     public List<MenuTree> getMenuList() {
         List<MenuTree> perList = permissionMapper.getMenuList("0");
         if (perList == null || perList.isEmpty()) {

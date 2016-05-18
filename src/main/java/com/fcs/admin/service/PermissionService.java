@@ -11,6 +11,8 @@ public interface PermissionService {
 
     List<MenuTree> selectMenuTreeByUserId(String userId);
 
+    List<String> selectPerUrlByUserId(String userId);
+
     List<MenuTree> getMenuList();
 
     List<MenuTree> getPermissionList();

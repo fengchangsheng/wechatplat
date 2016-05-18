@@ -1,5 +1,6 @@
 package com.fcs.platform;
 
+import com.fcs.admin.model.MenuTree;
 import com.fcs.admin.model.UserInfo;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,15 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
         }else{
             String requestUrl = request.getServletPath().toString();
             System.out.println("=========================请求链接======================"+requestUrl);
-            List uriList = (List) request.getSession().getAttribute("ss");
+            List<String> urlList = (List<String>) request.getSession().getAttribute("urlList");
+            if (urlList.size() > 0) {
+                if (urlList.contains(requestUrl)) {
+                    System.out.println("=========================放行======================"+requestUrl);
+                    return true;
+                }
+            }else {
+                return false;
+            }
         }
         return true;
     }

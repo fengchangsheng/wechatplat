@@ -32,6 +32,18 @@ public class RoleController extends BaseController{
         }
     }
 
+    @RequestMapping("/toAdd")
+    public String toAdd(ModelMap model){
+        try {
+//            List<RoleInfo> list = roleService.getRoleList();
+//            model.addAttribute("list", list);
+            return "/admin/admin_role_add";
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":toAdd()", e);
+            return "";
+        }
+    }
+
 
 
 }

@@ -12,6 +12,8 @@ public interface PermissionMapper {
 
     List<MenuTree> selectMenuByUserId(@Param("userId") String userId, @Param("pid") String pid);
 
+    List<String> selectPerUrlByUserId(String userId);
+
     List<MenuTree> getMenuList(String pid);
 
     List<MenuTree> getPermissionList();
