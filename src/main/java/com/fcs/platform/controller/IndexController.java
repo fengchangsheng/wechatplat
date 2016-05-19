@@ -23,8 +23,8 @@ public class IndexController extends BaseController{
     @RequestMapping("/index")//后台管理首页
     public String index(Model model, HttpSession session){
         try {
-            List<MenuTree> list = permissionService.getMenuList();//暂时不用登录获取权限
             UserInfo userInfo = (UserInfo) session.getAttribute("user");
+            List<MenuTree> list = permissionService.selectMenuTreeByUserId(userInfo.getId());//暂时不用登录获取权限
             model.addAttribute("user", userInfo);
             model.addAttribute("list", list);
             return "/index";

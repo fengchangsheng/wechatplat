@@ -13,35 +13,40 @@
         <result column="updateTime" property="updateTime" jdbcType="DATE" />
         <result column="state" property="state" jdbcType="VARCHAR" />
         <result column="sn" property="sn" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="INTEGER" />
     </resultMap>
     <sql id="Base_Column_List">
         id,text,url,parentId,enabled
     </sql>
 
+    <!-- 查询权限路径  过滤器中使用 -->
     <select id="selectPerUrlByUserId" resultType="java.lang.String">
         SELECT url FROM menutree menu RIGHT JOIN
         (SELECT DISTINCT rp.perid FROM role_per rp WHERE EXISTS (
         SELECT 1 FROM user_role ur WHERE ur.userid=#{userId} AND rp.roleid=ur.roleid )) a ON menu.id=a.perid
-        WHERE menu.parentId != '0'  ORDER BY sn
+        WHERE menu.parentId != '0'  and menu.type = 1 ORDER BY sn
     </select>
 
+    <!--按层级查询当前用户的菜单 -->
     <select id="selectMenuByUserId" resultType="com.fcs.admin.model.MenuTree">
         SELECT id, text, url, iconCls FROM menutree menu RIGHT JOIN
         (SELECT DISTINCT rp.perid FROM role_per rp WHERE EXISTS (
         SELECT 1 FROM user_role ur WHERE ur.userid=#{userId} AND rp.roleid=ur.roleid )) a ON menu.id=a.perid
-        WHERE menu.parentId = #{pid}  ORDER BY sn
+        WHERE menu.parentId = #{pid}  and menu.type = 1 ORDER BY sn
     </select>
 
+    <!--权限管理列表 -->
     <select id="getPermissionList" resultType="com.fcs.admin.model.MenuTree">
         SELECT id, text, url, iconCls ,parentId
         FROM menutree menu
         WHERE menu.enabled = 1  ORDER BY sn
     </select>
 
+    <!-- 根据pid查询所有菜单-->
     <select id="getMenuList" resultType="com.fcs.admin.model.MenuTree">
-        SELECT id, text, url, iconCls
+        SELECT id, text, url, iconCls, parentId
         FROM menutree menu
-        WHERE menu.enabled = 1 and menu.parentId = #{pid}
+        WHERE menu.enabled = 1 and menu.parentId = #{pid} and menu.type = #{type}
         ORDER BY sn
     </select>
 

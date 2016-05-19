@@ -1,5 +1,7 @@
 package com.fcs.admin.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.fcs.admin.model.MenuTree;
 import com.fcs.admin.service.PermissionService;
 import com.fcs.common.Strings;
@@ -26,7 +28,7 @@ public class PermissionController extends BaseController{
     @RequestMapping("/index")
     public String index(Model model){
         try {
-            List<MenuTree> list = permissionService.getPermissionList();
+            List<MenuTree> list = permissionService.getMenuList();
             model.addAttribute("list", list);
             return "/admin/admin_per";
         } catch (Exception e) {
@@ -105,5 +107,28 @@ public class PermissionController extends BaseController{
             logger.error(this.getClass().getName()+":delete()", e);
             return 0;
         }
+    }
+
+    @ResponseBody
+    @RequestMapping("/getPers")
+    public String getPers(String id){
+        try {
+            JSONArray jsonArray = new JSONArray();
+            JSONObject jsonObject = new JSONObject();
+            List<MenuTree> list = permissionService.getPermissionsByPid("0");
+            int i = 0;
+            for (MenuTree menuTree : list) {
+                List<MenuTree> seclist = permissionService.getPermissionsByPid(menuTree.getId());
+                jsonObject.put("pmenu", menuTree);
+                for (MenuTree sonMenu : seclist) {
+                    jsonObject.put("son", sonMenu);
+                }
+                jsonArray.add(jsonObject);
+            }
+            return jsonArray.toString();
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":getPers()", e);
+        }
+        return null;
     }
 }

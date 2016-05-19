@@ -22,7 +22,11 @@ public class MenuTree extends BaseModel{
 
     private Integer checked;
 
+    private Integer type;
+
     private List<MenuTree> children;
+
+    private List<MenuTree> others;
 
     private Map<String,Object> attributes;
 
@@ -90,6 +94,22 @@ public class MenuTree extends BaseModel{
         this.attributes = attributes;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public List<MenuTree> getOthers() {
+        return others;
+    }
+
+    public void setOthers(List<MenuTree> others) {
+        this.others = others;
+    }
+
     @Override
     public String toString() {
         return "MenuTree{" +
@@ -99,7 +119,9 @@ public class MenuTree extends BaseModel{
                 ", parentId='" + parentId + '\'' +
                 ", state='" + state + '\'' +
                 ", checked=" + checked +
+                ", type=" + type +
                 ", children=" + children +
+                ", others=" + others +
                 ", attributes=" + attributes +
                 '}';
     }

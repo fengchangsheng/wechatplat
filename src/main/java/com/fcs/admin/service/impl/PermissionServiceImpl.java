@@ -36,13 +36,14 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     public List<MenuTree> getMenuList() {
-        List<MenuTree> perList = permissionMapper.getMenuList("0");
+        List<MenuTree> perList = permissionMapper.getMenuList("0",1);
         if (perList == null || perList.isEmpty()) {
             return null;
         }
         List<MenuTree> mvList = new ArrayList<MenuTree>();
         for (MenuTree mv : perList) {
-            mv.setChildren(permissionMapper.getMenuList(mv.getId()));
+            mv.setChildren(permissionMapper.getMenuList(mv.getId(),1));
+            mv.setOthers(permissionMapper.getMenuList(mv.getId(),2));
             mvList.add(mv);
         }
         return mvList;
@@ -54,7 +55,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     public List<MenuTree> getPermissionsByPid(String parentId) {
-        return permissionMapper.getMenuList(parentId);
+        return permissionMapper.getMenuList(parentId,1);
     }
 
     public int addPermission(MenuTree menuTree) {

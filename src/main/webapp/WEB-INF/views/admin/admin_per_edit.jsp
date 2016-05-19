@@ -51,10 +51,10 @@
 			<label class="form-label col-xs-4 col-sm-3">父节点：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<select name="pid">
+					<option value="0">根节点</option>
 					<c:forEach items="${list}" var="per">
 						<option value="${per.id}" <c:if test="${per.id eq menuTree.parentId}">selected="selected"</c:if>>${per.text}</option>
 					</c:forEach>
-					<option value="0">根节点</option>
 				</select>
 			</div>
 		</div>

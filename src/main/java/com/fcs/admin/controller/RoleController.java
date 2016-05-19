@@ -1,6 +1,8 @@
 package com.fcs.admin.controller;
 
+import com.fcs.admin.model.MenuTree;
 import com.fcs.admin.model.RoleInfo;
+import com.fcs.admin.service.PermissionService;
 import com.fcs.admin.service.RoleService;
 import com.fcs.platform.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class RoleController extends BaseController{
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private PermissionService permissionService;
+
     @RequestMapping("/index")
     public String index(ModelMap model){
         try {
@@ -35,8 +40,8 @@ public class RoleController extends BaseController{
     @RequestMapping("/toAdd")
     public String toAdd(ModelMap model){
         try {
-//            List<RoleInfo> list = roleService.getRoleList();
-//            model.addAttribute("list", list);
+            List<MenuTree> list = permissionService.getMenuList();
+            model.addAttribute("list", list);
             return "/admin/admin_role_add";
         } catch (Exception e) {
             logger.error(this.getClass().getName()+":toAdd()", e);

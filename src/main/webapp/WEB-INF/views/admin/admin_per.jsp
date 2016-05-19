@@ -56,11 +56,23 @@
 			<td><input type="checkbox" value="1" name=""></td>
 			<td>${per.id}</td>
 			<td>${per.parentId}</td>
-			<td><c:if test="${per.parentId ne '0'}"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </c:if>${per.text}</td>
+			<td class="text-l"> -- ${per.text}</td>
 			<td>${per.url}</td>
 			<td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('权限编辑','toEdit','${per.id}','','400')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 				<a title="删除" href="javascript:;" onclick="admin_permission_del(this,'${per.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
+
+			<c:forEach items="${per.children}" var="cper">
+				<tr class="text-c">
+					<td><input type="checkbox" value="1" name=""></td>
+					<td>${cper.id}</td>
+					<td>${cper.parentId}</td>
+					<td>${cper.text}</td>
+					<td>${cper.url}</td>
+					<td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('权限编辑','toEdit','${cper.id}','','400')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a title="删除" href="javascript:;" onclick="admin_permission_del(this,'${cper.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+				</tr>
+			</c:forEach>
 		</c:forEach>
 		</tbody>
 	</table>
