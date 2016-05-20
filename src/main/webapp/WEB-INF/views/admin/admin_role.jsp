@@ -57,7 +57,7 @@
 					<td>${role.name}</td>
 					<td><a href="#">admin</a></td>
 					<td>${role.des}</td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit('角色编辑','admin-role-add.html','1')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_role_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+					<td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit('角色编辑','toEdit','${role.id}')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> <a title="删除" href="javascript:;" onclick="admin_role_del(this,'${role.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
 			</c:forEach>
 			<%--<tr class="text-c">--%>
@@ -99,7 +99,7 @@ function admin_role_add(title,url,w,h){
 }
 /*管理员-角色-编辑*/
 function admin_role_edit(title,url,id,w,h){
-	layer_show(title,url,w,h);
+	layer_show(title,url,id,w,h);
 }
 /*管理员-角色-删除*/
 function admin_role_del(obj,id){

@@ -2,6 +2,7 @@ package com.fcs.admin.mapper;
 
 import com.fcs.admin.model.UserInfo;
 import com.fcs.admin.model.UserRole;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,4 +28,6 @@ public interface UserInfoMapper {
     List<UserInfo> selectAll();
 
     int addAdminRole(UserRole userRole);
+
+    int updateUserRole(@Param(value = "userid") String userid, @Param(value = "roleid") String roleid);
 }

@@ -45,4 +45,8 @@ public class UserServiceImpl implements UserService {
     public int addAdminRole(UserRole userRole) {
         return userInfoMapper.addAdminRole(userRole);
     }
+
+    public int updateUserRole(String id, String adminRole) {
+        return userInfoMapper.updateUserRole(id, adminRole);
+    }
 }

@@ -14,4 +14,8 @@ public interface RoleService {
     int addRole(RoleInfo roleInfo);
 
     int addRoleAndPer(String id, String roleId, String perId);
+
+    RoleInfo getRoleByUser(String userId);
+
+    RoleInfo getRoleById(String id);
 }

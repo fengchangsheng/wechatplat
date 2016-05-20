@@ -6,6 +6,7 @@ import com.fcs.admin.model.UserRole;
 import com.fcs.admin.service.RoleService;
 import com.fcs.admin.service.UserService;
 import com.fcs.common.Strings;
+import com.fcs.platform.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,7 +22,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController extends BaseController{
 
     @Autowired
     private UserService userService;
@@ -45,9 +46,18 @@ public class AdminController {
 
     @RequestMapping("/toEdit")
     public String toEdit(ModelMap modelMap,String id){
-        UserInfo user = userService.getUserById(id);
-        modelMap.addAttribute("user",user);
-        return "/admin/admin_edit";
+        try {
+            UserInfo user = userService.getUserById(id);
+            RoleInfo roleInfo = roleService.getRoleByUser(user.getId());
+            List<RoleInfo> roleList = roleService.getRoleList();
+            modelMap.addAttribute("user",user);
+            modelMap.addAttribute("roleInfo",roleInfo);
+            modelMap.addAttribute("roleList", roleList);
+            return "/admin/admin_edit";
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":toEdit()", e);
+            return "";
+        }
     }
 
     @RequestMapping("/add")
@@ -71,10 +81,13 @@ public class AdminController {
 
     @RequestMapping("/edit")
     @ResponseBody
-    public int edit(UserInfo userInfo){
+    public int edit(UserInfo userInfo,String adminRole){
         Date date = new Date();
         userInfo.setUpdateTime(date);
         int res = userService.update(userInfo);
+        if (res != 0) {
+            userService.updateUserRole(userInfo.getId(),adminRole);
+        }
         return res;
     }
 

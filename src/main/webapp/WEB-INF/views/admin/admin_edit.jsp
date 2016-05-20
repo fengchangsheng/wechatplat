@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--_meta 作为公共模版分离出去-->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML>
@@ -35,6 +36,7 @@
 <article class="page-container">
 	<form class="form form-horizontal" id="form-admin-add" action="edit" method="post">
 		<input type="hidden" name="id" value="${user.id}">
+		<input type="hidden" name="status" value="${user.status}">
 	<div class="row cl">
 		<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
 		<div class="formControls col-xs-8 col-sm-9">
@@ -82,10 +84,10 @@
 		<label class="form-label col-xs-4 col-sm-3">角色：</label>
 		<div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
 			<select class="select" name="adminRole" size="1">
-				<option value="0">超级管理员</option>
-				<option value="1">总编</option>
-				<option value="2">栏目主辑</option>
-				<option value="3">栏目编辑</option>
+				<option value="" >未选择</option>
+				<c:forEach items="${roleList}" var="role">
+					<option value="${role.id}" <c:if test="${role.id eq roleInfo.id}">selected="selected"</c:if>>${role.name}</option>
+				</c:forEach>
 			</select>
 			</span> </div>
 	</div>

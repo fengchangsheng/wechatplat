@@ -107,6 +107,12 @@
         where id = #{id,jdbcType=VARCHAR}
     </update>
 
+    <update id="updateUserRole">
+        update user_role
+        set roleid = #{roleid}
+        where userid = #{userid}
+    </update>
+
     <resultMap type="com.fcs.admin.model.UserInfo" id="UserRoleMap"
                extends="BaseResultMap">
         <collection property="roleList" javaType="list"

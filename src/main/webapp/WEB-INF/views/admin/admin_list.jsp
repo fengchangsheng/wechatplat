@@ -166,7 +166,7 @@
 				url: "disable?id=" + id + "&isOrNo=" + 1,
 				dataType: "json",
 				success: function (data) {
-					$(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
+					$(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,'+id+')" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
 					$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
 					$(obj).remove();
 					layer.msg('已停用!', {icon: 5, time: 1000});
@@ -184,16 +184,12 @@
 				url: "disable?id=" + id + "&isOrNo=" + 2,
 				dataType: "json",
 				success: function (data) {
-					$(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_start(this,id)" href="javascript:;" title="启用" style="text-decoration:none"><i class="Hui-iconfont">&#xe615;</i></a>');
-					$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">已禁用</span>');
+					$(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,'+id+')" href="javascript:;" title="禁用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');
+					$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
 					$(obj).remove();
-					layer.msg('已停用!', {icon: 5, time: 1000});
+					layer.msg('已启用!', {icon: 6, time: 1000});
 				}
 			});
-			$(obj).parents("tr").find(".td-manage").prepend('<a onClick="admin_stop(this,id)" href="javascript:;" title="停用" style="text-decoration:none"><i class="Hui-iconfont">&#xe631;</i></a>');
-			$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-			$(obj).remove();
-			layer.msg('已启用!', {icon: 6, time: 1000});
 		});
 	}
 </script>

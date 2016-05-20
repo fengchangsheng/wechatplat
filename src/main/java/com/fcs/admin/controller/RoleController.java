@@ -2,6 +2,7 @@ package com.fcs.admin.controller;
 
 import com.fcs.admin.model.MenuTree;
 import com.fcs.admin.model.RoleInfo;
+import com.fcs.admin.model.UserInfo;
 import com.fcs.admin.service.PermissionService;
 import com.fcs.admin.service.RoleService;
 import com.fcs.common.Strings;
@@ -12,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -72,6 +74,23 @@ public class RoleController extends BaseController{
         } catch (Exception e) {
             logger.error(this.getClass().getName()+":add()", e);
             return 0;
+        }
+    }
+
+    @RequestMapping("/toEdit")
+    public String toEdit(ModelMap model,String id, HttpSession session){
+        try {
+            List<MenuTree> list = permissionService.getMenuList();
+            UserInfo userInfo = (UserInfo) session.getAttribute("user");
+            RoleInfo roleInfo = roleService.getRoleById(id);
+            List<MenuTree> hasList = permissionService.selectMenuTreeByUserId(userInfo.getId());
+            model.addAttribute("list", list);
+            model.addAttribute("roleInfo", roleInfo);
+            model.addAttribute("hasList", hasList);
+            return "/admin/admin_role_edit";
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":toEdit()", e);
+            return "";
         }
     }
 

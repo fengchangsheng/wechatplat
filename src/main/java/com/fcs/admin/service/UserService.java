@@ -24,4 +24,5 @@ public interface UserService {
 
     int addAdminRole(UserRole userRole);
 
+    int updateUserRole(String id, String adminRole);
 }

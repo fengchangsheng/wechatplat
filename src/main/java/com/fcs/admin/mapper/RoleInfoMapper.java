@@ -15,4 +15,8 @@ public interface RoleInfoMapper {
     int addRole(RoleInfo roleInfo);
 
     int addRoleAndPer(@Param("id") String id, @Param("roleId") String roleId, @Param("perId") String perId);
+
+    RoleInfo getRoleByUser(String userId);
+
+    RoleInfo getRoleById(String id);
 }
