@@ -21,4 +21,12 @@ public class RoleServiceImpl implements RoleService {
         List<RoleInfo> list = roleInfoMapper.getRoleList();
         return list;
     }
+
+    public int addRole(RoleInfo roleInfo) {
+        return roleInfoMapper.addRole(roleInfo);
+    }
+
+    public int addRoleAndPer(String id, String roleId, String perId) {
+        return roleInfoMapper.addRoleAndPer(id,roleId,perId);
+    }
 }

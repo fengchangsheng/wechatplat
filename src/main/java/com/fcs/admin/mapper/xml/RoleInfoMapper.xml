@@ -27,7 +27,18 @@
         WHERE role.enabled = 1  ORDER BY role.sn
     </select>
 
+    <insert id="addRole" parameterType="com.fcs.admin.model.RoleInfo">
+       insert into role_info (id,name,des,createTime,updateTime)
+        values
+      (#{id},#{name},#{des},#{createTime},#{updateTime})
+    </insert>
 
+
+    <insert id="addRoleAndPer" >
+        insert into role_per (id,roleid,perid)
+        values
+        (#{id},#{roleId},#{perId})
+    </insert>
 
 
     <!--<select id="selectAllByUserId" resultType="Permission">-->

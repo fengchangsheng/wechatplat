@@ -72,6 +72,17 @@
 					<td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('权限编辑','toEdit','${cper.id}','','400')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 						<a title="删除" href="javascript:;" onclick="admin_permission_del(this,'${cper.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
+				<c:forEach items="${cper.children}" var="sper">
+					<tr class="text-c">
+						<td><input type="checkbox" value="1" name=""></td>
+						<td>${sper.id}</td>
+						<td>${sper.parentId}</td>
+						<td class="text-r">${sper.text}</td>
+						<td>${sper.url}</td>
+						<td><a title="编辑" href="javascript:;" onclick="admin_permission_edit('权限编辑','toEdit','${sper.id}','','400')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+							<a title="删除" href="javascript:;" onclick="admin_permission_del(this,'${sper.id}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+					</tr>
+				</c:forEach>
 			</c:forEach>
 		</c:forEach>
 		</tbody>

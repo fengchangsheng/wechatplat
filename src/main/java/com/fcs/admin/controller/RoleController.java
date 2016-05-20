@@ -4,12 +4,15 @@ import com.fcs.admin.model.MenuTree;
 import com.fcs.admin.model.RoleInfo;
 import com.fcs.admin.service.PermissionService;
 import com.fcs.admin.service.RoleService;
+import com.fcs.common.Strings;
 import com.fcs.platform.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,6 +49,29 @@ public class RoleController extends BaseController{
         } catch (Exception e) {
             logger.error(this.getClass().getName()+":toAdd()", e);
             return "";
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/add")
+    public int add(String[] ids,RoleInfo roleInfo){
+        try {
+            String roleId = Strings.getID();
+            Date date = new Date();
+            roleInfo.setId(roleId);
+            roleInfo.setCreateTime(date);
+            roleInfo.setUpdateTime(date);
+            int status = roleService.addRole(roleInfo);
+            if (status != 0) {
+                for (String id : ids) {
+                    roleService.addRoleAndPer(Strings.getID(),roleId,id);
+                }
+                return 1;
+            }
+            return 0;
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":add()", e);
+            return 0;
         }
     }
 

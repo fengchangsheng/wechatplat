@@ -10,4 +10,8 @@ import java.util.List;
 public interface RoleService {
 
     List<RoleInfo> getRoleList();
+
+    int addRole(RoleInfo roleInfo);
+
+    int addRoleAndPer(String id, String roleId, String perId);
 }
