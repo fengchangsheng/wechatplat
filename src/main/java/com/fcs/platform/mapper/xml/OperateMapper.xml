@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fcs.platform.mapper.OperateMapper">
+    <resultMap id="BaseResultMap" type="com.fcs.platform.model.OperRecord">
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="operateid" property="operateid" jdbcType="VARCHAR" />
+        <result column="operater" property="operater" jdbcType="VARCHAR" />
+        <result column="text" property="text" jdbcType="VARCHAR" />
+        <result column="operatetime" property="operatetime" jdbcType="DATE" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, operateid，operater, text, operatetime
+    </sql>
+
+    <insert id="insert" parameterType="com.fcs.platform.model.OperRecord">
+        insert into oper_record (id,operateid, operater,text,operatetime)
+        values (#{id,jdbcType=VARCHAR},
+        #{operateid,jdbcType=VARCHAR},
+        #{operater,jdbcType=VARCHAR},
+        #{text,jdbcType=VARCHAR},
+        #{operatetime,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--<select id="selectAll" resultType="com.fcs.platform.model.OperRecord">-->
+        <!--select u.id, u.username,u.email,u.phone,u.status,u.createTime,r.name-->
+        <!--from user_info u left-->
+        <!--join user_role ur on u.id = ur.userid left join role_info r on ur.roleid = r.id-->
+    <!--</select>-->
+</mapper>
