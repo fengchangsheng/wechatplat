@@ -45,4 +45,17 @@ public class IndexController extends BaseController{
             return "";
         }
     }
+
+    @RequestMapping("/operate")
+    public String record(){//操作记录
+        try {
+//            List<MenuTree> list = permissionService.getMenuList();//暂时不用登录获取权限
+//            model.addAttribute("list", list);
+            return "/welcome";
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":record()", e);
+            return "";
+        }
+    }
+
 }

@@ -53,6 +53,9 @@
 					<option value="0">根节点</option>
 					<c:forEach items="${list}" var="per">
 						<option value="${per.id}">${per.text}</option>
+						<c:forEach items="${per.children}" var="sper">
+							<option value="${sper.id}">${sper.text}</option>
+						</c:forEach>
 					</c:forEach>
 				</select>
 			</div>

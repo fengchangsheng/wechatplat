@@ -6,6 +6,7 @@ import com.fcs.admin.model.UserRole;
 import com.fcs.admin.service.RoleService;
 import com.fcs.admin.service.UserService;
 import com.fcs.common.Strings;
+import com.fcs.platform.annotation.Operate;
 import com.fcs.platform.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,7 @@ public class AdminController extends BaseController{
         return "/admin/admin_list";
     }
 
+
     @RequestMapping("/toAdd")
     public String toAdd(ModelMap modelMap){
         List<RoleInfo> roleList = roleService.getRoleList();
@@ -60,6 +62,7 @@ public class AdminController extends BaseController{
         }
     }
 
+    @Operate(name = "添加管理员")
     @RequestMapping("/add")
     @ResponseBody
     public int add(UserInfo userInfo,String adminRole){
@@ -79,6 +82,7 @@ public class AdminController extends BaseController{
         return res;
     }
 
+    @Operate(name = "编辑管理员")
     @RequestMapping("/edit")
     @ResponseBody
     public int edit(UserInfo userInfo,String adminRole){

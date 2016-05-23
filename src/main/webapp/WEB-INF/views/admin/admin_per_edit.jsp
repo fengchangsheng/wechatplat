@@ -33,7 +33,7 @@
 </head>
 <body>
 <article class="page-container">
-	<form action="add" method="post" class="form form-horizontal" id="form-admin-role-add">
+	<form action="edit" method="post" class="form form-horizontal" id="form-admin-role-add">
 		<input type="hidden" name="id" value="${menuTree.id}">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限名称：</label>
@@ -54,6 +54,9 @@
 					<option value="0">根节点</option>
 					<c:forEach items="${list}" var="per">
 						<option value="${per.id}" <c:if test="${per.id eq menuTree.parentId}">selected="selected"</c:if>>${per.text}</option>
+						<c:forEach items="${per.children}" var="sper">
+							<option value="${sper.id}" <c:if test="${sper.id eq menuTree.parentId}">selected="selected"</c:if>>${sper.text}</option>
+						</c:forEach>
 					</c:forEach>
 				</select>
 			</div>
@@ -114,6 +117,7 @@ $(function(){
 			$(form).ajaxSubmit();
 			var index = parent.layer.getFrameIndex(window.name);
 			parent.layer.close(index);
+			console.log(parent.$('.btn-success'));
 			parent.$('.btn-success').click();
 		}
 	});

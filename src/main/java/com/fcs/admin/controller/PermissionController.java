@@ -40,7 +40,7 @@ public class PermissionController extends BaseController{
     @RequestMapping("/toAdd")
     public String toAdd(Model model){
         try {
-            List<MenuTree> list = permissionService.getPermissionsByPid("0");
+            List<MenuTree> list = permissionService.getMenuList();
             model.addAttribute("list", list);
             return "/admin/admin_per_add";
         } catch (Exception e) {
@@ -70,7 +70,7 @@ public class PermissionController extends BaseController{
     public String toEdit(String id,Model model){
         try {
             MenuTree menuTree = permissionService.getPermissionById(id);
-            List<MenuTree> list = permissionService.getPermissionsByPid("0");
+            List<MenuTree> list = permissionService.getMenuList();
             model.addAttribute("list", list);
             model.addAttribute("menuTree", menuTree);
             return "/admin/admin_per_edit";
@@ -85,10 +85,8 @@ public class PermissionController extends BaseController{
     public int edit(MenuTree menuTree,String pid){
         try {
             Date date = new Date();
-            menuTree.setCreateTime(date);
-            menuTree.setId(Strings.getID());
+            menuTree.setUpdateTime(date);
             menuTree.setParentId(pid);
-            menuTree.setEnabled(1);
             int res = permissionService.editPermission(menuTree);
             return res;
         } catch (Exception e) {
