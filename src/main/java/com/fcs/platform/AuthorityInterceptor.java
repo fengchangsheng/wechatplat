@@ -1,8 +1,6 @@
 package com.fcs.platform;
 
-import com.fcs.admin.model.MenuTree;
-import com.fcs.admin.model.UserInfo;
-import com.fcs.admin.service.RoleService;
+import com.fcs.admin.model.User;
 import com.fcs.common.Strings;
 import com.fcs.platform.annotation.Operate;
 import com.fcs.platform.model.OperRecord;
@@ -25,8 +23,8 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        UserInfo userInfo = (UserInfo) request.getSession().getAttribute("user");
-        if (userInfo == null) {
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null) {
             request.getRequestDispatcher("/account/index").forward(request, response);
             return false;
         }else{
@@ -47,17 +45,23 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        HandlerMethod method = (HandlerMethod) handler;
-        Operate operate = method.getMethod().getAnnotation(Operate.class);
-        if (operate != null) {
-            UserInfo userInfo = (UserInfo) request.getSession().getAttribute("user");
-            OperRecord operRecord = new OperRecord();
-            operRecord.setId(Strings.getID());
-            operRecord.setOperateid(userInfo.getId());
-            operRecord.setOperater(userInfo.getUsername());
-            operRecord.setText(operate.name());
-            operRecord.setOperatetime(new Date());
-            operateService.insert(operRecord);
+        if (handler instanceof HandlerMethod) {//防止classCastException
+            HandlerMethod method = (HandlerMethod) handler;
+            Operate operate = method.getMethod().getAnnotation(Operate.class);
+            if (operate != null) {
+                User user = (User) request.getSession().getAttribute("user");
+                record(user,operate.name());
+            }
         }
+    }
+
+    private void record(User user, String operateText){
+        OperRecord operRecord = new OperRecord();
+        operRecord.setId(Strings.getID());
+        operRecord.setOperateid(user.getId());
+        operRecord.setOperater(user.getUsername());
+        operRecord.setText(operateText);
+        operRecord.setOperatetime(new Date());
+        operateService.insert(operRecord);
     }
 }

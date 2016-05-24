@@ -1,9 +1,11 @@
 package com.fcs.admin.service.impl;
 
-import com.fcs.admin.mapper.UserInfoMapper;
-import com.fcs.admin.model.UserInfo;
+import com.fcs.admin.mapper.UserMapper;
+import com.fcs.admin.model.User;
 import com.fcs.admin.model.UserRole;
 import com.fcs.admin.service.UserService;
+import com.fcs.platform.service.SuperService;
+import com.fcs.platform.service.impl.SuperServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,40 +15,20 @@ import java.util.List;
  * Created by Lucare.Feng on 2016/1/24.
  */
 @Service("userService")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends SuperServiceImpl<UserMapper,User> implements UserService {
 
     @Autowired
-    private UserInfoMapper userInfoMapper;
+    private UserMapper userMapper;
 
-    public UserInfo getUserById(String id) {
-        return userInfoMapper.selectByPrimaryKey(id);
-    }
-
-    public List<UserInfo> getUsers() {
-        return userInfoMapper.selectAll();
-    }
-
-    public int insert(UserInfo userInfo) {
-        return userInfoMapper.insert(userInfo);
-    }
-
-    public int update(UserInfo userInfo) {
-        return userInfoMapper.updateByPrimaryKey(userInfo);
-    }
-
-    public int delete(String id) {
-        return userInfoMapper.deleteByPrimaryKey(id);
-    }
-
-    public UserInfo login(UserInfo userInfo) {
-        return userInfoMapper.login(userInfo);
+    public User login(User user) {
+        return userMapper.login(user);
     }
 
     public int addAdminRole(UserRole userRole) {
-        return userInfoMapper.addAdminRole(userRole);
+        return userMapper.addAdminRole(userRole);
     }
 
     public int updateUserRole(String id, String adminRole) {
-        return userInfoMapper.updateUserRole(id, adminRole);
+        return userMapper.updateUserRole(id, adminRole);
     }
 }

@@ -1,8 +1,8 @@
 package com.fcs.admin.controller;
 
 import com.fcs.admin.model.MenuTree;
-import com.fcs.admin.model.RoleInfo;
-import com.fcs.admin.model.UserInfo;
+import com.fcs.admin.model.Role;
+import com.fcs.admin.model.User;
 import com.fcs.admin.service.PermissionService;
 import com.fcs.admin.service.RoleService;
 import com.fcs.common.Strings;
@@ -33,7 +33,7 @@ public class RoleController extends BaseController{
     @RequestMapping("/index")
     public String index(ModelMap model){
         try {
-            List<RoleInfo> list = roleService.getRoleList();
+            List<Role> list = roleService.getRoleList();
             model.addAttribute("list", list);
             return "/admin/admin_role";
         } catch (Exception e) {
@@ -56,15 +56,15 @@ public class RoleController extends BaseController{
 
     @ResponseBody
     @RequestMapping("/add")
-    public int add(String[] ids,RoleInfo roleInfo){
+    public int add(String[] ids,Role role){
         try {
             String roleId = Strings.getID();
             Date date = new Date();
-            roleInfo.setId(roleId);
-            roleInfo.setCreateTime(date);
-            roleInfo.setUpdateTime(date);
-            int status = roleService.addRole(roleInfo);
-            if (status != 0) {
+            role.setId(roleId);
+            role.setCreateTime(date);
+            role.setUpdateTime(date);
+            int status = roleService.addRole(role);
+            if (status != 0 && ids != null) {
                 for (String id : ids) {
                     roleService.addRoleAndPer(Strings.getID(),roleId,id);
                 }
@@ -81,16 +81,36 @@ public class RoleController extends BaseController{
     public String toEdit(ModelMap model,String id, HttpSession session){
         try {
             List<MenuTree> list = permissionService.getMenuList();
-            UserInfo userInfo = (UserInfo) session.getAttribute("user");
-            RoleInfo roleInfo = roleService.getRoleById(id);
-            List<MenuTree> hasList = permissionService.selectMenuTreeByUserId(userInfo.getId());
+            User user = (User) session.getAttribute("user");
+            Role role = roleService.getRoleById(id);
+            List<MenuTree> hasList = permissionService.selectMenuTreeByUserId(user.getId());
             model.addAttribute("list", list);
-            model.addAttribute("roleInfo", roleInfo);
+            model.addAttribute("roleInfo", role);
             model.addAttribute("hasList", hasList);
             return "/admin/admin_role_edit";
         } catch (Exception e) {
             logger.error(this.getClass().getName()+":toEdit()", e);
             return "";
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/edit")
+    public int edit(String[] ids,Role role){
+        try {
+            Date date = new Date();
+            role.setUpdateTime(date);
+//            int status = roleService.addRole(roleInfo);
+//            if (status != 0 && ids != null) {
+//                for (String id : ids) {
+//                    roleService.addRoleAndPer(Strings.getID(),roleId,id);
+//                }
+//                return 1;
+//            }
+            return 0;
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":add()", e);
+            return 0;
         }
     }
 

@@ -1,7 +1,6 @@
 package com.fcs.platform.controller;
 
-import com.fcs.admin.model.MenuTree;
-import com.fcs.admin.model.UserInfo;
+import com.fcs.admin.model.User;
 import com.fcs.admin.service.PermissionService;
 import com.fcs.admin.service.UserService;
 import com.fcs.common.Strings;
@@ -33,17 +32,17 @@ public class AccountController extends BaseController {
     }
 
     @RequestMapping("/login")//后台管理首页
-    public String login(UserInfo userInfo, Model model, HttpSession session) {
-        if (Strings.isEmpty(userInfo.getUsername())) {
+    public String login(User user, Model model, HttpSession session) {
+        if (Strings.isEmpty(user.getUsername())) {
             model.addAttribute("error", "用户名不能为空!");
             return "/login";
         }else{
-            UserInfo userInfo1 =userService.login(userInfo);
-            if (userInfo1 != null) {
-                session.setAttribute("user", userInfo1);
-                List<String> urlList = permissionService.selectPerUrlByUserId(userInfo1.getId());
+            User user1 =userService.login(user);
+            if (user1 != null) {
+                session.setAttribute("user", user1);
+                List<String> urlList = permissionService.selectPerUrlByUserId(user1.getId());
                 session.setAttribute("urlList", urlList);
-                model.addAttribute("user", userInfo1);
+                model.addAttribute("user", user1);
             }else{
                 model.addAttribute("error", "用户名或密码错误!");
                 return "/login";

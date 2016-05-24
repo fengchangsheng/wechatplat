@@ -1,5 +1,5 @@
 import com.alibaba.fastjson.JSON;
-import com.fcs.admin.model.UserInfo;
+import com.fcs.admin.model.User;
 import com.fcs.admin.service.UserService;
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -24,22 +24,22 @@ public class TestUserService {
 
     @Test
     public void testQueryById1() {
-        UserInfo userInfo = userService.getUserById("1");
-        LOGGER.info(JSON.toJSON(userInfo));
+        User user = userService.selectById("1");
+        LOGGER.info(JSON.toJSON(user));
     }
 
     @Test
     public void testQueryAll() {
-        List<UserInfo> userInfos = userService.getUsers();
-        LOGGER.info(JSON.toJSON(userInfos));
+        List<User> users = userService.selectList();
+        LOGGER.info(JSON.toJSON(users));
     }
 
     @Test
     public void testInsert() {
-        UserInfo userInfo = new UserInfo();
-        userInfo.setUsername("xiaoming");
+        User user = new User();
+        user.setUsername("xiaoming");
 //        userInfo.setUnumber(4);
-        int result = userService.insert(userInfo);
+        int result = userService.insert(user);
         System.out.println(result);
     }
 }

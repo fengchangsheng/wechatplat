@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  *角色实体类
  */
-public class RoleInfo extends BaseModel {
+public class Role extends BaseModel {
 
 	private String name;
 	private String des;

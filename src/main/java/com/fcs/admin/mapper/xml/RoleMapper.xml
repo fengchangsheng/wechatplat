@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fcs.admin.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.fcs.admin.model.Role">
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="des" property="des" jdbcType="VARCHAR" />
+        <result column="enabled" property="enabled" jdbcType="INTEGER" />
+        <result column="createTime" property="createTime" jdbcType="DATE" />
+        <result column="updateTime" property="updateTime" jdbcType="DATE" />
+        <result column="sn" property="sn" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,name,des
+    </sql>
+
+    <!--<select id="selectMenuByUserId" resultType="com.fcs.admin.model.RoleInfo">-->
+        <!--SELECT id, text, url, iconCls FROM menutree menu RIGHT JOIN-->
+        <!--(SELECT DISTINCT rp.perid FROM role_per rp WHERE EXISTS (-->
+        <!--SELECT 1 FROM user_role ur WHERE ur.userid=#{userId} AND rp.roleid=ur.roleid )) a ON menu.id=a.perid-->
+        <!--WHERE menu.parentId = #{pid}  ORDER BY sn-->
+    <!--</select>-->
+
+    <select id="selectList" resultType="com.fcs.admin.model.Role">
+        SELECT id,name,des
+        FROM role role
+        WHERE role.enabled = 1  ORDER BY role.sn
+    </select>
+
+    <select id="getRoleByUser" resultType="com.fcs.admin.model.Role">
+        SELECT role.id,role.name,role.des
+        FROM role role,user_role urole
+        WHERE role.id = urole.roleid and role.enabled = 1 and urole.userid = #{userId}
+    </select>
+
+    <select id="selectById" resultType="com.fcs.admin.model.Role">
+       SELECT id,name,des
+        FROM role role
+        WHERE role.enabled = 1 and role.id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.fcs.admin.model.Role">
+       insert into role (id,name,des,createTime,updateTime,enabled)
+        values
+      (#{id},#{name},#{des},#{createTime},#{updateTime},1)
+    </insert>
+
+
+    <insert id="addRoleAndPer" >
+        insert into role_per (id,roleid,perid)
+        values
+        (#{id},#{roleId},#{perId})
+    </insert>
+
+
+
+</mapper>

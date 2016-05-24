@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Lucare.Feng on 2016/1/24.
  */
-public class UserInfo extends BaseModel{
+public class User extends BaseModel{
 
     private String username;
 
@@ -21,7 +21,7 @@ public class UserInfo extends BaseModel{
 
     private String phone;
 
-    private List<RoleInfo> roleList;
+    private List<Role> roleList;
 
     public String getUsername() {
         return username;
@@ -39,7 +39,7 @@ public class UserInfo extends BaseModel{
         this.password = password;
     }
 
-    public List<RoleInfo> getRoleList() {
+    public List<Role> getRoleList() {
         return roleList;
     }
 
@@ -75,7 +75,7 @@ public class UserInfo extends BaseModel{
         this.phone = phone;
     }
 
-    public void setRoleList(List<RoleInfo> roleList) {
+    public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
     }
 

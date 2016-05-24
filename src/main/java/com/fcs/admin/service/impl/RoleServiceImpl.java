@@ -1,7 +1,7 @@
 package com.fcs.admin.service.impl;
 
-import com.fcs.admin.mapper.RoleInfoMapper;
-import com.fcs.admin.model.RoleInfo;
+import com.fcs.admin.mapper.RoleMapper;
+import com.fcs.admin.model.Role;
 import com.fcs.admin.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,26 +15,26 @@ import java.util.List;
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
-    private RoleInfoMapper roleInfoMapper;
+    private RoleMapper roleMapper;
 
-    public List<RoleInfo> getRoleList() {
-        List<RoleInfo> list = roleInfoMapper.getRoleList();
+    public List<Role> getRoleList() {
+        List<Role> list = roleMapper.selectList();
         return list;
     }
 
-    public int addRole(RoleInfo roleInfo) {
-        return roleInfoMapper.addRole(roleInfo);
+    public int addRole(Role role) {
+        return roleMapper.insert(role);
     }
 
     public int addRoleAndPer(String id, String roleId, String perId) {
-        return roleInfoMapper.addRoleAndPer(id,roleId,perId);
+        return roleMapper.addRoleAndPer(id,roleId,perId);
     }
 
-    public RoleInfo getRoleByUser(String userId) {
-        return roleInfoMapper.getRoleByUser(userId);
+    public Role getRoleByUser(String userId) {
+        return roleMapper.getRoleByUser(userId);
     }
 
-    public RoleInfo getRoleById(String id) {
-        return roleInfoMapper.getRoleById(id);
+    public Role getRoleById(String id) {
+        return roleMapper.selectById(id);
     }
 }

@@ -1,6 +1,6 @@
 package com.fcs.admin.service;
 
-import com.fcs.admin.model.RoleInfo;
+import com.fcs.admin.model.Role;
 
 import java.util.List;
 
@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface RoleService {
 
-    List<RoleInfo> getRoleList();
+    List<Role> getRoleList();
 
-    int addRole(RoleInfo roleInfo);
+    int addRole(Role role);
 
     int addRoleAndPer(String id, String roleId, String perId);
 
-    RoleInfo getRoleByUser(String userId);
+    Role getRoleByUser(String userId);
 
-    RoleInfo getRoleById(String id);
+    Role getRoleById(String id);
 }

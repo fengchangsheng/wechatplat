@@ -66,7 +66,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     public int addPermission(MenuTree menuTree) {
-        return permissionMapper.addPermission(menuTree);
+        return permissionMapper.insert(menuTree);
     }
 
     public int deleteById(String id) {
@@ -74,10 +74,10 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     public int editPermission(MenuTree menuTree) {
-        return permissionMapper.editPermission(menuTree);
+        return permissionMapper.update(menuTree);
     }
 
     public MenuTree getPermissionById(String id) {
-        return permissionMapper.getPermissionById(id);
+        return permissionMapper.selectById(id);
     }
 }

@@ -1,7 +1,7 @@
 package com.fcs.platform.controller;
 
 import com.fcs.admin.model.MenuTree;
-import com.fcs.admin.model.UserInfo;
+import com.fcs.admin.model.User;
 import com.fcs.admin.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,9 +23,9 @@ public class IndexController extends BaseController{
     @RequestMapping("/index")//后台管理首页
     public String index(Model model, HttpSession session){
         try {
-            UserInfo userInfo = (UserInfo) session.getAttribute("user");
-            List<MenuTree> list = permissionService.selectMenuTreeByUserId(userInfo.getId());//暂时不用登录获取权限
-            model.addAttribute("user", userInfo);
+            User user = (User) session.getAttribute("user");
+            List<MenuTree> list = permissionService.selectMenuTreeByUserId(user.getId());//暂时不用登录获取权限
+            model.addAttribute("user", user);
             model.addAttribute("list", list);
             return "/index";
         } catch (Exception e) {
