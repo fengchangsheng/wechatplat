@@ -1,9 +1,12 @@
-﻿<jsp:include page="common/head.jsp" flush="true" />
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
   <title>后台登录</title>
+  <link href="/static/hui/static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+  <link href="/static/hui/static/h-ui/css/H-ui.login.css" rel="stylesheet" type="text/css" />
+  <link href="/static/hui/static/h-ui/css/style.css" rel="stylesheet" type="text/css" />
+  <link href="/static/hui/lib/Hui-iconfont/1.0.7/iconfont.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <input type="hidden" id="TenantId" name="TenantId" value="" />

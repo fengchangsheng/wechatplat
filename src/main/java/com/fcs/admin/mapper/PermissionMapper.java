@@ -13,10 +13,13 @@ public interface PermissionMapper extends SuperMapper<MenuTree>{
 
     List<MenuTree> selectMenuByUserId(@Param("userId") String userId, @Param("pid") String pid);
 
+    List<MenuTree> selectPerByUserId(String userId);
+
     List<String> selectPerUrlByUserId(String userId);
 
     List<MenuTree> getMenuList(@Param("pid") String pid, @Param("type") int type);
 
     List<MenuTree> getPermissionList();
 
+    List<MenuTree> getPermissionsByRole(String roleId);
 }

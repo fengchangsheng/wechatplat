@@ -81,9 +81,8 @@ public class RoleController extends BaseController{
     public String toEdit(ModelMap model,String id, HttpSession session){
         try {
             List<MenuTree> list = permissionService.getMenuList();
-            User user = (User) session.getAttribute("user");
             Role role = roleService.getRoleById(id);
-            List<MenuTree> hasList = permissionService.selectMenuTreeByUserId(user.getId());
+            List<MenuTree> hasList = permissionService.getPermissionsByRole(id);
             model.addAttribute("list", list);
             model.addAttribute("roleInfo", role);
             model.addAttribute("hasList", hasList);

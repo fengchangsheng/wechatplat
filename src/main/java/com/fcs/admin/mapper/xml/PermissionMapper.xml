@@ -32,7 +32,37 @@
         SELECT id, text, url, iconCls FROM menutree menu RIGHT JOIN
         (SELECT DISTINCT rp.perid FROM role_per rp WHERE EXISTS (
         SELECT 1 FROM user_role ur WHERE ur.userid=#{userId} AND rp.roleid=ur.roleid )) a ON menu.id=a.perid
-        WHERE menu.parentId = #{pid}  and menu.type = 1 ORDER BY sn
+        WHERE  menu.type = 1
+        <if test="pid != null">
+         and menu.parentId = #{pid}
+        </if>
+        ORDER BY sn
+    </select>
+
+    <!--查询当前用户拥有的所有权限 -->
+    <select id="selectPerByUserId" resultType="com.fcs.admin.model.MenuTree">
+        SELECT id, text, url, iconCls FROM menutree menu RIGHT JOIN
+        (SELECT DISTINCT rp.perid FROM role_per rp WHERE EXISTS (
+        SELECT 1 FROM user_role ur WHERE ur.userid=#{userId} AND rp.roleid=ur.roleid )) a ON menu.id=a.perid
+        ORDER BY sn
+    </select>
+
+    <!--查询当前角色拥有的所有权限
+            SELECT id, text, url, iconCls FROM menutree menu RIGHT JOIN
+        (SELECT DISTINCT rp.perid FROM role_per rp WHERE EXISTS (
+        SELECT 1 FROM user_role ur WHERE ur.userid=#{userId} AND rp.roleid=ur.roleid )) a ON menu.id=a.perid
+        ORDER BY sn
+
+         SELECT id, text, url, iconCls FROM menutree menu RIGHT JOIN
+        (SELECT DISTINCT rp.perid FROM role_per rp WHERE rp.roleid = #{roleId}) a ON menu.id=a.perid
+        ORDER BY sn
+    -->
+    <select id="getPermissionsByRole" resultType="com.fcs.admin.model.MenuTree">
+        SELECT id, text, url, iconCls
+        FROM menutree menu
+        WHERE  id IN
+        (SELECT DISTINCT rp.perid FROM role_per rp WHERE rp.roleid = #{roleId})
+        ORDER BY sn
     </select>
 
     <!--权限管理列表 -->

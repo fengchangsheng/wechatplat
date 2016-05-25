@@ -18,6 +18,11 @@ public class PermissionServiceImpl implements PermissionService {
     @Autowired
     private PermissionMapper permissionMapper;
 
+    /**
+     * 用户拥有的菜单树
+     * @param userId
+     * @return
+     */
     public List<MenuTree> selectMenuTreeByUserId(String userId) {
         List<MenuTree> perList = permissionMapper.selectMenuByUserId(userId, "0");
         if (perList == null || perList.isEmpty()) {
@@ -31,10 +36,23 @@ public class PermissionServiceImpl implements PermissionService {
         return mvList;
     }
 
+    public List<MenuTree> selectPerByUserId(String userId) {
+        return permissionMapper.selectPerByUserId(userId);
+    }
+
+    /**
+     * 用户拥有的权限
+     * @param userId
+     * @return
+     */
     public List<String> selectPerUrlByUserId(String userId) {
         return permissionMapper.selectPerUrlByUserId(userId);
     }
 
+    /**
+     * 分层展现所有资源
+     * @return
+     */
     public List<MenuTree> getMenuList() {
         List<MenuTree> perList = permissionMapper.getMenuList("0",1);
         if (perList == null || perList.isEmpty()) {
@@ -79,5 +97,9 @@ public class PermissionServiceImpl implements PermissionService {
 
     public MenuTree getPermissionById(String id) {
         return permissionMapper.selectById(id);
+    }
+
+    public List<MenuTree> getPermissionsByRole(String roleId) {
+        return permissionMapper.getPermissionsByRole(roleId);
     }
 }
