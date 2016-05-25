@@ -1,35 +1,10 @@
 ﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!--_meta 作为公共模版分离出去-->
+<jsp:include page="../common/head.jsp" flush="true" />
 <!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="renderer" content="webkit|ie-comp|ie-stand">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<LINK rel="Bookmark" href="/favicon.ico" >
-<LINK rel="Shortcut Icon" href="/favicon.ico" />
-<!--[if lt IE 9]>
-<script type="text/javascript" src="/static/hui/lib/html5.js"></script>
-<script type="text/javascript" src="/static/hui/lib/respond.min.js"></script>
-<script type="text/javascript" src="/static/hui/lib/PIE_IE678.js"></script>
-<![endif]-->
-<link rel="stylesheet" type="text/css" href="/static/hui/static/h-ui/css/H-ui.min.css" />
-<link rel="stylesheet" type="text/css" href="/static/hui/static/h-ui/css/H-ui.admin.css" />
-<link rel="stylesheet" type="text/css" href="/static/hui/lib/Hui-iconfont/1.0.7/iconfont.css" />
-<link rel="stylesheet" type="text/css" href="/static/hui/lib/icheck/icheck.css" />
-<link rel="stylesheet" type="text/css" href="/static/hui/static/h-ui/skin/default/skin.css" id="skin" />
-<link rel="stylesheet" type="text/css" href="/static/hui/static/h-ui/css/style.css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
-<!--/meta 作为公共模版分离出去-->
-
-<title>新建网站角色 - 管理员管理 - H-ui.admin v2.3</title>
-<meta name="keywords" content="H-ui.admin v2.3,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-<meta name="description" content="H-ui.admin v2.3，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+<title>编辑权限 - 管理员管理</title>
 </head>
 <body>
 <article class="page-container">

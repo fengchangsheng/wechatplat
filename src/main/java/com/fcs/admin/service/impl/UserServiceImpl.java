@@ -5,6 +5,7 @@ import com.fcs.admin.model.User;
 import com.fcs.admin.model.UserRole;
 import com.fcs.admin.service.UserService;
 import com.fcs.platform.service.SuperService;
+import com.fcs.platform.service.impl.BaseServiceImpl;
 import com.fcs.platform.service.impl.SuperServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

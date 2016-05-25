@@ -7,8 +7,8 @@
         <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
         <result column="phone" property="phone" jdbcType="VARCHAR" />
-        <result column="createtime" property="createTime" jdbcType="DATE" />
-        <result column="updatetime" property="updateTime" jdbcType="DATE" />
+        <result column="createtime" property="createTime" />
+        <result column="updatetime" property="updateTime"  />
         <result column="sex" property="sex" jdbcType="INTEGER" />
         <result column="status" property="status" jdbcType="INTEGER" />
         <result column="enabled" property="enabled" jdbcType="INTEGER" />
@@ -50,8 +50,8 @@
         #{phone,jdbcType=VARCHAR},
         #{email,jdbcType=VARCHAR},
         #{sex,jdbcType=INTEGER},
-        #{createTime,jdbcType=DATE},
-        #{updateTime,jdbcType=DATE}
+        #{createTime},
+        #{updateTime}
         )
     </insert>
 
