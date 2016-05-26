@@ -1,10 +1,8 @@
 package com.fcs.admin.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fcs.admin.model.MenuTree;
 import com.fcs.admin.model.Role;
-import com.fcs.admin.model.User;
 import com.fcs.admin.service.PermissionService;
 import com.fcs.admin.service.RoleService;
 import com.fcs.common.Strings;
@@ -131,7 +129,4 @@ public class RoleController extends BaseController{
             return 0;
         }
     }
-
-
-
 }
