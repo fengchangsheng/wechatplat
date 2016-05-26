@@ -1,5 +1,6 @@
 package com.fcs.admin.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fcs.admin.model.MenuTree;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface PermissionService {
 
     List<MenuTree> getMenuList();
 
-    List<MenuTree> getPermissionList();
+    JSONObject getPermissionJson(List<MenuTree> hasList);
 
     List<MenuTree> getPermissionsByPid(String parentId);
 

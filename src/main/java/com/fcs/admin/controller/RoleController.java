@@ -1,5 +1,7 @@
 package com.fcs.admin.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.fcs.admin.model.MenuTree;
 import com.fcs.admin.model.Role;
 import com.fcs.admin.model.User;
@@ -80,12 +82,11 @@ public class RoleController extends BaseController{
     @RequestMapping("/toEdit")
     public String toEdit(ModelMap model,String id, HttpSession session){
         try {
-            List<MenuTree> list = permissionService.getMenuList();
-            Role role = roleService.getRoleById(id);
             List<MenuTree> hasList = permissionService.getPermissionsByRole(id);
-            model.addAttribute("list", list);
+            JSONObject jsonObject = permissionService.getPermissionJson(hasList);
+            Role role = roleService.getRoleById(id);
             model.addAttribute("roleInfo", role);
-            model.addAttribute("hasList", hasList);
+            model.addAttribute("resList", jsonObject);
             return "/admin/admin_role_edit";
         } catch (Exception e) {
             logger.error(this.getClass().getName()+":toEdit()", e);
@@ -99,16 +100,34 @@ public class RoleController extends BaseController{
         try {
             Date date = new Date();
             role.setUpdateTime(date);
-//            int status = roleService.addRole(roleInfo);
-//            if (status != 0 && ids != null) {
-//                for (String id : ids) {
-//                    roleService.addRoleAndPer(Strings.getID(),roleId,id);
-//                }
-//                return 1;
-//            }
+            int status = roleService.update(role);
+            if (status != 0 && ids != null) {
+                int delstatus = roleService.delRoleAndPer(role.getId());
+                if (delstatus != 0) {
+                    for (String id : ids) {
+                        roleService.addRoleAndPer(Strings.getID(),role.getId(),id);
+                    }
+                    return 1;
+                }
+            }
             return 0;
         } catch (Exception e) {
-            logger.error(this.getClass().getName()+":add()", e);
+            logger.error(this.getClass().getName()+":edit()", e);
+            return 0;
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping("/delete")
+    public int delete(String id){
+        try {
+            int status = roleService.delete(id);
+            if (status != 0) {
+                roleService.delRoleAndPer(id);
+            }
+            return 1;
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":delete()", e);
             return 0;
         }
     }

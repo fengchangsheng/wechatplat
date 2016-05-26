@@ -29,7 +29,7 @@ public class TestPermissionService {
 
     @Test
     public void testGetPermissionList(){
-        List<MenuTree> list =  permissionService.getPermissionList();
-        System.out.println(list);
+//        List<MenuTree> list =  permissionService.getPermissionList();
+//        System.out.println(list);
     }
 }

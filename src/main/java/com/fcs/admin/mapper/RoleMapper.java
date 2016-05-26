@@ -13,4 +13,5 @@ public interface RoleMapper extends SuperMapper<Role>{
 
     Role getRoleByUser(String userId);
 
+    int delRoleAndPer(String roleId);
 }

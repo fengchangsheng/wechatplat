@@ -45,13 +45,30 @@
       (#{id},#{name},#{des},#{createTime},#{updateTime},1)
     </insert>
 
-
     <insert id="addRoleAndPer" >
         insert into role_per (id,roleid,perid)
         values
         (#{id},#{roleId},#{perId})
     </insert>
 
+    <delete id="delRoleAndPer" parameterType="java.lang.String">
+        delete from
+        role_per
+        where roleid = #{roleId,jdbcType=VARCHAR}
+    </delete>
 
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from
+        role
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+    <update id="update" parameterType="com.fcs.admin.model.Role">
+        update role
+        set name = #{name,jdbcType=VARCHAR},
+        des = #{des,jdbcType=VARCHAR},
+        updatetime = #{updateTime,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
 
 </mapper>

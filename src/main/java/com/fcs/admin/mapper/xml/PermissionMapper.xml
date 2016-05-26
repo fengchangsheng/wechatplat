@@ -5,7 +5,6 @@
         <id column="id" property="id" jdbcType="VARCHAR" />
         <result column="text" property="text" jdbcType="VARCHAR" />
         <result column="iconCls" property="iconCls" jdbcType="VARCHAR" />
-        <result column="checked" property="checked" jdbcType="INTEGER" />
         <result column="url" property="url" jdbcType="VARCHAR" />
         <result column="parentId" property="parentId" jdbcType="VARCHAR" />
         <result column="enabled" property="enabled" jdbcType="INTEGER" />
@@ -67,9 +66,10 @@
 
     <!--权限管理列表 -->
     <select id="getPermissionList" resultType="com.fcs.admin.model.MenuTree">
-        SELECT id, text, url, iconCls ,parentId
+        SELECT id, text, url, iconCls ,parentId, type
         FROM menutree menu
-        WHERE menu.enabled = 1  ORDER BY sn
+        WHERE enabled = 1 and parentId = #{pid}
+        ORDER BY sn
     </select>
 
     <!-- 根据pid查询所有菜单-->

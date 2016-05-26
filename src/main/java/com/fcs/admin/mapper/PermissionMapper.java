@@ -19,7 +19,7 @@ public interface PermissionMapper extends SuperMapper<MenuTree>{
 
     List<MenuTree> getMenuList(@Param("pid") String pid, @Param("type") int type);
 
-    List<MenuTree> getPermissionList();
+    List<MenuTree> getPermissionList(String pid);
 
     List<MenuTree> getPermissionsByRole(String roleId);
 }

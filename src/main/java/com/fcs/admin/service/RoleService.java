@@ -18,4 +18,10 @@ public interface RoleService {
     Role getRoleByUser(String userId);
 
     Role getRoleById(String id);
+
+    int delRoleAndPer(String roleId);
+
+    int update(Role role);
+
+    int delete(String id);
 }

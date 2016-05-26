@@ -20,15 +20,15 @@ public class MenuTree extends BaseModel{
 
     private String state;
 
-    private Integer checked;
+    private String checked;//临时属性
 
     private Integer type;
 
-    private List<MenuTree> children;
+    private List<MenuTree> children;//临时属性
 
-    private List<MenuTree> others;
+    private List<MenuTree> others;//临时属性
 
-    private Map<String,Object> attributes;
+    private Map<String,Object> attributes;//临时属性
 
     public String getText() {
         return text;
@@ -70,11 +70,11 @@ public class MenuTree extends BaseModel{
         this.state = state;
     }
 
-    public Integer getChecked() {
+    public String getChecked() {
         return checked;
     }
 
-    public void setChecked(Integer checked) {
+    public void setChecked(String checked) {
         this.checked = checked;
     }
 

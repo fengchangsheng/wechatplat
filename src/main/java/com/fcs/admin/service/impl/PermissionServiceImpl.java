@@ -1,5 +1,6 @@
 package com.fcs.admin.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fcs.admin.mapper.PermissionMapper;
 import com.fcs.admin.model.MenuTree;
 import com.fcs.admin.service.PermissionService;
@@ -59,24 +60,47 @@ public class PermissionServiceImpl implements PermissionService {
             return null;
         }
         List<MenuTree> mvList = new ArrayList<MenuTree>();
-        List<MenuTree> cmvList = null;
         for (MenuTree mv : perList) {
             List<MenuTree> cmenus = permissionMapper.getMenuList(mv.getId(),1);
-            cmvList = new ArrayList<MenuTree>();
             for (MenuTree menuTree : cmenus) {
                 List<MenuTree> smenus = permissionMapper.getMenuList(menuTree.getId(),2);
                 menuTree.setChildren(smenus);
-                cmvList.add(menuTree);
             }
-            mv.setChildren(cmvList);
+            mv.setChildren(cmenus);
             mvList.add(mv);
         }
         return mvList;
     }
 
-    public List<MenuTree> getPermissionList() {
-        List<MenuTree> perList = permissionMapper.getPermissionList();
-        return perList;
+    public JSONObject getPermissionJson(List<MenuTree> hasList) {
+        List<MenuTree> pList = permissionMapper.getPermissionList("0");
+        JSONObject jsonObject = new JSONObject();
+        List<MenuTree> flist = handle(pList, hasList);
+        List<MenuTree> mvList = new ArrayList<MenuTree>();
+        for (MenuTree menuTree : flist) {
+            List<MenuTree> smenus = permissionMapper.getPermissionList(menuTree.getId());
+            List<MenuTree> hsmenus = handle(smenus, hasList);
+            for (MenuTree cmenu : smenus) {
+                List<MenuTree> cmenus = permissionMapper.getPermissionList(cmenu.getId());
+                List<MenuTree> hcmenus = handle(cmenus, hasList);
+                cmenu.setChildren(hcmenus);
+            }
+            menuTree.setChildren(hsmenus);
+            mvList.add(menuTree);
+        }
+        jsonObject.put("pmenu", mvList);
+        return jsonObject;
+    }
+
+    private List<MenuTree> handle(List<MenuTree> alls, List<MenuTree> owns){
+        for (MenuTree menuTree : alls) {
+            for (MenuTree omenuTree : owns) {
+                if (menuTree.getId().equals(omenuTree.getId())) {
+                    menuTree.setChecked("checked");
+                }
+            }
+        }
+        return alls;
     }
 
     public List<MenuTree> getPermissionsByPid(String parentId) {

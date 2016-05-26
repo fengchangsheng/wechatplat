@@ -1,6 +1,5 @@
 ﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../common/head.jsp" flush="true" />
-<!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -10,6 +9,7 @@
 <body>
 <article class="page-container">
     <form action="edit" method="post" class="form form-horizontal" id="form-admin-role-edit">
+        <input type="hidden" name="id" value="${roleInfo.id}">
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -25,36 +25,36 @@
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3">网站角色：</label>
-            <div class="formControls col-xs-8 col-sm-9">
+            <div class="formControls col-xs-8 col-sm-9" id="list">
 
-                <c:forEach items="${list}" var="per" varStatus="i">
-                    <dl class="permission-list">
-                        <dt>
-                            <label>
-                                <input type="checkbox" value="${per.id}" name="ids" id="user-Character-${i.index}">
-                                    ${per.text}</label>
-                        </dt>
-                        <dd>
-                            <c:forEach items="${per.children}" var="cper" varStatus="j">
-                                <dl class="cl permission-list2">
-                                    <dt>
-                                        <label class="">
-                                            <input type="checkbox" value="${cper.id}" name="ids"
-                                                   id="user-Character-0-${j.index}">
-                                                ${cper.text}</label>
-                                    </dt>
-                                    <dd>
-                                        <c:forEach items="${cper.children}" var="sper" varStatus="k">
-                                            <label class="">
-                                                <input type="checkbox" value="${sper.id}" name="ids" id="user-Character-0-0-${k.index}">
-                                                ${sper.text}</label>
-                                        </c:forEach>
-                                    </dd>
-                                </dl>
-                            </c:forEach>
-                        </dd>
-                    </dl>
-                </c:forEach>
+                <%--<c:forEach items="${list}" var="per" varStatus="i">--%>
+                    <%--<dl class="permission-list">--%>
+                        <%--<dt>--%>
+                            <%--<label>--%>
+                                <%--<input type="checkbox" value="${per.id}" name="ids" id="user-Character-${i.index}">--%>
+                                    <%--${per.text}</label>--%>
+                        <%--</dt>--%>
+                        <%--<dd>--%>
+                            <%--<c:forEach items="${per.children}" var="cper" varStatus="j">--%>
+                                <%--<dl class="cl permission-list2">--%>
+                                    <%--<dt>--%>
+                                        <%--<label class="">--%>
+                                            <%--<input type="checkbox" value="${cper.id}" name="ids"--%>
+                                                   <%--id="user-Character-0-${j.index}">--%>
+                                                <%--${cper.text}</label>--%>
+                                    <%--</dt>--%>
+                                    <%--<dd>--%>
+                                        <%--<c:forEach items="${cper.children}" var="sper" varStatus="k">--%>
+                                            <%--<label class="">--%>
+                                                <%--<input type="checkbox" value="${sper.id}" name="ids" id="user-Character-0-0-${k.index}">--%>
+                                                <%--${sper.text}</label>--%>
+                                        <%--</c:forEach>--%>
+                                    <%--</dd>--%>
+                                <%--</dl>--%>
+                            <%--</c:forEach>--%>
+                        <%--</dd>--%>
+                    <%--</dl>--%>
+                <%--</c:forEach>--%>
             </div>
         </div>
         <div class="row cl">
@@ -71,7 +71,9 @@
 <script type="text/javascript" src="/static/hui/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/static/hui/lib/layer/2.1/layer.js"></script>
 <script type="text/javascript" src="/static/hui/lib/icheck/jquery.icheck.min.js"></script>
-
+<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/messages_zh.min.js"></script>
 <script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.admin.js"></script>
 <!--/_footer /作为公共模版分离出去-->
@@ -114,6 +116,28 @@
                 parent.layer.close(index);
             }
         });
+
+
+        <!--处理列表-->
+        var res = ${resList};
+        console.log(res);
+        $.each(res.pmenu,function (index,element) {
+            $("#list").append('<dl class="permission-list" id="'+element.id+'"><dt>' +
+                        '<label><input type="checkbox" value="'+element.id+'" name="ids" id="user-Character-0" '+element.checked+'>' +
+                        element.text + '</label></dt></dl>');
+            $.each(element.children, function (c, e) {
+                $("#" + e.parentId).append('<dd><dl class="cl permission-list2" id="' + e.id + '"><dt><label class="">' +
+                        '<input type="checkbox" value="' + e.id + '" name="ids" id="user-Character-0-0" '+e.checked+'>' +
+                        e.text + '</label></dt></dl></dd>');
+                $.each(e.children, function (sc, se) {
+                    $("#"+se.parentId).append('<dd><label class="">'+
+                            '<input type="checkbox" value="'+se.id+'" name="ids" id="user-Character-0-0-0" '+se.checked+'>'
+                            +se.text+'</label></dd>');
+                });
+
+            });
+        });
+
     });
 </script>
 <!--/请在上方写此页面业务相关的脚本-->

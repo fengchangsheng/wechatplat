@@ -37,4 +37,16 @@ public class RoleServiceImpl implements RoleService {
     public Role getRoleById(String id) {
         return roleMapper.selectById(id);
     }
+
+    public int delRoleAndPer(String roleId) {
+        return roleMapper.delRoleAndPer(roleId);
+    }
+
+    public int update(Role role) {
+        return roleMapper.update(role);
+    }
+
+    public int delete(String id) {
+        return roleMapper.deleteById(id);
+    }
 }
