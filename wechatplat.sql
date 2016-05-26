@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : fcs
 Source Server Version : 50621
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : wechatplat
 
 Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2016-05-23 22:05:03
+Date: 2016-05-26 20:57:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,6 +40,7 @@ CREATE TABLE `menutree` (
 -- ----------------------------
 INSERT INTO `menutree` VALUES ('2', '菜单管理', null, null, null, '0', '1', '2016-01-27 15:14:30', null, null, '1', '1');
 INSERT INTO `menutree` VALUES ('21', '菜单列表', null, null, '/per/index', '2', '1', '2016-01-27 15:14:30', null, null, '2', '1');
+INSERT INTO `menutree` VALUES ('277035f2-abb0-4a20-8390-b1d984505103', '菜单哈哈', null, null, '/menu/hah', '2', '1', '2016-05-26 00:00:00', '2016-05-26 00:00:00', null, null, '1');
 INSERT INTO `menutree` VALUES ('3', '管理员管理', null, null, '', '0', '1', '2016-01-27 15:14:30', null, null, '3', '1');
 INSERT INTO `menutree` VALUES ('31', '基本信息', null, null, '/admin/list', '3', '1', '2016-01-27 15:14:30', null, null, '4', '1');
 INSERT INTO `menutree` VALUES ('311', '管理员添加', null, null, '/admin/add', '31', '1', null, null, null, null, '2');
@@ -48,7 +49,6 @@ INSERT INTO `menutree` VALUES ('313', '管理员删除', null, null, '/admin/del
 INSERT INTO `menutree` VALUES ('32', '角色管理', null, null, '/role/index', '3', '1', '2016-01-27 15:14:30', null, null, '5', '1');
 INSERT INTO `menutree` VALUES ('33', '权限管理', null, null, '/per/index', '3', '1', '2016-01-27 15:14:30', null, null, '6', '1');
 INSERT INTO `menutree` VALUES ('4', '用户管理', null, null, '', '0', '1', '2016-04-25 14:38:09', null, null, '7', '1');
-INSERT INTO `menutree` VALUES ('40255f52-8dae-4a50-9f44-91d57f08488a', '管理员添加', null, null, '/admin/add', '31', '1', '2016-05-22 00:00:00', null, null, null, null);
 INSERT INTO `menutree` VALUES ('41', '用户列表', null, null, 'weuser/index', '4', '1', '2016-04-25 14:38:42', null, null, '8', '1');
 INSERT INTO `menutree` VALUES ('42', '用户群组', null, null, 'wegroup/index', '4', '1', '2016-04-25 14:39:07', null, null, '9', '1');
 INSERT INTO `menutree` VALUES ('50487476-cb64-407d-b53a-8b8f10cc1e8e', '菜单测试', null, null, '/menu/ceshi', '2', '1', '2016-05-08 00:00:00', null, null, null, '1');
@@ -60,7 +60,6 @@ INSERT INTO `menutree` VALUES ('81', '用户分析', null, null, 'westatis/index
 INSERT INTO `menutree` VALUES ('82', '图文分析', null, null, null, '8', '1', '2016-04-27 11:00:08', null, null, '22', '1');
 INSERT INTO `menutree` VALUES ('83', '菜单分析', null, null, null, '8', '1', '2016-04-27 11:00:10', null, null, '23', '1');
 INSERT INTO `menutree` VALUES ('84', '消息分析', null, null, null, '8', '1', '2016-04-27 11:00:13', null, null, '24', '1');
-INSERT INTO `menutree` VALUES ('b7c49314-ace2-4e62-a5f4-b13738ade656', '管理员添加', null, null, '/admin/add', '31', '1', '2016-05-22 00:00:00', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for oper_record
@@ -78,13 +77,51 @@ CREATE TABLE `oper_record` (
 -- ----------------------------
 -- Records of oper_record
 -- ----------------------------
+INSERT INTO `oper_record` VALUES ('02f21365-aa5c-440e-b24c-4de450c0a7ba', '1', 'Lucare', '编辑管理员', '2016-05-24 14:57:27');
+INSERT INTO `oper_record` VALUES ('09a069d0-8dd7-4b53-9307-01352756e9ce', '1', 'Lucare', '添加管理员', '2016-05-25 15:08:18');
+INSERT INTO `oper_record` VALUES ('0f299853-0c57-4c5d-950d-83c974faf564', '1', 'Lucare', '编辑管理员', '2016-05-24 14:45:42');
+INSERT INTO `oper_record` VALUES ('196f29da-64e8-4e2b-9032-23e37f2bf27d', '1', 'Lucare', '编辑管理员', '2016-05-26 19:46:48');
+INSERT INTO `oper_record` VALUES ('1bbaea53-3feb-463b-8309-b5b323d500c0', '1', 'Lucare', '添加管理员', '2016-05-25 15:22:38');
+INSERT INTO `oper_record` VALUES ('1c87c894-1cdb-41a9-9420-7711496283a5', '1', 'Lucare', '删除管理员', '2016-05-25 16:31:47');
+INSERT INTO `oper_record` VALUES ('210b43d1-9e64-42e0-8781-42016668360e', '1', 'Lucare', '添加管理员', '2016-05-24 14:56:35');
+INSERT INTO `oper_record` VALUES ('32ec444e-8e34-4f97-b1bb-f332490ea5fe', '1', 'Lucare', '禁用或启用账号', '2016-05-24 09:07:03');
+INSERT INTO `oper_record` VALUES ('348333e4-6326-485c-ad74-b0d0e9aaff2b', '1', 'Lucare', '删除管理员', '2016-05-25 16:31:41');
+INSERT INTO `oper_record` VALUES ('3a8ab18d-3377-4772-83a2-cad2a16082dc', '1', 'Lucare', '删除管理员', '2016-05-25 16:31:33');
+INSERT INTO `oper_record` VALUES ('42221cf1-b6bf-4921-bd0d-e71f300e750e', '1', 'Lucare', '添加管理员', '2016-05-25 16:31:09');
+INSERT INTO `oper_record` VALUES ('429516b5-8666-4d78-b02f-d46502d8e172', '1', 'Lucare', '删除管理员', '2016-05-24 09:08:03');
+INSERT INTO `oper_record` VALUES ('434c8f69-f1a6-460e-b643-e250ef06c80c', '1', 'Lucare', '添加管理员', '2016-05-25 14:52:58');
+INSERT INTO `oper_record` VALUES ('5095d998-90cc-4a5b-8721-9185e62a7857', '1', 'Lucare', '添加管理员', '2016-05-24 14:17:03');
+INSERT INTO `oper_record` VALUES ('518fe918-7576-40fb-8142-ceffe5332d78', '1', 'Lucare', '编辑管理员', '2016-05-24 14:57:13');
+INSERT INTO `oper_record` VALUES ('67c362ff-9899-4b82-96d0-a0839f5b926b', '1', 'Lucare', '删除管理员', '2016-05-25 16:31:39');
+INSERT INTO `oper_record` VALUES ('78e6dfa7-64ab-446b-addf-325eaed942ba', '1', 'Lucare', '编辑管理员', '2016-05-26 20:48:23');
+INSERT INTO `oper_record` VALUES ('7aac2e24-30ca-45c3-b415-14260d5a1e5d', '1', 'Lucare', '删除管理员', '2016-05-25 16:31:36');
+INSERT INTO `oper_record` VALUES ('94c8ec91-4976-4611-a8a1-6413f84c0662', '1', 'Lucare', '删除管理员', '2016-05-24 16:16:08');
+INSERT INTO `oper_record` VALUES ('a110426f-3c54-4e3f-a7c6-353548b606e1', '1', 'Lucare', '添加管理员', '2016-05-26 19:40:49');
 INSERT INTO `oper_record` VALUES ('a27b7292-35e4-4046-ae94-dbd08b1ac5e8', '1', 'Lucare', '添加管理员', '2016-05-23 21:59:53');
+INSERT INTO `oper_record` VALUES ('a5d46860-3790-4c6b-a97f-dc317f4e30c6', '1', 'Lucare', '删除管理员', '2016-05-25 16:31:49');
+INSERT INTO `oper_record` VALUES ('a67415af-4403-4f24-8eff-790df7a44d37', '1', 'Lucare', '禁用或启用账号', '2016-05-24 14:17:11');
+INSERT INTO `oper_record` VALUES ('aaf0b96b-c9b1-4f09-bc88-83036f00cfca', '1', 'Lucare', '编辑管理员', '2016-05-26 19:46:23');
+INSERT INTO `oper_record` VALUES ('aafdf26c-113a-44a4-852b-a4022a599c6f', '1', 'Lucare', '删除管理员', '2016-05-24 09:07:42');
+INSERT INTO `oper_record` VALUES ('ac5a9b96-4c23-4508-b4f8-e6874b3a334b', '1', 'Lucare', '编辑管理员', '2016-05-26 19:46:34');
+INSERT INTO `oper_record` VALUES ('af045f65-9af1-4924-a2bf-464789742def', '1', 'Lucare', '添加管理员', '2016-05-25 16:32:36');
+INSERT INTO `oper_record` VALUES ('b6f95657-72bd-4ec5-a9f5-ad57aeed1e22', '1', 'Lucare', '添加管理员', '2016-05-25 15:03:28');
+INSERT INTO `oper_record` VALUES ('b7738496-6b7d-4c11-a60a-16eb9750a100', '1', 'Lucare', '删除管理员', '2016-05-25 16:31:45');
+INSERT INTO `oper_record` VALUES ('bc2f23fd-00e4-4d2c-90b1-55c003ca28c0', '1', 'Lucare', '删除管理员', '2016-05-24 16:19:19');
+INSERT INTO `oper_record` VALUES ('bf0a0308-a80f-4237-bc17-75c116831beb', '1', 'Lucare', '添加管理员', '2016-05-26 19:46:02');
+INSERT INTO `oper_record` VALUES ('bf55a152-61e9-4f57-a9eb-3a813eba35f0', '1', 'Lucare', '添加管理员', '2016-05-25 15:21:14');
+INSERT INTO `oper_record` VALUES ('c8a40866-cce9-4c2a-8698-08d865d43735', '1', 'Lucare', '编辑管理员', '2016-05-26 19:39:30');
+INSERT INTO `oper_record` VALUES ('d49a8fc0-c24d-41d0-aca0-8061dbd45cd9', '1', 'Lucare', '添加管理员', '2016-05-25 15:01:19');
+INSERT INTO `oper_record` VALUES ('d83e63d7-971e-4b9b-a6b5-7a0e3396eaed', '1', 'Lucare', '编辑管理员', '2016-05-26 19:39:43');
+INSERT INTO `oper_record` VALUES ('ddeab320-dfe9-4737-9e60-7e2894d1dbef', '1', 'Lucare', '删除管理员', '2016-05-24 09:08:08');
+INSERT INTO `oper_record` VALUES ('e1d19528-073d-4896-b953-dc56b91a6b47', '1', 'Lucare', '禁用或启用账号', '2016-05-24 14:57:01');
+INSERT INTO `oper_record` VALUES ('e3c1fe11-8b2f-4bc1-bef8-ce96f55ed88b', '1', 'Lucare', '编辑管理员', '2016-05-26 20:48:02');
+INSERT INTO `oper_record` VALUES ('fd1785be-3da7-4e88-8542-4275011b75b7', '1', 'Lucare', '删除管理员', '2016-05-24 14:46:07');
 
 -- ----------------------------
--- Table structure for role_info
+-- Table structure for role
 -- ----------------------------
-DROP TABLE IF EXISTS `role_info`;
-CREATE TABLE `role_info` (
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
   `id` varchar(36) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `des` varchar(255) DEFAULT NULL,
@@ -96,11 +133,14 @@ CREATE TABLE `role_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of role_info
+-- Records of role
 -- ----------------------------
-INSERT INTO `role_info` VALUES ('1', '管理员', '整个系统的管理者', '1', null, null, '1');
-INSERT INTO `role_info` VALUES ('2', '公司领导', '偶尔来找下感觉', '2', null, null, '1');
-INSERT INTO `role_info` VALUES ('3', '小管理员', '部分管理员权限', '3', null, null, '1');
+INSERT INTO `role` VALUES ('1', '管理员', '整个系统的管理者', '1', null, null, '1');
+INSERT INTO `role` VALUES ('2', '公司领导', '偶尔来找下感觉', '2', null, null, '1');
+INSERT INTO `role` VALUES ('3', '小管理员', '部分管理员权限', '3', null, null, '1');
+INSERT INTO `role` VALUES ('726aaec4-ed81-4ff1-8701-d2f2feefccd9', '临时工', '是是是', null, '2016-05-24 14:21:03', '2016-05-24 14:21:03', null);
+INSERT INTO `role` VALUES ('858deb51-0fe1-4e33-843f-ac86ca924793', 'temp', 'hah', null, '2016-05-26 20:50:38', '2016-05-26 20:50:38', '1');
+INSERT INTO `role` VALUES ('df96226a-1c5e-4b97-8f3a-1f120043e1ca', 'test', '', null, '2016-05-26 20:56:39', '2016-05-26 20:56:39', '1');
 
 -- ----------------------------
 -- Table structure for role_per
@@ -127,10 +167,10 @@ INSERT INTO `role_per` VALUES ('8', '1', '41');
 INSERT INTO `role_per` VALUES ('9', '1', '42');
 
 -- ----------------------------
--- Table structure for user_info
+-- Table structure for user
 -- ----------------------------
-DROP TABLE IF EXISTS `user_info`;
-CREATE TABLE `user_info` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
   `id` varchar(36) NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
@@ -145,16 +185,15 @@ CREATE TABLE `user_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of user_info
+-- Records of user
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('1', 'Lucare', '1', '1', 'fengchangsheng123@qq.com', '2016-05-01 22:55:26', null, '1', '1', '15507529497');
-INSERT INTO `user_info` VALUES ('1bdc6f9b-1192-4b68-84af-a3d963df9e7a', 'xiaoY', '2', '1', '', '2016-05-23 00:00:00', '2016-05-23 00:00:00', '1', '1', '');
-INSERT INTO `user_info` VALUES ('2', 'debbie', '2', '1', null, null, '2016-05-07 00:00:00', null, '0', null);
-INSERT INTO `user_info` VALUES ('3f77c402-4f21-4039-b25a-afa4948b2383', 'joe', null, '0', 'joe@qq.com', '2016-05-07 00:00:00', '2016-05-07 00:00:00', '1', '1', '15598765432');
-INSERT INTO `user_info` VALUES ('5f3acb03-28a6-4677-bc3b-5ebed8055636', 'test', '2', null, 'saswa@qq.com', '2016-05-07 00:00:00', '2016-05-07 00:00:00', null, '1', '15556326542');
-INSERT INTO `user_info` VALUES ('78b462cc-bf80-49ae-8414-0049a1a4450f', 'test', '123', '1', '', '2016-05-23 00:00:00', '2016-05-23 00:00:00', '1', '1', '');
-INSERT INTO `user_info` VALUES ('9f760c7a-bf0c-4359-8052-d994ab0fc4ef', 'test2', '2', '1', '', '2016-05-23 00:00:00', '2016-05-23 00:00:00', '1', '1', '');
-INSERT INTO `user_info` VALUES ('b146fedf-bc98-4013-b382-3c0f5a8b80b5', 'tiger', '6', '1', '', '2016-05-07 00:00:00', '2016-05-07 00:00:00', '1', '1', '');
+INSERT INTO `user` VALUES ('1', 'Lucare', '1', '1', 'fengchangsheng123@qq.com', '2016-05-01 22:55:26', null, '1', '1', '15507529497');
+INSERT INTO `user` VALUES ('2', 'debbie', '2', '1', null, null, '2016-05-07 00:00:00', null, '0', null);
+INSERT INTO `user` VALUES ('20afba84-e0ba-4e8d-b55f-9822da59ad8a', 'fcs', '1', '1', '', '2016-05-26 19:40:48', '2016-05-26 00:00:00', '1', '1', '15507456653');
+INSERT INTO `user` VALUES ('3f77c402-4f21-4039-b25a-afa4948b2383', 'joe', null, '0', 'joe@qq.com', '2016-05-07 00:00:00', '2016-05-26 00:00:00', '1', '1', '15598765432');
+INSERT INTO `user` VALUES ('8ce0d087-7387-40b2-987f-dcc8003203d4', 'test', '1', '1', '', '2016-05-25 16:32:35', '2016-05-26 00:00:00', '1', '1', '');
+INSERT INTO `user` VALUES ('b146fedf-bc98-4013-b382-3c0f5a8b80b5', 'tiger', '6', '1', '', '2016-05-07 00:00:00', '2016-05-26 00:00:00', '1', '1', '15562365985');
+INSERT INTO `user` VALUES ('c480e069-ae68-4dec-a124-581e15c3160b', 'sss', '2', '1', '', '2016-05-26 19:46:01', '2016-05-26 00:00:00', '1', '1', '');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -171,8 +210,20 @@ CREATE TABLE `user_role` (
 -- Records of user_role
 -- ----------------------------
 INSERT INTO `user_role` VALUES ('03b0f5cc-9664-4cd8-9881-a5f21d3e75ef', '9f760c7a-bf0c-4359-8052-d994ab0fc4ef', '1');
+INSERT INTO `user_role` VALUES ('05d8577f-c157-4104-9a3a-25bf7d919ccf', '01d4d0b4-4fcd-471d-9006-b91812ef2a32', '0ae75108-4bab-46fc-9691-2989bd97d1fd');
 INSERT INTO `user_role` VALUES ('1', '1', '1');
+INSERT INTO `user_role` VALUES ('1882dcc4-90ff-498e-8c69-387903fdc922', '52c92dd4-3149-4d39-abbb-99550f8e8620', '0ae75108-4bab-46fc-9691-2989bd97d1fd');
 INSERT INTO `user_role` VALUES ('2', '2', '2');
+INSERT INTO `user_role` VALUES ('23eff124-54d3-43bd-9473-cf3fc96fd98e', '29340c94-c0df-4361-980c-564b67b95d69', '0ae75108-4bab-46fc-9691-2989bd97d1fd');
+INSERT INTO `user_role` VALUES ('28be41b5-839c-49e5-abe8-183535bcb3a7', '351be4fb-3f91-427d-acdf-303a59b1042d', '90d067c5-e318-41d7-b5f0-b9e3f62fb94b');
+INSERT INTO `user_role` VALUES ('607252a7-0c75-43bd-ba3d-328a616c42a9', '20afba84-e0ba-4e8d-b55f-9822da59ad8a', '1');
 INSERT INTO `user_role` VALUES ('6da026bc-65f9-4940-9d7b-b8a0d24b2436', '78b462cc-bf80-49ae-8414-0049a1a4450f', '1');
+INSERT INTO `user_role` VALUES ('923386d7-8b58-4d7e-9f28-b523305a4306', 'f95a9c9b-7ee6-45f0-9e6a-03511610a709', '0ae75108-4bab-46fc-9691-2989bd97d1fd');
 INSERT INTO `user_role` VALUES ('9310feea-1212-482b-95ea-cf74a2da4713', 'b146fedf-bc98-4013-b382-3c0f5a8b80b5', '2');
+INSERT INTO `user_role` VALUES ('a1ec7477-bc98-47f0-97ec-0a561a8459a5', '8ce0d087-7387-40b2-987f-dcc8003203d4', '0ae75108-4bab-46fc-9691-2989bd97d1fd');
+INSERT INTO `user_role` VALUES ('aba31647-4f4e-4daa-b28f-c6737df9ac9f', 'c60d0698-9be6-44d1-96fc-71c9539013c3', '1');
+INSERT INTO `user_role` VALUES ('c03d2e79-fdbd-4b1c-9110-36b2f77deab1', '1a150a19-cc72-4348-ae3f-90eaa4f18167', '0ae75108-4bab-46fc-9691-2989bd97d1fd');
+INSERT INTO `user_role` VALUES ('c90d2d94-1bbe-4d55-a49c-5f29d536f05e', '32299319-1204-44e9-9463-73b990b0d79e', '0ae75108-4bab-46fc-9691-2989bd97d1fd');
 INSERT INTO `user_role` VALUES ('cb8a8c07-13a3-4517-b0c1-f63d8a94e273', '1bdc6f9b-1192-4b68-84af-a3d963df9e7a', '1');
+INSERT INTO `user_role` VALUES ('e36dfaf7-115a-4188-8a29-e06e941280b9', '4cc8f1e5-5eab-4ca5-ba5c-890e31014d3b', '0ae75108-4bab-46fc-9691-2989bd97d1fd');
+INSERT INTO `user_role` VALUES ('f842d46d-64ac-47d9-9eae-7b6a0f41bcd4', 'c480e069-ae68-4dec-a124-581e15c3160b', '90d067c5-e318-41d7-b5f0-b9e3f62fb94b');

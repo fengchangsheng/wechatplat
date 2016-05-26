@@ -80,18 +80,9 @@
 	</form>
 </article>
 
-<!--_footer 作为公共模版分离出去--> 
-<script type="text/javascript" src="/static/hui/lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="/static/hui/lib/layer/2.1/layer.js"></script>
-<script type="text/javascript" src="/static/hui/lib/icheck/jquery.icheck.min.js"></script>
-<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/jquery.validate.min.js"></script>
-<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/validate-methods.js"></script>
-<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/messages_zh.min.js"></script>
-<script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.js"></script>
-<script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.admin.js"></script>
-<script type="text/javascript" src="/static/hui/lib/jquery/jquery-form.js"></script>
-
-<!--/_footer /作为公共模版分离出去--> 
+<!--_footer 作为公共模版分离出去-->
+<jsp:include page="../common/footer.jsp" flush="true" />
+<!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本--> 
 <script type="text/javascript">

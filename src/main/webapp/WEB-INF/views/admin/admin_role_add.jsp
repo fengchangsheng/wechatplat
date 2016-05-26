@@ -55,103 +55,6 @@
                         </dd>
                     </dl>
                 </c:forEach>
-                <!--
-                <dl class="permission-list">
-                    <dt>
-                        <label>
-                            <input type="checkbox" value="" name="user-Character-0" id="user-Character-0">
-                            资讯管理</label>
-                    </dt>
-                    <dd>
-
-                        <dl class="cl permission-list2">
-                            <dt>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0" id="user-Character-0-0">
-                                    栏目管理</label>
-                            </dt>
-                            <dd>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-0">
-                                    添加</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-1">
-                                    修改</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-2">
-                                    删除</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-3">
-                                    查看</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-4">
-                                    审核</label>
-                                <label class="c-orange"><input type="checkbox" value="" name="user-Character-0-0-0" id="user-Character-0-0-5"> 只能操作自己发布的</label>
-                            </dd>
-                        </dl>
-                        <dl class="cl permission-list2">
-                            <dt>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-1" id="user-Character-0-1">
-                                    文章管理</label>
-                            </dt>
-                            <dd>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-1-0" id="user-Character-0-1-0">
-                                    添加</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-1-0" id="user-Character-0-1-1">
-                                    修改</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-1-0" id="user-Character-0-1-2">
-                                    删除</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-1-0" id="user-Character-0-1-3">
-                                    查看</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-0-1-0" id="user-Character-0-1-4">
-                                    审核</label>
-                                <label class="c-orange"><input type="checkbox" value="" name="user-Character-0-2-0" id="user-Character-0-2-5"> 只能操作自己发布的</label>
-                            </dd>
-                        </dl>
-                    </dd>
-                </dl>
-                -->
-                <!--
-                <dl class="permission-list">
-                    <dt>
-                        <label>
-                            <input type="checkbox" value="" name="user-Character-0" id="user-Character-1">
-                            用户中心</label>
-                    </dt>
-                    <dd>
-                        <dl class="cl permission-list2">
-                            <dt>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-1-0" id="user-Character-1-0">
-                                    用户管理</label>
-                            </dt>
-                            <dd>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-0">
-                                    添加</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-1">
-                                    修改</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-2">
-                                    删除</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-3">
-                                    查看</label>
-                                <label class="">
-                                    <input type="checkbox" value="" name="user-Character-1-0-0" id="user-Character-1-0-4">
-                                    审核</label>
-                            </dd>
-                        </dl>
-                    </dd>
-                </dl>
-                -->
             </div>
         </div>
         <div class="row cl">
@@ -165,12 +68,7 @@
 </article>
 
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="/static/hui/lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="/static/hui/lib/layer/2.1/layer.js"></script>
-<script type="text/javascript" src="/static/hui/lib/icheck/jquery.icheck.min.js"></script>
-
-<script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.js"></script>
-<script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.admin.js"></script>
+<jsp:include page="../common/footer.jsp" flush="true" />
 <!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
@@ -209,6 +107,7 @@
                 $(form).ajaxSubmit();
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
+                parent.$('.btn-success').click();
             }
         });
     });

@@ -45,40 +45,12 @@
 </article>
 
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="/static/hui/lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="/static/hui/lib/layer/2.1/layer.js"></script>
-<script type="text/javascript" src="/static/hui/lib/icheck/jquery.icheck.min.js"></script>
-<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/jquery.validate.min.js"></script>
-<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/validate-methods.js"></script>
-<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/messages_zh.min.js"></script>
-<script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.js"></script>
-<script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.admin.js"></script>
-<script type="text/javascript" src="/static/hui/lib/jquery/jquery-form.js"></script>
+<jsp:include page="../common/footer.jsp" flush="true" />
 <!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript">
 $(function(){
-//	$(".permission-list dt input:checkbox").click(function(){
-//		$(this).closest("dl").find("dd input:checkbox").prop("checked",$(this).prop("checked"));
-//	});
-//	$(".permission-list2 dd input:checkbox").click(function(){
-//		var l =$(this).parent().parent().find("input:checked").length;
-//		var l2=$(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
-//		if($(this).prop("checked")){
-//			$(this).closest("dl").find("dt input:checkbox").prop("checked",true);
-//			$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",true);
-//		}
-//		else{
-//			if(l==0){
-//				$(this).closest("dl").find("dt input:checkbox").prop("checked",false);
-//			}
-//			if(l2==0){
-//				$(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked",false);
-//			}
-//		}
-//	});
-	
 	$("#form-admin-role-add").validate({
 		rules:{
 			perName:{

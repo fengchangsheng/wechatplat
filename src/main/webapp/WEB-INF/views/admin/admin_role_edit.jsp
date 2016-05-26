@@ -27,34 +27,6 @@
             <label class="form-label col-xs-4 col-sm-3">网站角色：</label>
             <div class="formControls col-xs-8 col-sm-9" id="list">
 
-                <%--<c:forEach items="${list}" var="per" varStatus="i">--%>
-                    <%--<dl class="permission-list">--%>
-                        <%--<dt>--%>
-                            <%--<label>--%>
-                                <%--<input type="checkbox" value="${per.id}" name="ids" id="user-Character-${i.index}">--%>
-                                    <%--${per.text}</label>--%>
-                        <%--</dt>--%>
-                        <%--<dd>--%>
-                            <%--<c:forEach items="${per.children}" var="cper" varStatus="j">--%>
-                                <%--<dl class="cl permission-list2">--%>
-                                    <%--<dt>--%>
-                                        <%--<label class="">--%>
-                                            <%--<input type="checkbox" value="${cper.id}" name="ids"--%>
-                                                   <%--id="user-Character-0-${j.index}">--%>
-                                                <%--${cper.text}</label>--%>
-                                    <%--</dt>--%>
-                                    <%--<dd>--%>
-                                        <%--<c:forEach items="${cper.children}" var="sper" varStatus="k">--%>
-                                            <%--<label class="">--%>
-                                                <%--<input type="checkbox" value="${sper.id}" name="ids" id="user-Character-0-0-${k.index}">--%>
-                                                <%--${sper.text}</label>--%>
-                                        <%--</c:forEach>--%>
-                                    <%--</dd>--%>
-                                <%--</dl>--%>
-                            <%--</c:forEach>--%>
-                        <%--</dd>--%>
-                    <%--</dl>--%>
-                <%--</c:forEach>--%>
             </div>
         </div>
         <div class="row cl">
@@ -68,14 +40,7 @@
 </article>
 
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="/static/hui/lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="/static/hui/lib/layer/2.1/layer.js"></script>
-<script type="text/javascript" src="/static/hui/lib/icheck/jquery.icheck.min.js"></script>
-<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/jquery.validate.min.js"></script>
-<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/validate-methods.js"></script>
-<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/messages_zh.min.js"></script>
-<script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.js"></script>
-<script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.admin.js"></script>
+<jsp:include page="../common/footer.jsp" flush="true" />
 <!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
@@ -114,6 +79,8 @@
                 $(form).ajaxSubmit();
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
+                console.log(parent.$('.btn-success'));
+                parent.$('.btn-success').click();
             }
         });
 

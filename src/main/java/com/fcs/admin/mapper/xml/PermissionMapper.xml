@@ -88,9 +88,10 @@
     </select>
 
     <insert id="insert" parameterType="com.fcs.admin.model.MenuTree">
-        insert into menutree (id,text,url, parentId,enabled,createTime)
+        insert into menutree (id,text,type,url, parentId,enabled,createTime)
         values (#{id,jdbcType=VARCHAR},
         #{text,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER},
         #{url,jdbcType=VARCHAR},
         #{parentId,jdbcType=VARCHAR},
         #{enabled,jdbcType=INTEGER},
