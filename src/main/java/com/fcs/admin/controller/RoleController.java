@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/role")
-public class RoleController extends BaseController{
+public class RoleController extends BaseController {
 
     @Autowired
     private RoleService roleService;
@@ -31,32 +31,32 @@ public class RoleController extends BaseController{
     private PermissionService permissionService;
 
     @RequestMapping("/index")
-    public String index(ModelMap model){
+    public String index(ModelMap model) {
         try {
             List<Role> list = roleService.getRoleList();
             model.addAttribute("list", list);
             return "/admin/admin_role";
         } catch (Exception e) {
-            logger.error(this.getClass().getName()+":index()", e);
+            logger.error(this.getClass().getName() + ":index()", e);
             return "";
         }
     }
 
     @RequestMapping("/toAdd")
-    public String toAdd(ModelMap model){
+    public String toAdd(ModelMap model) {
         try {
             List<MenuTree> list = permissionService.getMenuList();
             model.addAttribute("list", list);
             return "/admin/admin_role_add";
         } catch (Exception e) {
-            logger.error(this.getClass().getName()+":toAdd()", e);
+            logger.error(this.getClass().getName() + ":toAdd()", e);
             return "";
         }
     }
 
     @ResponseBody
     @RequestMapping("/add")
-    public int add(String[] ids,Role role){
+    public int add(String[] ids, Role role) {
         try {
             String roleId = Strings.getID();
             Date date = new Date();
@@ -66,19 +66,19 @@ public class RoleController extends BaseController{
             int status = roleService.addRole(role);
             if (status != 0 && ids != null) {
                 for (String id : ids) {
-                    roleService.addRoleAndPer(Strings.getID(),roleId,id);
+                    roleService.addRoleAndPer(Strings.getID(), roleId, id);
                 }
                 return 1;
             }
             return 0;
         } catch (Exception e) {
-            logger.error(this.getClass().getName()+":add()", e);
+            logger.error(this.getClass().getName() + ":add()", e);
             return 0;
         }
     }
 
     @RequestMapping("/toEdit")
-    public String toEdit(ModelMap model,String id, HttpSession session){
+    public String toEdit(ModelMap model, String id, HttpSession session) {
         try {
             List<MenuTree> hasList = permissionService.getPermissionsByRole(id);
             JSONObject jsonObject = permissionService.getPermissionJson(hasList);
@@ -87,37 +87,35 @@ public class RoleController extends BaseController{
             model.addAttribute("resList", jsonObject);
             return "/admin/admin_role_edit";
         } catch (Exception e) {
-            logger.error(this.getClass().getName()+":toEdit()", e);
+            logger.error(this.getClass().getName() + ":toEdit()", e);
             return "";
         }
     }
 
     @ResponseBody
     @RequestMapping("/edit")
-    public int edit(String[] ids,Role role){
+    public int edit(String[] ids, Role role) {
         try {
             Date date = new Date();
             role.setUpdateTime(date);
             int status = roleService.update(role);
             if (status != 0 && ids != null) {
-                int delstatus = roleService.delRoleAndPer(role.getId());
-                if (delstatus != 0) {
-                    for (String id : ids) {
-                        roleService.addRoleAndPer(Strings.getID(),role.getId(),id);
-                    }
-                    return 1;
+                roleService.delRoleAndPer(role.getId());
+                for (String id : ids) {
+                    roleService.addRoleAndPer(Strings.getID(), role.getId(), id);
                 }
+                return 1;
             }
             return 0;
         } catch (Exception e) {
-            logger.error(this.getClass().getName()+":edit()", e);
+            logger.error(this.getClass().getName() + ":edit()", e);
             return 0;
         }
     }
 
     @ResponseBody
     @RequestMapping("/delete")
-    public int delete(String id){
+    public int delete(String id) {
         try {
             int status = roleService.delete(id);
             if (status != 0) {
@@ -125,7 +123,7 @@ public class RoleController extends BaseController{
             }
             return 1;
         } catch (Exception e) {
-            logger.error(this.getClass().getName()+":delete()", e);
+            logger.error(this.getClass().getName() + ":delete()", e);
             return 0;
         }
     }

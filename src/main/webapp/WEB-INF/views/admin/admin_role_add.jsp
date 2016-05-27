@@ -76,15 +76,19 @@
     $(function () {
         $(".permission-list dt input:checkbox").click(function () {
             $(this).closest("dl").find("dd input:checkbox").prop("checked", $(this).prop("checked"));
+            $t = $(this).parents(".permission-list").find("dt").first().find("input:checkbox");
+            if($t != null){
+                $t.prop("checked", $(this).prop("checked"));
+            }
         });
+
         $(".permission-list2 dd input:checkbox").click(function () {
             var l = $(this).parent().parent().find("input:checked").length;
             var l2 = $(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
             if ($(this).prop("checked")) {
                 $(this).closest("dl").find("dt input:checkbox").prop("checked", true);
                 $(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked", true);
-            }
-            else {
+            }else {
                 if (l == 0) {
                     $(this).closest("dl").find("dt input:checkbox").prop("checked", false);
                 }
@@ -106,8 +110,8 @@
             submitHandler: function (form) {
                 $(form).ajaxSubmit();
                 var index = parent.layer.getFrameIndex(window.name);
+                parent.$('.btn-success').click();//必须在关闭前  因为用了parent
                 parent.layer.close(index);
-                parent.$('.btn-success').click();
             }
         });
     });

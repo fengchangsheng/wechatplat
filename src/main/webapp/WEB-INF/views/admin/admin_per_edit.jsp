@@ -63,9 +63,8 @@ $(function(){
 		submitHandler:function(form){
 			$(form).ajaxSubmit();
 			var index = parent.layer.getFrameIndex(window.name);
-			parent.layer.close(index);
-			console.log(parent.$('.btn-success'));
 			parent.$('.btn-success').click();
+			parent.layer.close(index);
 		}
 	});
 });

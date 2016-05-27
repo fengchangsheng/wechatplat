@@ -46,17 +46,20 @@
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript">
     $(function () {
-        $(".permission-list dt input:checkbox").click(function () {
+        $("#list").on("click",".permission-list dt input:checkbox", function () {
             $(this).closest("dl").find("dd input:checkbox").prop("checked", $(this).prop("checked"));
+            $t = $(this).parents(".permission-list").find("dt").first().find("input:checkbox");
+            if($t != null){
+                $t.prop("checked", $(this).prop("checked"));
+            }
         });
-        $(".permission-list2 dd input:checkbox").click(function () {
+        $("#list").on("click",".permission-list2 dd input:checkbox", function () {
             var l = $(this).parent().parent().find("input:checked").length;
             var l2 = $(this).parents(".permission-list").find(".permission-list2 dd").find("input:checked").length;
             if ($(this).prop("checked")) {
                 $(this).closest("dl").find("dt input:checkbox").prop("checked", true);
                 $(this).parents(".permission-list").find("dt").first().find("input:checkbox").prop("checked", true);
-            }
-            else {
+            }else {
                 if (l == 0) {
                     $(this).closest("dl").find("dt input:checkbox").prop("checked", false);
                 }
@@ -78,16 +81,14 @@
             submitHandler: function (form) {
                 $(form).ajaxSubmit();
                 var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
-                console.log(parent.$('.btn-success'));
                 parent.$('.btn-success').click();
+                parent.layer.close(index);
             }
         });
 
 
         <!--处理列表-->
         var res = ${resList};
-        console.log(res);
         $.each(res.pmenu,function (index,element) {
             $("#list").append('<dl class="permission-list" id="'+element.id+'"><dt>' +
                         '<label><input type="checkbox" value="'+element.id+'" name="ids" id="user-Character-0" '+element.checked+'>' +
