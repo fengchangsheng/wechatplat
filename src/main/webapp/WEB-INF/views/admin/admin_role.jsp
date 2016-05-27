@@ -20,7 +20,7 @@
 			<a class="btn btn-primary radius" href="javascript:;" onclick="admin_role_add('添加角色','toAdd','800')">
 				<i class="Hui-iconfont">&#xe600;</i> 添加角色
 			</a>
-	   </span> <span class="r">共有数据：<strong>54</strong> 条</span>
+	   </span> <span class="r">共有数据：<strong>${list.size()}</strong> 条</span>
 	</div>
 	<table class="table table-border table-bordered table-hover table-bg">
 		<thead>
