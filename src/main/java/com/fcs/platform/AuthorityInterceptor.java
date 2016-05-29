@@ -23,12 +23,15 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        String requestUrl = request.getServletPath().toString();
+        if (requestUrl.equals("/getCode")){
+            return true;
+        }
         User user = (User) request.getSession().getAttribute("user");
         if (user == null) {
             request.getRequestDispatcher("/account/index").forward(request, response);
             return false;
         }else{
-            String requestUrl = request.getServletPath().toString();
             System.out.println("=========================请求链接======================"+requestUrl);
             List<String> urlList = (List<String>) request.getSession().getAttribute("urlList");
             if (urlList.size() > 0) {

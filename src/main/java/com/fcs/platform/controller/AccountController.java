@@ -52,4 +52,13 @@ public class AccountController extends BaseController {
         return "redirect:/index";
     }
 
+    @RequestMapping("/loginout")//后台管理首页
+    public String loginout(String id,HttpSession session) {
+        User user = userService.selectById(id);
+        if (user != null) {
+            session.removeAttribute("user");
+        }
+        return "/login";
+    }
+
 }

@@ -3,11 +3,16 @@ package com.fcs.platform.controller;
 import com.fcs.admin.model.MenuTree;
 import com.fcs.admin.model.User;
 import com.fcs.admin.service.PermissionService;
+import com.fcs.common.Strings;
+import com.fcs.common.util.CheckCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -31,6 +36,30 @@ public class IndexController extends BaseController{
         } catch (Exception e) {
             logger.error(this.getClass().getName()+":index()", e);
             return "";
+        }
+    }
+
+    @RequestMapping("/getCode")//后台管理首页
+    public void getCode(HttpServletRequest request, HttpServletResponse response){
+        try {
+            CheckCode.getRegisterImage(request,response);
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":getCode()", e);
+        }
+    }
+
+    @RequestMapping("/validateCode")//后台管理首页
+    public boolean validateCode(HttpSession session,String strcode){
+        try {
+            String code = (String) session.getAttribute("code");
+            if (!Strings.isEmpty(strcode) && code.equals(strcode)) {
+                return true;
+            }else {
+                return false;
+            }
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":validateCode()", e);
+            return false;
         }
     }
 
