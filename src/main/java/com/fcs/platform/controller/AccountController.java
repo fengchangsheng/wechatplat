@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -59,6 +61,22 @@ public class AccountController extends BaseController {
             session.removeAttribute("user");
         }
         return "/login";
+    }
+
+    @RequestMapping("/validateCode")//后台管理首页
+    @ResponseBody
+    public boolean validateCode(HttpSession session,String strcode){
+        try {
+            String code = (String) session.getAttribute("code");
+            if (!Strings.isEmpty(strcode) && code.equals(strcode)) {
+                return true;
+            }else {
+                return false;
+            }
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":validateCode()", e);
+            return false;
+        }
     }
 
 }

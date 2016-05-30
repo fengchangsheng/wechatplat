@@ -17,7 +17,7 @@
       <div class="row cl">
         <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-xs-8">
-          <input id="uname" name="username" type="text" placeholder="账户" class="input-text size-L" value="lucare">
+          <input id="uname" name="username" type="text" placeholder="账户" class="input-text size-L" value="lucare" >
         </div>
       </div>
       <div class="row cl">
@@ -28,7 +28,7 @@
       </div>
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">
-          <input id="codetext" class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
+          <input id="codetext" class="input-text size-L" type="text" placeholder="验证码"   style="width:150px;" name="codetext">
           <img src="/getCode" id="code"> <a id="kanbuq" href="javascript:;" onclick="changeImg()">看不清，换一张</a> </div>
       </div>
       <div class="row cl">
@@ -51,7 +51,7 @@
 <script type="text/javascript" src="/static/hui/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/jquery.validate.min.js"></script>
-<%--<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/validate-methods.js"></script>--%>
+<script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="/static/hui/lib/jquery/validation/1.14.0/messages_zh.min.js"></script>
 
 <script>
@@ -62,30 +62,40 @@
   $(function () {
       $("#form_login").validate({
           rules: {
-              uname: {
+              username: {
                   required: true,
                   minlength: 4,
                   maxlength: 16
-              }
-//              ,
-
-//              upass: {
-//                  required: true
-//              },
-//              codetext: {
-//                  required: true,
-//                  remote: {
-//                      url: "/validateCode",     //后台处理程序
-//                      type: "post",               //数据发送方式
-//                      dataType: "json",           //接受数据格式
-//                      data: {                     //要传递的数据
-//                          strcode: function () {
-//                              return $("#codetext").val();
-//                          }
-//                      }
-//                  }
-//              },
-          }
+              },
+              password: {
+                  required: true
+              },
+              codetext: {
+                  required: true,
+                  remote: {
+                      url: "validateCode",
+                      type: "post",
+                      dataType: "json",
+                      data: {
+                          strcode: function () {
+                              return $("#codetext").val();
+                          }
+                      }
+                  }
+              },
+          },
+          messages: {
+            username: {
+              required: "请输入用户名"
+            },
+            password:{
+              required:"请输入密码"
+            },
+            codetext:{
+              required:"请输入验证码",
+              remote:"验证码错误"
+            }
+        }
       });
   });
 
