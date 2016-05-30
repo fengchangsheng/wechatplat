@@ -34,18 +34,18 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
             request.getRequestDispatcher("/account/index").forward(request, response);
             return false;
         }else{
-
             List<String> urlList = (List<String>) request.getSession().getAttribute("urlList");
             if (urlList.size() > 0) {
-                if (urlList.contains(requestUrl)) {
-                    System.out.println("=========================放行======================"+requestUrl);
-                    return true;
+                for (String hasUrl : urlList) {
+                    if (!Strings.isEmpty(hasUrl) && hasUrl.contains(requestUrl)) {
+                        System.out.println("=========================放行======================"+requestUrl);
+                        return true;
+                    }
                 }
-            }else {
-                return false;
             }
+            System.out.println("=========================没有权限======================"+requestUrl);
+            return false;
         }
-        return true;
     }
 
     @Override

@@ -40,7 +40,7 @@ public class IndexController extends BaseController{
         }
     }
 
-    @RequestMapping("/getCode")//后台管理首页
+    @RequestMapping("/getCode")//获取验证码
     public void getCode(HttpServletRequest request, HttpServletResponse response){
         try {
             CheckCode.getRegisterImage(request,response);
@@ -49,26 +49,12 @@ public class IndexController extends BaseController{
         }
     }
 
-    @RequestMapping("/welcome")//后台管理首页
+    @RequestMapping("/welcome")//后台管理欢迎页
     public String welcome(Model model){
         try {
-//            List<MenuTree> list = permissionService.getMenuList();//暂时不用登录获取权限
-//            model.addAttribute("list", list);
             return "/welcome";
         } catch (Exception e) {
             logger.error(this.getClass().getName()+":welcome()", e);
-            return "";
-        }
-    }
-
-    @RequestMapping("/operate")
-    public String record(){//操作记录
-        try {
-//            List<MenuTree> list = permissionService.getMenuList();//暂时不用登录获取权限
-//            model.addAttribute("list", list);
-            return "/welcome";
-        } catch (Exception e) {
-            logger.error(this.getClass().getName()+":record()", e);
             return "";
         }
     }
@@ -78,7 +64,6 @@ public class IndexController extends BaseController{
     public boolean validateCode(HttpSession session,String strcode){
         try {
             String code = (String) session.getAttribute("code");
-            System.out.println("index check");
             if (!Strings.isEmpty(strcode) && code.equals(strcode)) {
                 return true;
             }else {

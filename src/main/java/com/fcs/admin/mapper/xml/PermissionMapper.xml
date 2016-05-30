@@ -8,8 +8,8 @@
         <result column="url" property="url" jdbcType="VARCHAR" />
         <result column="parentId" property="parentId" jdbcType="VARCHAR" />
         <result column="enabled" property="enabled" jdbcType="INTEGER" />
-        <result column="createTime" property="createTime" jdbcType="DATE" />
-        <result column="updateTime" property="updateTime" jdbcType="DATE" />
+        <result column="createTime" property="createTime" />
+        <result column="updateTime" property="updateTime" />
         <result column="state" property="state" jdbcType="VARCHAR" />
         <result column="sn" property="sn" jdbcType="INTEGER" />
         <result column="type" property="type" jdbcType="INTEGER" />
@@ -23,7 +23,7 @@
         SELECT url FROM menutree menu RIGHT JOIN
         (SELECT DISTINCT rp.perid FROM role_per rp WHERE EXISTS (
         SELECT 1 FROM user_role ur WHERE ur.userid=#{userId} AND rp.roleid=ur.roleid )) a ON menu.id=a.perid
-        WHERE menu.parentId != '0'  and menu.type = 1 ORDER BY sn
+        WHERE menu.parentId != '0'
     </select>
 
     <!--按层级查询当前用户的菜单 -->
@@ -95,7 +95,7 @@
         #{url,jdbcType=VARCHAR},
         #{parentId,jdbcType=VARCHAR},
         #{enabled,jdbcType=INTEGER},
-        #{createTime,jdbcType=DATE}
+        #{createTime}
         )
     </insert>
 
@@ -110,7 +110,7 @@
         set text = #{text,jdbcType=VARCHAR},
         url = #{url,jdbcType=VARCHAR},
         parentId = #{parentId,jdbcType=VARCHAR},
-        updateTime = #{updateTime,jdbcType=DATE}
+        updateTime = #{updateTime}
         where id = #{id,jdbcType=VARCHAR}
     </update>
 
