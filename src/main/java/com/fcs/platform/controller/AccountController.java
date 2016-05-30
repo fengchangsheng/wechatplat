@@ -33,7 +33,7 @@ public class AccountController extends BaseController {
         return "/login";
     }
 
-    @RequestMapping("/login")//后台管理首页
+    @RequestMapping("/login")//登录
     public String login(User user, Model model, HttpSession session) {
         if (Strings.isEmpty(user.getUsername())) {
             model.addAttribute("error", "用户名不能为空!");
@@ -54,29 +54,13 @@ public class AccountController extends BaseController {
         return "redirect:/index";
     }
 
-    @RequestMapping("/loginout")//后台管理首页
+    @RequestMapping("/loginout")//登出
     public String loginout(String id,HttpSession session) {
         User user = userService.selectById(id);
         if (user != null) {
             session.removeAttribute("user");
         }
         return "/login";
-    }
-
-    @RequestMapping("/validateCode")//后台管理首页
-    @ResponseBody
-    public boolean validateCode(HttpSession session,String strcode){
-        try {
-            String code = (String) session.getAttribute("code");
-            if (!Strings.isEmpty(strcode) && code.equals(strcode)) {
-                return true;
-            }else {
-                return false;
-            }
-        } catch (Exception e) {
-            logger.error(this.getClass().getName()+":validateCode()", e);
-            return false;
-        }
     }
 
 }

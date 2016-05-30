@@ -24,7 +24,9 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestUrl = request.getServletPath().toString();
-        if (requestUrl.equals("/getCode")){
+        System.out.println("=========================请求链接======================"+requestUrl);
+        if (requestUrl.equals("/getCode") || requestUrl.equals("/validateCode") ){
+            System.out.println("=========================硬编码放行======================"+requestUrl);
             return true;
         }
         User user = (User) request.getSession().getAttribute("user");
@@ -32,7 +34,7 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
             request.getRequestDispatcher("/account/index").forward(request, response);
             return false;
         }else{
-            System.out.println("=========================请求链接======================"+requestUrl);
+
             List<String> urlList = (List<String>) request.getSession().getAttribute("urlList");
             if (urlList.size() > 0) {
                 if (urlList.contains(requestUrl)) {

@@ -73,7 +73,7 @@
               codetext: {
                   required: true,
                   remote: {
-                      url: "validateCode",
+                      url: "/validateCode",
                       type: "post",
                       dataType: "json",
                       data: {

@@ -56,7 +56,7 @@ public class IndexController extends BaseController{
 //            model.addAttribute("list", list);
             return "/welcome";
         } catch (Exception e) {
-            logger.error(this.getClass().getName()+":index()", e);
+            logger.error(this.getClass().getName()+":welcome()", e);
             return "";
         }
     }
@@ -70,6 +70,23 @@ public class IndexController extends BaseController{
         } catch (Exception e) {
             logger.error(this.getClass().getName()+":record()", e);
             return "";
+        }
+    }
+
+    @RequestMapping("/validateCode")//验证码校验
+    @ResponseBody
+    public boolean validateCode(HttpSession session,String strcode){
+        try {
+            String code = (String) session.getAttribute("code");
+            System.out.println("index check");
+            if (!Strings.isEmpty(strcode) && code.equals(strcode)) {
+                return true;
+            }else {
+                return false;
+            }
+        } catch (Exception e) {
+            logger.error(this.getClass().getName()+":validateCode()", e);
+            return false;
         }
     }
 
