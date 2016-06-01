@@ -13,7 +13,8 @@ import java.sql.*;
 public class GenerateEntityUtil {
 
     private String packageOutPath = "com.fcs.platform.model";//指定实体生成所在包的路径
-    private String tablename = "user";//表名
+    private static Connection con = null;
+    private String[] tablenames = null;//表名
     private String[] colnames; // 列名数组
     private String[] colTypes; //列名类型数组
     private int[] colSizes; //列名大小数组
@@ -27,17 +28,18 @@ public class GenerateEntityUtil {
     private static final String DRIVER = "com.mysql.jdbc.Driver";
 
     GenerateEntityUtil() {
-        //创建连接
-        Connection con;
+        tablenames = new String[]{"user","role"};
+        for (String tableName : tablenames) {
+            generate(tableName);
+        }
+    }
+
+    private void generate(String tablename){
         //查要生成实体类的表
         String sql = "select * from " + tablename;
         PreparedStatement pStemt = null;
         try {
-            try {
-                Class.forName(DRIVER);
-            } catch (ClassNotFoundException e1) {
-                e1.printStackTrace();
-            }
+            Class.forName(DRIVER);
             con = DriverManager.getConnection(URL, NAME, PASS);
             pStemt = con.prepareStatement(sql);
             ResultSetMetaData rsmd = pStemt.getMetaData();
@@ -57,41 +59,36 @@ public class GenerateEntityUtil {
                 }
                 colSizes[i] = rsmd.getColumnDisplaySize(i + 1);
             }
-
-            String content = parse(colnames, colTypes, colSizes);
-
-            try {
-                File directory = new File("");
-                //System.out.println("绝对路径："+directory.getAbsolutePath());
-                //System.out.println("相对路径："+directory.getCanonicalPath());
-                String path = this.getClass().getResource("").getPath();
-
-                System.out.println(path);
-                System.out.println("src/?/" + path.substring(path.lastIndexOf("/com/", path.length())));
-//              String outputPath = directory.getAbsolutePath()+ "/src/"+path.substring(path.lastIndexOf("/com/", path.length()), path.length()) + initcap(tablename) + ".java";
-                String outputPath = directory.getAbsolutePath() + "/src/main/java/" + this.packageOutPath.replace(".", "/") + "/" + initcap(tablename) + ".java";
-                FileWriter fw = new FileWriter(outputPath);
-                PrintWriter pw = new PrintWriter(fw);
-                pw.println(content);
-                pw.flush();
-                pw.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        } catch (SQLException e) {
+            String content = parse(colnames, colTypes, colSizes,tablename);
+            File directory = new File("");
+            //System.out.println("绝对路径："+directory.getAbsolutePath());
+            //System.out.println("相对路径："+directory.getCanonicalPath());
+            //String path = this.getClass().getResource("").getPath();
+            String outputPath = directory.getAbsolutePath() + "/src/main/java/" + this.packageOutPath.replace(".", "/") + "/" + initcap(tablename) + ".java";
+            FileWriter fw = new FileWriter(outputPath);
+            PrintWriter pw = new PrintWriter(fw);
+            pw.println(content);
+            pw.flush();
+            pw.close();
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (SQLException e2) {
+            e2.printStackTrace();
+        } catch (IOException e3) {
+            e3.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
-//          try {
-//              con.close();
-//          } catch (SQLException e) {
-//              // TODO Auto-generated catch block
-//              e.printStackTrace();
-//          }
+            try {
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    private String parse(String[] colnames, String[] colTypes, int[] colSizes) {
+    private String parse(String[] colnames, String[] colTypes, int[] colSizes, String tablename) {
         StringBuffer sb = new StringBuffer();
         sb.append("package " + this.packageOutPath + ";\r\n");
         sb.append("\r\n");
@@ -103,16 +100,15 @@ public class GenerateEntityUtil {
             sb.append("import java.sql.*;\r\n");
         }
         //注释部分
-        sb.append("/**\r\n");
+        sb.append("\r\n/**\r\n");
         sb.append(" * " + tablename + " 实体类\r\n");
         sb.append(" */ \r\n");
         //实体部分
-        sb.append("\r\n\r\npublic class " + initcap(tablename) + "{\r\n");
+        sb.append("public class " + initcap(tablename) + "{\r\n");
         processAllAttrs(sb);//属性
         processAllMethod(sb);//get set方法
         sb.append("}\r\n");
 
-        //System.out.println(sb.toString());
         return sb.toString();
     }
 
@@ -137,11 +133,11 @@ public class GenerateEntityUtil {
     private void processAllMethod(StringBuffer sb) {
 
         for (int i = 0; i < colnames.length; i++) {
-            sb.append("\tpublic void set" + initcap(colnames[i]) + "(" + sqlType2JavaType(colTypes[i]) + " " +
+            sb.append("\n\tpublic void set" + initcap(colnames[i]) + "(" + sqlType2JavaType(colTypes[i]) + " " +
                     colnames[i] + "){\r\n");
-            sb.append("\tthis." + colnames[i] + "=" + colnames[i] + ";\r\n");
+            sb.append("\t\tthis." + colnames[i] + "=" + colnames[i] + ";\r\n");
             sb.append("\t}\r\n");
-            sb.append("\tpublic " + sqlType2JavaType(colTypes[i]) + " get" + initcap(colnames[i]) + "(){\r\n");
+            sb.append("\n\tpublic " + sqlType2JavaType(colTypes[i]) + " get" + initcap(colnames[i]) + "(){\r\n");
             sb.append("\t\treturn " + colnames[i] + ";\r\n");
             sb.append("\t}\r\n");
         }

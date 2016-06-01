@@ -79,4 +79,8 @@ public class User extends BaseModel{
         this.roleList = roleList;
     }
 
+    @Override
+    public String toString() {
+        return username;
+    }
 }
