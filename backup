@@ -154,3 +154,71 @@
             <!--left join course_info c on-->
             <!--cu.cid = c.id-->
         <!--</select>-->
+
+<!--user_list 里异步请求-->
+        //		$.ajax({
+        //			type: "GET",
+        //			url: "getUsers",
+        //			dataType: "text",
+        //			success: function(data){
+        ////				$('#resText').empty();   //清空resText里面的所有内容
+        //				var data = eval("("+ data + ")");
+        //				var datas = data.datas;
+        //				var html = '';
+        //				$.each(datas, function(index, comment){
+        //					html += '<tr class="text-c"><td><input type="checkbox" value="" name=""></td><td>'
+        //							+ comment.openid +'</td><td>'+ comment.nickname+'</td><td><a href="#">'
+        //							+ comment.sex+ '</a></td><td>'+ comment.country +'-'
+        //							+ comment.province+'-'+comment.city+'</td>'
+        //							+ '<td class="f-14"><a title="编辑" href="javascript:;" onclick="admin_role_edit(\'角色编辑\',\'admin-role-add.html\',\'1\')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> '
+        //					        + '<a title="删除" href="javascript:;" onclick="admin_role_del(this,\'1\')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>';
+        //				});
+        //				$('#nums').html(data.total);
+        //				$('#ubody').append(html);
+        //			}
+        //		});
+
+<!--用户分析异步调用-->
+        //		$.get("cumulate", function (data) {
+        //			var xatrnames = [];
+        //			var serriesvals = [];
+        //			data = eval('('+data+')');
+        //			var list = data.list;
+        //			$.each(list,function (i,val) {
+        //				xatrnames.push([
+        //					list[i].ref_date
+        //				]);
+        //				serriesvals.push([
+        //					list[i].cumulate_user
+        //				]);
+        //			});
+        //			chartLine2.series[0].data = serriesvals;
+        //			chartLine2.xAxis.categories = xatrnames;
+        //			new Highcharts.Chart(chartLine2);
+        //
+        //		});
+
+        //		$.get("summary", function (data) {
+        //			var xatrnames = [];
+        //			var serriesval1s = [];
+        //			var serriesval2s = [];
+        //			data = eval('('+data+')');
+        //			var list = data.list;
+        //			$.each(list,function (i,val) {
+        //				xatrnames.push([
+        //					list[i].ref_date
+        //				]);
+        //				serriesval1s.push([
+        //					list[i].new_user
+        //				]);
+        //				serriesval2s.push([
+        //					list[i].cancel_user
+        //				]);
+        //
+        //			});
+        //			chartLine.series[0].data = serriesval1s;
+        //			chartLine.series[1].data = serriesval2s;
+        //			chartLine.xAxis.categories = xatrnames;
+        //			chart_validatestatics = new Highcharts.Chart(chartLine);
+        //
+        //		});

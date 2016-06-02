@@ -5,6 +5,7 @@ import com.fcs.platform.controller.BaseController;
 import com.fcs.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,9 +20,10 @@ public class UserController extends BaseController{
     @Autowired
     private UserService weUserService;
 
-
     @RequestMapping("/index")
-    public String index(){
+    public String index(ModelMap modelMap){
+        String res = weUserService.getUserList(getAccess_token());
+        modelMap.addAttribute("data", res);
         return "/user/user_list";
     }
 

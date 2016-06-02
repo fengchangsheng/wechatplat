@@ -64,26 +64,41 @@
 <script type="text/javascript" src="/static/hui/static/h-ui/js/H-ui.admin.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$.ajax({
-			type: "GET",
-			url: "getGroups",
-			dataType: "json",
-			success: function(data){
-				var groups = data.groups;
-				var html = '';
-				var count = 0;
-				$.each(groups, function(commentIndex, comment){
-					html += '<tr class="text-c"><td><input type="checkbox" value="" name=""></td><td>'
-							+ comment.id +'</td><td>'+ comment.name+'</td><td><a href="#">admin</a></td><td>'
-							+ comment.count+ '</td>'
-							+ '<td class="f-14"><a title="编辑" href="javascript:;" onclick="user_group_edit(\'群组编辑\',\'toEdit\','+comment.id+')"  style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> '
-					        + '<a title="删除" href="javascript:;" onclick="user_group_del(this,'+comment.id+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>';
-					count = commentIndex + 1;
-				});
-				$('#gbody').append(html);
-				$('#count').html(count);
-			}
+		var groups = ${data}.groups;
+		var html = '';
+		var count = 0;
+		$.each(groups, function (commentIndex, comment) {
+			html += '<tr class="text-c"><td><input type="checkbox" value="" name=""></td><td>'
+					+ comment.id + '</td><td>' + comment.name + '</td><td><a href="#">admin</a></td><td>'
+					+ comment.count + '</td>'
+					+ '<td class="f-14"><a title="编辑" href="javascript:;" onclick="user_group_edit(\'群组编辑\',\'toEdit\',' + comment.id + ')"  style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> '
+					+ '<a title="删除" href="javascript:;" onclick="user_group_del(this,' + comment.id + ')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>';
+			count = commentIndex + 1;
 		});
+		$('#gbody').append(html);
+		$('#count').html(count);
+
+<!--异步请求-->
+//		$.ajax({
+//			type: "GET",
+//			url: "getGroups",
+//			dataType: "json",
+//			success: function(data){
+//				var groups = data.groups;
+//				var html = '';
+//				var count = 0;
+//				$.each(groups, function(commentIndex, comment){
+//					html += '<tr class="text-c"><td><input type="checkbox" value="" name=""></td><td>'
+//							+ comment.id +'</td><td>'+ comment.name+'</td><td><a href="#">admin</a></td><td>'
+//							+ comment.count+ '</td>'
+//							+ '<td class="f-14"><a title="编辑" href="javascript:;" onclick="user_group_edit(\'群组编辑\',\'toEdit\','+comment.id+')"  style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a> '
+//					        + '<a title="删除" href="javascript:;" onclick="user_group_del(this,'+comment.id+')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>';
+//					count = commentIndex + 1;
+//				});
+//				$('#gbody').append(html);
+//				$('#count').html(count);
+//			}
+//		});
 
         $(".btn-success").click(function(){
             location.replace(location.href);

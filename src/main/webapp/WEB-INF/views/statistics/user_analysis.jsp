@@ -41,9 +41,7 @@
 <script type="text/javascript" src="/static/hui/lib/Highcharts/4.1.7/js/highcharts.js"></script>
 <script type="text/javascript">
 	$(function () {
-
 		var chart_validatestatics;
-//		var chartLine = $('#container').highcharts({
 		var chartLine = {
 			chart: {
 				renderTo: 'container'
@@ -86,34 +84,30 @@
 				data: []
 			}]
 		}
-//		);
 
-		$.get("summary", function (data) {
-			var xatrnames = [];
-			var serriesval1s = [];
-			var serriesval2s = [];
-			data = eval('('+data+')');
-			var list = data.list;
-			$.each(list,function (i,val) {
-				xatrnames.push([
-					list[i].ref_date
-				]);
-				serriesval1s.push([
-					list[i].new_user
-				]);
-				serriesval2s.push([
-					list[i].cancel_user
-				]);
-
-			});
-			chartLine.series[0].data = serriesval1s;
-			chartLine.series[1].data = serriesval2s;
-			chartLine.xAxis.categories = xatrnames;
-			chart_validatestatics = new Highcharts.Chart(chartLine);
+		var xatrnames = [];
+		var serriesval1s = [];
+		var serriesval2s = [];
+		data = ${sumData};
+		var list = data.list;
+		$.each(list,function (i,val) {
+			xatrnames.push([
+				list[i].ref_date
+			]);
+			serriesval1s.push([
+				list[i].new_user
+			]);
+			serriesval2s.push([
+				list[i].cancel_user
+			]);
 
 		});
+		chartLine.series[0].data = serriesval1s;
+		chartLine.series[1].data = serriesval2s;
+		chartLine.xAxis.categories = xatrnames;
+		chart_validatestatics = new Highcharts.Chart(chartLine);
 
-
+		<!-- 第二波  一波未平一波又起-->
 		var chartLine2 = {
 			chart: {
 				renderTo: 'container2'
@@ -154,24 +148,21 @@
 			}]
 		}
 
-		$.get("cumulate", function (data) {
-			var xatrnames = [];
-			var serriesvals = [];
-			data = eval('('+data+')');
-			var list = data.list;
-			$.each(list,function (i,val) {
-				xatrnames.push([
-					list[i].ref_date
-				]);
-				serriesvals.push([
-					list[i].cumulate_user
-				]);
-			});
-			chartLine2.series[0].data = serriesvals;
-			chartLine2.xAxis.categories = xatrnames;
-			new Highcharts.Chart(chartLine2);
-
+		var xatrnames = [];
+		var serriesvals = [];
+		data = ${cumData};
+		var list = data.list;
+		$.each(list,function (i,val) {
+			xatrnames.push([
+				list[i].ref_date
+			]);
+			serriesvals.push([
+				list[i].cumulate_user
+			]);
 		});
+		chartLine2.series[0].data = serriesvals;
+		chartLine2.xAxis.categories = xatrnames;
+		new Highcharts.Chart(chartLine2);
 	});
 </script>
 </body>

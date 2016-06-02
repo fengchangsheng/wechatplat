@@ -22,6 +22,8 @@ public class GroupController extends BaseController{
 
     @RequestMapping("/index")
     public String index(ModelMap modelMap){
+        String res = groupService.getGroupList(getAccess_token());
+        modelMap.addAttribute("data", res);
         return "/user/user_group";
     }
 
