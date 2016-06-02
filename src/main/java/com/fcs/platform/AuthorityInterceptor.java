@@ -25,7 +25,7 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String requestUrl = request.getServletPath().toString();
         System.out.println("=========================请求链接======================"+requestUrl);
-        if (requestUrl.equals("/getCode") || requestUrl.equals("/validateCode") ){
+        if (requestUrl.equals("/getCode") || requestUrl.equals("/validateCode") || requestUrl.startsWith("/wechat")){
             System.out.println("=========================硬编码放行======================"+requestUrl);
             return true;
         }
