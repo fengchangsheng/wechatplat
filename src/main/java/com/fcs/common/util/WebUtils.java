@@ -85,11 +85,11 @@ public class WebUtils {
             out.flush();
             // 定义BufferedReader输入流来读取URL的响应
             in = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream()));
+                    new InputStreamReader(conn.getInputStream(),"UTF-8"));
             String lines = null;
             StringBuffer sb = new StringBuffer();
             while ((lines = in.readLine()) != null) {
-                lines = new String(lines.getBytes(), "utf-8");
+                lines = new String(lines.getBytes());
                 sb.append(lines);
             }
             result = sb.toString();
