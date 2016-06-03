@@ -1,6 +1,6 @@
 package com.fcs.common.util;
 
-import com.fcs.other.annotation.XStreamCDATA;
+import com.fcs.wechat.annotation.XStreamCDATA;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.core.util.QuickWriter;
