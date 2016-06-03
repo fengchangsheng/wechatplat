@@ -2,14 +2,14 @@ package com.fcs.wechat.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fcs.common.util.WebUtils;
-import com.fcs.wechat.service.UserAnalysisService;
+import com.fcs.wechat.service.AnalysisService;
 import org.springframework.stereotype.Service;
 
 /**
  * Created by Lucare.Feng on 2016/4/27.
  */
 @Service
-public class UserAnalysisServiceImpl implements UserAnalysisService {
+public class AnalysisServiceImpl implements AnalysisService {
 
     public String getUserSummary(String access_token) {
         String url = "https://api.weixin.qq.com/datacube/getusersummary?access_token="+access_token;
