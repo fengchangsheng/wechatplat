@@ -108,7 +108,37 @@ public class ChatController extends BaseController{
                 outputMsg.setImage(images);
                 System.out.println("xml转换：/n" + xs.toXML(outputMsg));
                 response.getWriter().write(xs.toXML(outputMsg));
+            }
 
+            if (msgType.equals(MsgType.ENENT.getName())) {
+                // 事件消息
+                System.out.println("开发者微信号：" + inputMsg.getToUserName());
+                System.out.println("发送方帐号：" + inputMsg.getFromUserName());
+                System.out.println("消息创建时间：" + inputMsg.getCreateTime() + new Date(createTime * 1000l));
+                String event = inputMsg.getEvent();
+                System.out.println("事件：" + event);
+
+                if("subscribe".equals(event)){//关注
+                    StringBuffer str = new StringBuffer();
+                    str.append("<xml>");
+                    str.append("<ToUserName><![CDATA[" + custermname + "]]></ToUserName>");
+                    str.append("<FromUserName><![CDATA[" + servername + "]]></FromUserName>");
+                    str.append("<CreateTime>" + returnTime + "</CreateTime>");
+                    str.append("<MsgType><![CDATA[text]]></MsgType>");
+                    str.append("<Content><![CDATA[谢谢你关注此公众号！\r\n" +
+                            "\n请按一下指引操作：" +
+                            "\n回复1：免费获取公开课资料 " +
+                            "\n回复2：进入报名页面 " +
+                            "\n回复3：进入签到页面 " +
+                            "\n回复4：获取开发者详细资料\r\n" +
+                            "\n郑重声明：以上纯属虚构，用于开发者业余操练，为项目做准备！]]></Content>");
+                    str.append("</xml>");
+                    System.out.println(str.toString());
+                    response.getWriter().write(str.toString());
+                }else if("unsubscribe".equals(event)){//取消关注
+                    System.out.println("取消了关注");
+
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

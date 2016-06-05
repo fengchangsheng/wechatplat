@@ -6,7 +6,8 @@ package com.fcs.wechat.enums;
 public enum MsgType {
 
     TEXT("text"),
-    IMAGE("image");
+    IMAGE("image"),
+    ENENT("event");
 
     private String name;
 
