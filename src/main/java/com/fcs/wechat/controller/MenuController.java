@@ -4,6 +4,7 @@ import com.fcs.platform.controller.BaseController;
 import com.fcs.wechat.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -18,10 +19,10 @@ public class MenuController extends BaseController{
     private MenuService menuService;
 
     @RequestMapping("/index")
-    public String index(){
+    public String index(ModelMap modelMap){
         try {
-
             String res = menuService.getConfig(getAccess_token());
+            modelMap.addAttribute("data",res);
             System.out.println(res);
             return "/menu/menu_config";
         } catch (Exception e) {
