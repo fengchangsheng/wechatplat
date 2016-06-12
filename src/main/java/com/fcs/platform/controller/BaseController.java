@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fcs.common.GlobalStatic;
 import com.fcs.common.util.WebUtils;
+import com.fcs.platform.quzrtz.schedule.MySchedule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -22,33 +23,32 @@ public class BaseController {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     public String getAccess_token(){
-        return BaseHolder.access_token;
+        return new MySchedule().getAccess_token();
     }
 
-    private static class BaseHolder{
-        private static String access_token = getAccess_token();
-
-        private static String getAccess_token(){
-            StringBuilder url = new StringBuilder();
-            url.append("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential");
-            url.append("&appid=").append(GlobalStatic.APPID);
-            url.append("&secret=").append(GlobalStatic.SECRET);
-            String result = WebUtils.sendGet(url.toString());
-            JSONObject json = JSON.parseObject(result);
-            access_token = (String) json.get("access_token");
-            return access_token;
-        }
-    }
 
     @InitBinder
-    protected void initBinder(HttpServletRequest request,
-                              ServletRequestDataBinder binder) throws Exception {
-        // DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    protected void initBinder(ServletRequestDataBinder binder) throws Exception {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         CustomDateEditor dateEditor = new CustomDateEditor(format, true);
         binder.registerCustomEditor(Date.class, dateEditor);
-
     }
 
+
+    //    private static class BaseHolder{
+//        private static String access_token = getAccess_token();
+//
+//        private static String getAccess_token(){
+////            StringBuilder url = new StringBuilder();
+////            url.append("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential");
+////            url.append("&appid=").append(GlobalStatic.APPID);
+////            url.append("&secret=").append(GlobalStatic.SECRET);
+////            String result = WebUtils.sendGet(url.toString());
+////            JSONObject json = JSON.parseObject(result);
+////            access_token = (String) json.get("access_token");
+////            return access_token;
+//            return new MySchedule().getAccess_token();
+//        }
+//    }
 
 }
