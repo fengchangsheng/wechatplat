@@ -1,6 +1,6 @@
 package com.fcs.wechat.controller;
 
-import com.fcs.platform.controller.BaseController;
+import com.fcs.wechat.common.WeChatBaseController;
 import com.fcs.wechat.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/wemenu")
-public class MenuController extends BaseController{
+public class MenuController extends WeChatBaseController {
 
     @Autowired
     private MenuService menuService;

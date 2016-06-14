@@ -1,6 +1,6 @@
 package com.fcs.wechat.controller;
 
-import com.fcs.platform.controller.BaseController;
+import com.fcs.wechat.common.WeChatBaseController;
 import com.fcs.wechat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/weuser")
-public class UserController extends BaseController{
+public class UserController extends WeChatBaseController {
 
     @Autowired
     private UserService weUserService;

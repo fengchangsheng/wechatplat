@@ -2,11 +2,11 @@ package com.fcs.wechat.controller;
 
 import com.fcs.common.util.SerializeXmlUtil;
 import com.fcs.common.util.SignUtil;
+import com.fcs.wechat.common.WeChatBaseController;
 import com.fcs.wechat.model.ImageMsg;
 import com.fcs.wechat.model.InputMsg;
 import com.fcs.wechat.enums.MsgType;
 import com.fcs.wechat.model.OutputMsg;
-import com.fcs.platform.controller.BaseController;
 import com.thoughtworks.xstream.XStream;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping("/wechat")
-public class ChatController extends BaseController{
+public class ChatController extends WeChatBaseController {
 
     @RequestMapping("index")
     public void index(HttpServletRequest request,HttpServletResponse response){
