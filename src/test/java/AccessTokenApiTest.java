@@ -30,19 +30,19 @@ public class AccessTokenApiTest {
     public static void test() {
         AccessToken at = WeChatBaseController.getAccessToken();
         if (at.isAvailable())
-            System.out.println("access_token : " + at.getAccessToken());
+            System.out.println("access_token : " + at.getAccess_token());
         else
             System.out.println(at.getErrorCode() + " : " + at.getErrorMsg());
 
         at = WeChatBaseController.getAccessToken();
         if (at.isAvailable())
-            System.out.println("access_token : " + at.getAccessToken());
+            System.out.println("access_token : " + at.getAccess_token());
         else
             System.out.println(at.getErrorCode() + " : " + at.getErrorMsg());
 
         at = WeChatBaseController.getAccessToken();
         if (at.isAvailable())
-            System.out.println("access_token : " + at.getAccessToken());
+            System.out.println("access_token : " + at.getAccess_token());
         else
             System.out.println(at.getErrorCode() + " : " + at.getErrorMsg());
     }

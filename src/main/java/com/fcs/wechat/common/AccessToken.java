@@ -56,7 +56,7 @@ public class AccessToken implements RetryUtils.ResultCheck {
         return number == null ? null : number.intValue();
     }
 
-    public String getAccessToken() {
+    public String getAccess_token() {
         return access_token;
     }
 

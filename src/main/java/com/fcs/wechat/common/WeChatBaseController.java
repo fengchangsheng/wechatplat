@@ -17,7 +17,7 @@ public class WeChatBaseController extends BaseController{
     static IAccessTokenCache accessTokenCache = ApiConfigKit.getAccessTokenCache();
 
     public String getAccess_token(){
-        return getAccessToken().getAccessToken();
+        return getAccessToken().getAccess_token();
     }
 
     public static AccessToken getAccessToken() {
